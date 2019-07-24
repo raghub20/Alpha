@@ -1,0 +1,10 @@
+{
+    "environment": "developer",
+    "api": {
+      "host": "localhost",
+      "port": "4000",
+      "protocol": "http",
+      "base_url": "/api/"
+    }
+  }
+  

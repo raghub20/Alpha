@@ -1,0 +1,123 @@
+<div class="transfereeAssessmentFormContainer" flexLayout fxLayout.xs="column">
+  <div mat-dialog-title disableTypography className={styles.dialogTitle} fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayoutGap.xs="0em">
+    <h2>{{ title }}</h2>
+    <a  class="close-icon" (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+   </a>
+  </div>
+  
+  <mat-dialog-content>    
+    <form fxLayout="column" [formGroup]="transfereeAssessmentForm">
+      <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0em">
+        <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="FirstName">
+            <mat-error>
+              {{ getErrorMessage('FIRST_NAME') }}
+          </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-form-field>
+              <input matInput placeholder="Last Name" formControlName="LastName" >
+              <mat-error>
+                {{ getErrorMessage('LAST_NAME') }}
+            </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      <div class="input-row" style="margin-top: 0.9em;">
+        <mat-form-field fxFlex>
+          <input matInput  type="text" placeholder="Email" formControlName="Email">
+          <mat-error>
+            {{ getErrorMessage('EMAIL') }}
+        </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0px" style="margin-top: 0.9em;">
+        <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-form-field>
+              <mat-label>Level</mat-label>
+              <mat-select formControlName="Level" >
+              <mat-option *ngFor="let level of levels" [value]="level.levelName">
+                  {{level.levelName}}
+                </mat-option>
+              </mat-select>              
+            </mat-form-field>
+          </div>
+        <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-form-field>
+              <input matInput placeholder="Business Unit (optional)" formControlName="BusinessUnit">
+            </mat-form-field>
+          </div>
+        </div>
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0" style="margin-top: 0.9em;">
+        <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-form-field>
+                <input type="text" placeholder="Departure (Optional)" matInput formControlName="Departure" [matAutocomplete]="departureList" >
+                <mat-autocomplete #departureList="matAutocomplete" >
+                  <mat-option *ngFor="let departure of departures | async" [value]="departure.name">
+                    {{departure.name}}
+                  </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div fxFlex fxLayout.xs="column" class="hide-arrow-xs">
+            <i class="material-icons modal-rightnavarrow">
+              arrow_forward_ios
+              </i>
+        </div>
+        <div fxFlex="45%" fxLayout.xs="column" fxFlex.xs="100%">          
+            <mat-form-field>
+              <input type="text" placeholder="Destination" matInput formControlName="Destination" [matAutocomplete]="destinationList">
+              <mat-autocomplete #destinationList="matAutocomplete">
+                <mat-option *ngFor="let destination of destinations | async" [value]="destination.name">
+                  {{destination.name}}
+                </mat-option>
+              </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Assessment Content Start -->
+      <div class="input-row " fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0" style="margin-top: 0.9em;padding-bottom: 1.25em">
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails">
+          <mat-card>
+            <mat-card-content>
+              <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+              <p>Address</p>
+              <p> {{data.streetAddress}} </p>  
+              <strong> {{data.city}}, {{data.state}} {{data.zipcode}} </strong>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails people-container">
+          <mat-card>
+              <mat-card-content>
+                  <mat-icon aria-hidden="false" aria-label="Example info icon">info</mat-icon>
+                <p>Housing Details</p>
+                <p># of Rooms: {{data.noOfRooms}} </p>  
+              <strong> {{data.housingType}} </strong>
+              </mat-card-content>
+            </mat-card>
+        </div>
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails people-container">
+          <mat-card>
+              <mat-card-content>
+                  <mat-icon aria-hidden="false" aria-label="Example people icon">people</mat-icon>
+                <p>Amount of People</p>
+                <p> {{data.noOfChildren}} Children</p>  
+              <strong> {{data.total}} Total</strong>
+              </mat-card-content>
+            </mat-card>
+        </div>
+      </div>
+      <!-- Assessment Content End -->
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button (click)="onNoClick()" mat-button color="primary" id="cancel">CANCEL</button>
+    <!-- <button *ngIf="data.isAssessmentReceived" [disabled]="isDirty" class="mat-button contained-button" (click)="update()" id="invite">Update</button> -->
+    <button *ngIf="data.isAssessmentReceived" [disabled]="transfereeAssessmentForm.pristine" class="mat-button contained-button" (click)="update()" id="invite">Update</button>
+  </mat-dialog-actions>
+</div>
