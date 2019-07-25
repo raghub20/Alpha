@@ -29,7 +29,17 @@ form {
   input{
     color:#575A5D;
     font-weight: 100;
+    &:read-only {
+      cursor: not-allowed;
+      color: #000000;
+      opacity: 0.38;
+    }
   }
+
+  .mat-select-disabled {
+    cursor: not-allowed;
+  }
+  
   // .material-icons{
   //   position: relative;
   //   color:#575A5D;
@@ -52,7 +62,6 @@ form {
       display: none !important;
     }
   }
-  
 }
 
 .mat-expansion-panel-header {

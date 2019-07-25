@@ -34,7 +34,7 @@ export class TransfereeAssessmentComponent {
   transfereeAssessmentForm: FormGroup;
   /* Title to display the dialog window page title */
   title: string;
-
+  disabled = true;
   /**Flag mode for Create */
   mode = 'create';
   /**Assign formready Variable as False */
@@ -112,14 +112,14 @@ export class TransfereeAssessmentComponent {
         this.transfereeAssessmentForm.get('FirstName').setValue(this.data.fullname.substr(data.fullname.indexOf(',') + 2, data.fullname.length));
         this.transfereeAssessmentForm.get('LastName').setValue(this.data.fullname.substr(0, data.fullname.indexOf(',')));
         this.transfereeAssessmentForm.get('Destination').setValue(this.data.destination);
-        this.transfereeAssessmentForm.controls['Destination'].disable();
+        // this.transfereeAssessmentForm.controls['Destination'].disable();
         this.transfereeAssessmentForm.get('Departure').setValue(this.data.departure);
-        this.transfereeAssessmentForm.controls['Departure'].disable();
+        // this.transfereeAssessmentForm.controls['Departure'].disable();
         this.transfereeAssessmentForm.get('Email').setValue(this.data.emailAddress);
-        this.transfereeAssessmentForm.controls['Email'].disable();
+        // this.transfereeAssessmentForm.controls['Email'].disable();
         this.transfereeAssessmentForm.get('BusinessUnit').setValue(this.data.businessUnit);
         this.transfereeAssessmentForm.get('Level').setValue(this.data.level.levelName);
-        this.transfereeAssessmentForm.controls['Level'].disable();
+        // this.transfereeAssessmentForm.controls['Level'].disable();
       }
 
       /* Enable the event listener for departure drop down form element */
@@ -197,5 +197,18 @@ export class TransfereeAssessmentComponent {
     console.log(firstName.value);
     console.log(lastName.value);
     console.log(businessUnit.value);
+    const levelDetails =  this.levelService.getLevelId(this.transfereeAssessmentForm.value.Level);
+
+  if (this.data) {
+    if (!(this.data.invitationSentDate === '' || this.data.invitationSentDate === null)) {
+      this.candidateProfilesService.addCandidateProfile(this.transfereeAssessmentForm.value, levelDetails, false);
+    } else {
+      this.candidateProfilesService.addCandidateProfile(this.transfereeAssessmentForm.value, levelDetails, true);
+    }
+  } else {
+    this.candidateProfilesService.addCandidateProfile(this.transfereeAssessmentForm.value, levelDetails, false);
+  }
+  console.log(this.transfereeAssessmentForm.value);
+  this.dialogRef.close();
   }
 }

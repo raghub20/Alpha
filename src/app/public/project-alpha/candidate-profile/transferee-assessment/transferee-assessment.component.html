@@ -28,7 +28,7 @@
         </div>
       <div class="input-row" style="margin-top: 0.9em;">
         <mat-form-field fxFlex>
-          <input matInput  type="text" placeholder="Email" formControlName="Email">
+          <input matInput  type="text" placeholder="Email" formControlName="Email" readonly="disabled">
           <mat-error>
             {{ getErrorMessage('EMAIL') }}
         </mat-error>
@@ -38,11 +38,14 @@
         <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
             <mat-form-field>
               <mat-label>Level</mat-label>
-              <mat-select formControlName="Level" >
-              <mat-option *ngFor="let level of levels" [value]="level.levelName">
+              <mat-select formControlName="Level" [disabled]="disabled">
+              <mat-option *ngFor="let level of levels" [value]="level.levelName" >
                   {{level.levelName}}
                 </mat-option>
-              </mat-select>              
+              </mat-select>   
+              <mat-error>
+                {{ errors['Level'] }}
+            </mat-error>           
             </mat-form-field>
           </div>
         <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
@@ -54,7 +57,7 @@
       <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0" style="margin-top: 0.9em;">
         <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
             <mat-form-field>
-                <input type="text" placeholder="Departure (Optional)" matInput formControlName="Departure" [matAutocomplete]="departureList" >
+                <input type="text" placeholder="Departure (Optional)" matInput formControlName="Departure" [matAutocomplete]="departureList" readonly="disabled">
                 <mat-autocomplete #departureList="matAutocomplete" >
                   <mat-option *ngFor="let departure of departures | async" [value]="departure.name">
                     {{departure.name}}
@@ -69,7 +72,7 @@
         </div>
         <div fxFlex="45%" fxLayout.xs="column" fxFlex.xs="100%">          
             <mat-form-field>
-              <input type="text" placeholder="Destination" matInput formControlName="Destination" [matAutocomplete]="destinationList">
+              <input type="text" placeholder="Destination" matInput formControlName="Destination" [matAutocomplete]="destinationList" readonly="disabled">
               <mat-autocomplete #destinationList="matAutocomplete">
                 <mat-option *ngFor="let destination of destinations | async" [value]="destination.name">
                   {{destination.name}}

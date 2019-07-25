@@ -812,3 +812,6 @@ h2 {
         color:#fff;
     }
     
+    .mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.42) 100%, transparent 0%) !important;
+      }

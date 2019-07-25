@@ -48,7 +48,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': true,
       'emailAddress': 'chris.beal@gmail.com',
       'businessUnit': 'Finance',
-      'invitationSentDate': '9-APR-19',
+      'invitationSentDate': '9-APR-2019',
       'createdDate': '9-APR-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '2-MAY-19',
@@ -74,7 +74,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'dan.goulet@gmail.com',
       'businessUnit': 'Engineering',
-      'invitationSentDate': '12-JAN-19',
+      'invitationSentDate': '12-JAN-2019',
       'createdDate': '8-JAN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '25-JAN-19',
@@ -100,7 +100,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'j.cordon@gmail.com',
       'businessUnit': 'Engineering',
-      'invitationSentDate': '28-JAN-19',
+      'invitationSentDate': '28-JAN-2019',
       'createdDate': '23-JAN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '30-JAN-19',
@@ -126,7 +126,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': true,
       'emailAddress': 'francesca.hayes@gmail.com',
       'businessUnit': 'Accounting',
-      'invitationSentDate': '22-FEB-19',
+      'invitationSentDate': '22-FEB-2019',
       'createdDate': '2-FEB-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '23-MAR-19',
@@ -152,7 +152,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'adam.hu@gmail.com',
       'businessUnit': 'Marketing',
-      'invitationSentDate': '21-JUN-19',
+      'invitationSentDate': '21-JUN-2019',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -178,7 +178,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'suehong.jones@gmail.com',
       'businessUnit': 'Human Resources',
-      'invitationSentDate': '2-JUN-19',
+      'invitationSentDate': '2-JUN-2019',
       'createdDate': '2-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '20-JUN-19',
@@ -204,7 +204,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'aleksandr.rector@gmail.com',
       'businessUnit': 'Product Solutions',
-      'invitationSentDate': '21-JUN-19',
+      'invitationSentDate': '21-JUN-2019',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -230,7 +230,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'mathew.richardson@gmail.com',
       'businessUnit': 'Human Resources',
-      'invitationSentDate': '21-JUN-19',
+      'invitationSentDate': '21-JUN-2019',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -256,7 +256,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'pritpal.varaha@gmail.com',
       'businessUnit': 'Finance',
-      'invitationSentDate': '21-JUN-19',
+      'invitationSentDate': '21-JUN-2019',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -282,7 +282,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'robin.ellacott@gmail.com',
       'businessUnit': 'Engineering',
-      'invitationSentDate': '21-JUN-19',
+      'invitationSentDate': '21-JUN-2019',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -381,8 +381,13 @@ export class CandidateProfilesService {
       item.level.levelDescription = levelDetails.levelDescription;
       item.departure = formData.Departure;
       item.destination = formData.Destination;
-      item.status =  isInvitationSent ? 'Invitation Sent' : 'Invitation Not Sent';
-      item.isAssessmentReceived = false;
+      if (item.isAssessmentReceived === true) {
+        item.status =  'Pending Vanline Quote';
+        item.isAssessmentReceived = true;
+      } else {
+        item.status =  isInvitationSent ? 'Invitation Sent' : 'Invitation Not Sent';
+        item.isAssessmentReceived = false;
+      }
       item.businessUnit = formData.BusinessUnit;
       item.invitationSentDate = isInvitationSent ? dateString : '';
       item.emailAddress = formData.Email;
@@ -390,4 +395,21 @@ export class CandidateProfilesService {
     });
     }
   }
+
+  formatDate(date) {
+    var monthNames = [
+      "Jan", "Feb", "Mar",
+      "Apr", "May", "Jun", "Jul",
+      "Aug", "Sep", "Oct",
+      "Nov", "Dec"
+    ];
+  
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+  
+    return day + '-' + monthNames[monthIndex] + '-' + year;
+  }
+
+
 }
