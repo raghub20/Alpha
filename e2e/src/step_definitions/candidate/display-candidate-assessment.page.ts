@@ -4,6 +4,7 @@ import { browser, element, by, ExpectedConditions as EC } from "protractor";
 export class DisplayCandidateAssessmentPage {
 
   async navigateToCandidateTab() {
+    //await browser.get('http://localhost:4200/#/project-alpha/candidate-profiles');
     await browser.get('/#/project-alpha');
     await this.candidateTab().click();
   }
@@ -65,11 +66,41 @@ export class DisplayCandidateAssessmentPage {
   }
 
   async clickOnCandidateBasedOnName(fullName) {
+    await this.searchInput().clear();
     await this.searchInput().sendKeys(fullName);
     return await this.candidateTable().element(by.tagName('tbody')).all(by.tagName('tr')).get(0).all(by.tagName('td')).get(1).click();
   }
 
   async waitForCandidateAsssessmentGridToOpen() {
       return browser.wait(EC.elementToBeClickable(this.candidateAssessmentGrid()), 5000);
+  }
+
+  async getUpdateButton() {
+    return element(by.buttonText('Update'));
+  }
+
+  async getDataFromTable(rowIndex, columnIndex) {
+    let tbody = await this.candidateTable().element(by.tagName('tbody'));
+    let row = await tbody.all(by.tagName('tr')).get(rowIndex-1);
+    let col = await row.all(by.tagName('td')).get(columnIndex-1);
+    return await col.getText();
+  }
+
+  async getColumnCheckboxEle(columnName:string) {
+    let root = await element(by.xpath('//span[text()="' + columnName + '"]//ancestor::mat-checkbox'));
+    return {
+        root : root,
+        input : root.element(by.tagName('input')),
+        label : root.element(by.tagName('label'))
+    }
+  }
+
+  async getViewColumnEle() {
+    return await element(by.xpath('//mat-icon[text()="view_column"]'));
+  }
+
+  async getButtonEle(buttonText: string) {
+    let el = await element(by.buttonText(buttonText));
+    return el;
   }
 }
