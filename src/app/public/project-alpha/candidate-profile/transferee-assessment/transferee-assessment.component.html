@@ -11,7 +11,7 @@
       <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0em">
         <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
           <mat-form-field>
-            <input matInput placeholder="First Name" formControlName="FirstName">
+            <input matInput placeholder="First Name" formControlName="FirstName" (ngModelChange)= "changeField($event, 'firstName')">
             <mat-error>
               {{ getErrorMessage('FIRST_NAME') }}
           </mat-error>
@@ -19,7 +19,7 @@
         </div>
         <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
             <mat-form-field>
-              <input matInput placeholder="Last Name" formControlName="LastName" >
+              <input matInput placeholder="Last Name" formControlName="LastName" (ngModelChange)= "changeField($event, 'lastName')">
               <mat-error>
                 {{ getErrorMessage('LAST_NAME') }}
             </mat-error>
@@ -50,7 +50,7 @@
           </div>
         <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
             <mat-form-field>
-              <input matInput placeholder="Business Unit (optional)" formControlName="BusinessUnit">
+              <input matInput placeholder="Business Unit (optional)" formControlName="BusinessUnit" (ngModelChange)= "changeField($event, 'businessUnit')">
             </mat-form-field>
           </div>
         </div>
@@ -83,7 +83,7 @@
       </div>
       <!-- Assessment Content Start -->
       <div class="input-row " fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0" style="margin-top: 0.9em;padding-bottom: 1.25em">
-        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails">
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails address-container">
           <mat-card>
             <mat-card-content>
               <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
@@ -93,7 +93,7 @@
             </mat-card-content>
           </mat-card>
         </div>
-        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails people-container">
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails housing-container">
           <mat-card>
               <mat-card-content>
                   <mat-icon aria-hidden="false" aria-label="Example info icon">info</mat-icon>
@@ -121,6 +121,6 @@
   <mat-dialog-actions>
     <button (click)="onNoClick()" mat-button color="primary" id="cancel">CANCEL</button>
     <!-- <button *ngIf="data.isAssessmentReceived" [disabled]="isDirty" class="mat-button contained-button" (click)="update()" id="invite">Update</button> -->
-    <button *ngIf="data.isAssessmentReceived" [disabled]="transfereeAssessmentForm.pristine" class="mat-button contained-button" (click)="update()" id="invite">Update</button>
+    <button [disabled]="isDirty" class="mat-button contained-button" (click)="updateCandidateAssessment()" id="updateCandidateAssessment">Update</button>
   </mat-dialog-actions>
 </div>

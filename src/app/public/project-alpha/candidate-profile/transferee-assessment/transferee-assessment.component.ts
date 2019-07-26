@@ -34,7 +34,13 @@ export class TransfereeAssessmentComponent {
   transfereeAssessmentForm: FormGroup;
   /* Title to display the dialog window page title */
   title: string;
+  /* Elements to make read only */
   disabled = true;
+  /* Enable/Disable Update Button */
+  isDirty = true;
+  isFirstNameField = true;
+  isLastNameField = true;
+  isbusinessUnitField = true;
   /**Flag mode for Create */
   mode = 'create';
   /**Assign formready Variable as False */
@@ -136,6 +142,42 @@ export class TransfereeAssessmentComponent {
       );
   }
 
+  /* On change input fields (First Name, Last Name, Business Unit) - Enable Update Button */
+  changeField(event, field) {
+    console.log('enter');
+    if (this.transfereeAssessmentForm.valid) {
+      switch (field) {
+        case 'firstName': {
+          if (this.data.fullname.substr(this.data.fullname.indexOf(',') + 2, this.data.fullname.length) === event) {
+            this.isFirstNameField = true;
+          } else {
+            this.isFirstNameField = false;
+          }
+          break;
+        }
+        case 'lastName': {
+          if (this.data.fullname.substr(0, this.data.fullname.indexOf(',')) === event) {
+            this.isLastNameField = true;
+          } else {
+            this.isLastNameField = false;
+          }
+          break;
+        }
+        case 'businessUnit': {
+          if (this.data.businessUnit === event) {
+            this.isbusinessUnitField = true;
+          } else {
+            this.isbusinessUnitField = false;
+          }
+          break;
+        }
+      }
+      this.isDirty = (this.isFirstNameField && this.isLastNameField && this.isbusinessUnitField);
+    } else {
+      this.isDirty = true;
+    }
+  }
+
   /**
    *  Modified incoming value to lowerCase and assigned to const variable filterValue
    * @param value - start character for filter values
@@ -190,7 +232,7 @@ export class TransfereeAssessmentComponent {
     }
   }
 
-  update() {
+  updateCandidateAssessment() {
     const firstName = this.transfereeAssessmentForm.get('FirstName');
     const lastName = this.transfereeAssessmentForm.get('LastName');
     const businessUnit = this.transfereeAssessmentForm.get('BusinessUnit');
