@@ -1,13 +1,30 @@
-import { browser, element, by, ExpectedConditions as EC } from "protractor";
+import { browser, element, by, ExpectedConditions as EC, ElementFinder } from "protractor";
 
 
 export class DisplayCandidateAssessmentPage {
 
-  async navigateToCandidateTab() {
+  async navigateToCandidateTab(browserMode = 'desktop') {
     //await browser.get('http://localhost:4200/#/project-alpha/candidate-profiles');
-    await browser.get('/#/project-alpha');
-    await this.candidateTab().click();
+    await browser.get('/#/project-alpha/candidate-profiles');
+    if(browserMode.toLowerCase() == 'mobile') {
+      //since issue in the application, so we are opening candidate page in desktop view and changing into mobile view.
+      await browser.manage().window().setSize(375, 812);
+      let menu = await this.getMenuItem();
+      //Below commented code will be removed once the issue in the application fixes.
+      /*await menu.click();
+      return element(by.xpath('//*[text()=" Candidates "]')).click();*/
+    } else {
+      await browser.manage().window().maximize();
+      return await this.candidateTab().click();
+    }
+    
   }
+
+  async getMenuItem(): Promise<ElementFinder> {
+    let el: ElementFinder =  await element(by.cssContainingText('mat-icon', 'menu'));
+    return el;
+  }
+
 
   candidateTab() {
     return element(by.cssContainingText('span', 'Candidates'));

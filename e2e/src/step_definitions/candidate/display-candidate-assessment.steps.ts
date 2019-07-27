@@ -12,7 +12,7 @@ let candidateObj = new DisplayCandidateAssessmentPage();
 Given('User will click on candidate tab', () => {
   return candidateObj.navigateToCandidateTab();
 });
-//"Pending Vanline Quote"
+
 When('User will open candidate assessment window whose status is {string} and name as {string}', async (status, fullName) => {
   return await candidateObj.clickOnCandidateBasedOnName(fullName);
 });
@@ -104,4 +104,8 @@ When('User will click on Update button', async () => {
 
 Then('User will verify business unit column value is updated to {string}', (expectedValue) => {
     return expect(candidateObj.getDataFromTable(1, 6)).eventually.to.be.equal(expectedValue);
+});
+
+When('User will open candidate page in mobile view', () => {
+    return candidateObj.navigateToCandidateTab('mobile');
 });
