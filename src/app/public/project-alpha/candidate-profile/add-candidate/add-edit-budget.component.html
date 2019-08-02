@@ -1,0 +1,241 @@
+<div class="addcandidateformcontainer" flexLayout fxLayout.xs="column">
+  <div mat-dialog-title disableTypography className={styles.dialogTitle} fxLayout="row" fxLayoutAlign="space-between"
+    fxLayoutGap="20px" fxLayoutGap.xs="0em">
+    <h2>{{ title }}</h2>
+    <a class="close-icon" (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </a>
+  </div>
+
+  <mat-dialog-content>
+    <form fxLayout="column" [formGroup]="addCandidateForm">
+      <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column"
+        fxLayoutGap.xs="0em">
+        <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="FirstName"
+              (ngModelChange)="changeField($event, 'firstName')">
+            <mat-error>
+              {{ getErrorMessage('FIRST_NAME') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="LastName"
+              (ngModelChange)="changeField($event, 'lastName')">
+            <mat-error>
+              {{ getErrorMessage('LAST_NAME') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="input-row" class="addcandidate-toppadding">
+        <mat-form-field fxFlex>
+          <input matInput type="text" placeholder="Email" formControlName="Email" [readonly]="readOnlyField">
+          <mat-error>
+            {{ getErrorMessage('EMAIL') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0px"
+        class="addcandidate-toppadding">
+        <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <mat-label>Level</mat-label>
+            <mat-select formControlName="Level" [disabled]="readOnlyField">
+              <mat-option *ngFor="let level of levels" [value]="level.levelName">
+                {{level.levelName}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              {{ errors['Level'] }}
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <input matInput placeholder="Business Unit (optional)" formControlName="BusinessUnit"
+              (ngModelChange)="changeField($event, 'businessUnit')">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0"
+        class="addcandidate-toppadding">
+        <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <input type="text" placeholder="Departure (Optional)" matInput formControlName="Departure"
+              [matAutocomplete]="departureList" [readonly]="readOnlyField">
+            <mat-autocomplete #departureList="matAutocomplete">
+              <mat-option *ngFor="let departure of departures | async" [value]="departure.name">
+                {{departure.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div fxFlex fxLayout.xs="column" class="hide-arrow-xs">
+          <i class="material-icons modal-rightnavarrow">
+            arrow_forward_ios
+          </i>
+        </div>
+        <div fxFlex="45%" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <input type="text" placeholder="Destination" matInput formControlName="Destination"
+              [matAutocomplete]="destinationList" [readonly]="readOnlyField">
+            <mat-autocomplete #destinationList="matAutocomplete">
+              <mat-option *ngFor="let destination of destinations | async" [value]="destination.name">
+                {{destination.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error>
+              {{ errors['Destination'] }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Assessment Content Start -->
+      <div *ngIf="showAssessment && statusOftype.pendingVanline" class="input-row " fxLayout="row"
+        fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0"
+        style="margin-top: 0.9em;padding-bottom: 1.25em">
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails address-container">
+          <mat-card>
+            <mat-card-content>
+              <mat-icon aria-hidden="false" aria-label="Example place icon">place</mat-icon>
+              <p>Address</p>
+              <p> {{data.streetAddress}} </p>
+              <strong> {{data.city}}, {{data.state}} {{data.zipcode}} </strong>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails housing-container">
+          <mat-card>
+            <mat-card-content>
+              <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+              <p>Housing Details</p>
+              <p># of Rooms: {{data.noOfRooms}} </p>
+              <strong> {{data.housingType}} </strong>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="33%" fxLayout.xs="column" fxFlex.xs="100%" class="assessmentDetails people-container">
+          <mat-card>
+            <mat-card-content>
+              <mat-icon aria-hidden="false" aria-label="Example people icon">people</mat-icon>
+              <p>Number of People</p>
+              <p> {{data.noOfChildren}} Children</p>
+              <strong> {{data.total}} Total</strong>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+
+      <!-- Assessment Content End -->
+      <!-- list of services div starts here -->
+      <div *ngIf="showServices">
+        <!-- cost  expense content starts -->
+        <div class="corebenefit-section" *ngFor="let transferre of candidateBudgetModel.service">
+          <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%" class="">
+            <div class="corebenefit">
+              <div>
+                <!-- CORE BENEFITS -->
+                {{transferre.serviceName}}
+                <p>{{transferre.serviceDesc}}</p>
+              </div>
+              <div class="budget">
+                {{transferre.serviceAmt | currency:'&nbsp;'}} {{transferre.serviceCurrency}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- cost  expense content ends -->
+        <!--  Total recommend budget starts -->
+        <div class="corebenefit-section">
+          <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%">
+            <div class="corebenefit">
+              <div>
+                Total Recommended Budget
+              </div>
+              <div class="total-budget">
+                {{candidateBudgetModel.totalRecomBudgetAmt | currency:'&nbsp;'}}
+                {{candidateBudgetModel.totalCostCurrency}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  Total recommend budget ends -->
+        <!--  Tax Assistance starts ends -->
+        <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column"
+          fxLayoutGap.xs="0em" class="addcandidate-toppadding">
+          <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+
+                  <mat-panel-title>
+                    <mat-checkbox id="tax_assistance" (click)="$event.stopPropagation();" [checked]="taxValChkBox"
+                      (change)="taxChkBoxSelect(taxValChkBox)">Include tax assistance</mat-checkbox>
+                  </mat-panel-title>
+                  <mat-panel-description (click)="$event.stopPropagation();">
+                    <div>
+                      <span>{{taxValue | currency:'&nbsp;'}}</span>
+                      <span *ngIf="taxValue ? candidateBudgetModel.totalCostCurrency : null">
+                        {{candidateBudgetModel.totalCostCurrency}} </span>
+                    </div>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>Predicted Budget Section</p>
+                <p>Coming Soon....</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+        <!--  Tax Assistance  ends -->
+        <!--  Total recommend budget starts -->
+        <div class="corebenefit-section">
+          <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%" class="">
+            <div class="corebenefit">
+              <div>
+                Total Cost
+              </div>
+              <div class="total-budget">
+                {{totalCost | currency:'&nbsp;'}}
+                {{candidateBudgetModel.totalCostCurrency}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  Total recommend budget ends -->
+      </div>
+      <!-- list of services div ends here -->
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <!-- Add/Edit button state -->
+<div *ngIf="!transferreFlag">
+    <button (click)="onNoClick()" mat-button color="primary" id="addEditCancel">CANCEL</button>
+    <button mat-button class="mat-button outlined-button" (click)="saveDraft()" id="addEditSave" [disabled]="!addCandidateForm.get('FirstName').valid || !addCandidateForm.get('LastName').valid">Save</button>
+    <button [disabled]="!addCandidateForm.valid" mat-button class="mat-button contained-button" (click)="sendInvite()" id="addEditSendInvite">Send Invite</button>
+</div>
+    <!-- Add/Edit button state -->
+    <!-- Ready for review state btn -->
+    <div *ngIf="transferreFlag && !btnChangeFlag" class="statusBtn">
+      <button mat-button class="mat-button outlined-button leftBtn" id="show">Show Budget Details</button>
+      <button (click)="onNoClick()" mat-button color="primary" id="cancel">CANCEL</button>
+      <button class="mat-button contained-button approveBtn" id="invite">
+        <span class="approve">Approve</span>
+      </button>
+      <button class="shareBtn">
+        <span class="share"><i class="material-icons">share</i></span>
+      </button>
+    </div>
+    <!-- Ready for review state btn -->
+    <!-- Pending vanline btn -->
+    <div *ngIf="transferreFlag && btnChangeFlag" class="statusBtn">
+      <button mat-button color="primary" id="cancel" (click)="onNoClick()">CANCEL</button>
+      <button [disabled]="isDirty" mat-button class="mat-button contained-button" (click)="updateCandidateAssessment()"
+        id="updateCandidateAssessment">Update</button>
+    </div>
+  </mat-dialog-actions>
+</div>
