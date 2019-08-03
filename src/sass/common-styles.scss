@@ -838,5 +838,38 @@ h2 {
         max-width: 100% !important;
         width: 100%;
         height: 100%;
+        .mat-dialog-container {
+            border-radius: 0px;
+        }
+    }
+}
+
+/* Common Material Buttons Starting From Cost Model Screen */
+.mat-button {
+    font-size: 1em;
+    min-width: 5em !important;
+    padding: 0.5em !important;
+    color: map-get($cartus-palette, 'cartus_accent_blue');
+    &:hover {
+        color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+        background-color: map-get($cartus-palette, 'cartus_hover_tint');
+    }
+    &:disabled {
+        color: map-get($cartus-palette, 'cartus_disabled_gray');
+    }
+}
+
+.mat-raised-button {
+    font-size: 1em;
+    min-width: 9em !important;
+    padding: 0.5em !important;
+    color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+    background-color: map-get($cartus-palette, 'cartus_accent_blue');
+    &:hover {
+        background-color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+    }
+    &:disabled {
+        color: map-get($cartus-palette, 'cartus_gray');
+        background-color: map-get($cartus-palette, 'cartus_disabled_gray');
     }
 }

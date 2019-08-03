@@ -68,7 +68,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button (click)="onNoClick()" mat-button color="primary" id="cancel">CANCEL</button>
-    <button [disabled]="!addCostModelForm.valid" class="mat-button contained-button" (click)="saveCostModel()" id="save_cost_model">Save</button>
+    <button mat-button id="cancel_cost_model" (click)="onNoClick()">CANCEL</button>
+    <button mat-raised-button id="save_cost_model" [disabled]="!addCostModelForm.valid" (click)="saveCostModel()">Save</button>
   </mat-dialog-actions>
 </div>

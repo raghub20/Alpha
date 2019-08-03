@@ -11,7 +11,8 @@ import { Selection } from '../../../core/models/selection.model';
 import { CostModel } from '../../../core/models/cost-model';
 import { CostModelsService } from '../../../core/services/cost-models.service';
 import { ModelColumnsComponent } from './model-columns/model-columns.component';
-import { AddCostModelComponent } from './add-cost-model/add-cost-model.component'
+import { AddCostModelComponent } from './add-cost-model/add-cost-model.component';
+import { NotificationsService } from '../../../../../src/app/core/services/notifications.service';
 
 @Component({
   selector: 'app-cost-model',
@@ -21,7 +22,7 @@ import { AddCostModelComponent } from './add-cost-model/add-cost-model.component
 export class CostModelComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['select','modelName', 'level.levelName','departure', 'destination', 'action'];
+  displayedColumns: string[] = ['select', 'modelName', 'level.levelName', 'departure', 'destination', 'action'];
 
   addCandidateForm: FormGroup;
   dataSource: any;
@@ -33,7 +34,8 @@ export class CostModelComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private costModelsService: CostModelsService,
-    private changeDetectorRefs: ChangeDetectorRef) { }
+    private changeDetectorRefs: ChangeDetectorRef,
+    private notificationsService: NotificationsService) { }
 
   /** To sort the mat table columns */
   @ViewChild(MatSort) sort: MatSort;
@@ -53,7 +55,7 @@ export class CostModelComponent implements OnInit {
     this.dataSource.filterPredicate = (data, filter) => {
       const dataStr = data.destination + data.modelName + data.departure + data.level.levelName;
       return dataStr.indexOf(filter) !== -1;
-    }
+    };
   }
 
   applyFilter(filterValue: string) {
@@ -102,7 +104,6 @@ export class CostModelComponent implements OnInit {
 
   /* Open the dialog box AddCandidateComponent in EDIT mode when any row is clicked of the mat table*/
   public open(event, data) {
-   
     const dialogRef = this.dialog.open(AddCostModelComponent, {
       panelClass: 'addCostModelModal',
       data: data
@@ -118,8 +119,6 @@ export class CostModelComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-
-  
   }
 
   openDialog(): void {
@@ -129,6 +128,7 @@ export class CostModelComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.updateDataSource();
+      this.notificationsService.flashNotification('success', 'Cost Model added successfully', true, 'dismiss');
     });
   }
   /* Resend Invite Modal window */
@@ -153,20 +153,19 @@ export class CostModelComponent implements OnInit {
       panelClass: 'DisplayedColumnsModal',
       data: this.displayedColumns
     });
-    const res = dialogRef.componentInstance.columnsListUpdated.subscribe((response: Selection[]) => {      
+    const res = dialogRef.componentInstance.columnsListUpdated.subscribe((response: Selection[]) => {
       this.columnList = response;
       this.selectedCols = this.columnList;
       this.updateTable();
     });
   }
-  updateTable(){
+  updateTable() {
       this.selectedCols.forEach((item, index) => {
         if (this.displayedColumns.indexOf(item.value) < 0) {
           this.displayedColumns.push(item.value);
-        }
-        else {
+        } else {
           this.displayedColumns = this.displayedColumns.filter((val) => {
-            return item.value == val;
+            return item.value === val;
           });
         }
       });

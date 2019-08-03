@@ -150,7 +150,7 @@ export class AddCostModelComponent {
     */
    getErrorMessage(field_name) {
      if (field_name === 'MODEL_NAME') {
-        return this.addCostModelForm.get('ModelName').hasError('required') ? 'You must enter Cost Model name' :
+        return this.addCostModelForm.get('ModelName').hasError('required') ? 'You must enter cost model name' :
          this.addCostModelForm.get('ModelName').hasError('pattern') ? 'Special characters are not allowed' : '';
      }
    }
