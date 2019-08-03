@@ -1,0 +1,73 @@
+<!-- <div class="candidates-container">
+    <section> -->
+      <!-- <main class="demo-main" > -->
+          <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="candidate-steppersection" > -->
+                    <!-- Leftsection content starts-->
+         
+            <!-- <div class="candidate-Na-Leftcontainer">
+                <div class="fxFlex" fxFlex="100%">                 -->
+                <!-- <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="onStepChange($event)">
+                    <mat-step>
+                      <app-welcome-page></app-welcome-page>                        
+                    </mat-step>
+                    <mat-step>
+                       <app-relocation></app-relocation>                        
+                    </mat-step>
+                    <mat-step>
+                      <app-people-relocation></app-people-relocation>
+                    </mat-step>
+                  </mat-horizontal-stepper> -->
+                <!-- </div>
+              </div> -->
+        <!-- Leftsection content ends-->
+         <!-- rightsection content starts-->
+        
+         <!-- <div class="candidate-Na-Rightcontainer">
+            <div class="fxFlex" fxFlex="100%">
+
+           <app-rightsection></app-rightsection>
+
+         </div>
+        </div> -->
+          <!-- rightsection content ends-->
+          <!-- </main> -->
+        <!-- </div>
+        </section> -->
+
+        <div class="bounds">
+    
+          <div class="content" 
+               fxLayout="row" 
+               fxLayout.xs="column" 
+               fxFlexFill >
+               
+              <div fxFlex="75%" class="sec1" fxFlex.xs="100%">
+                <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="onStepChange($event)">
+                  <mat-step>
+                        <app-welcome-page></app-welcome-page>                        
+                  </mat-step>                  
+                  <mat-step>
+                     <app-relocation></app-relocation>                        
+                  </mat-step>
+                  <mat-step>
+                    <app-people-relocation></app-people-relocation>
+                  </mat-step>
+                  <mat-step>
+                    <app-current-address></app-current-address>
+                  </mat-step>
+                  <mat-step>
+                      <app-city></app-city>
+                    </mat-step>
+                    <mat-step>
+                      <app-current-residnce></app-current-residnce>
+                    </mat-step>
+                </mat-horizontal-stepper>
+              </div>
+              
+              <div fxFlex="25%" class="sec3" fxFlex.xs="100%">
+                  <app-rightsection></app-rightsection>
+              </div>
+          </div>
+        </div>
+  <router-outlet></router-outlet>
+<!-- </div> -->

@@ -1,0 +1,149 @@
+@import '../../../../../sass/cartus-palette.scss';
+
+form {
+  padding : 0;
+}
+
+.input-headline {
+  font-size: 2.33em;
+  line-height: 2em;
+  font-weight: 400;
+}
+
+.mat-option {
+  font-size:1em;
+}
+
+.mat-raised-button.mat-send-button{
+  border: 1px solid #77797B;
+  color: #77797B;
+  background-color: map-get($cartus-palette, 'cartus_disabled_gray' )
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+  padding-top: 1.5em;
+}
+
+.addcandidateformcontainer{
+  input{
+    color: map-get($cartus-palette , 'cartus_gray');
+    font-weight: 100;
+    &:read-only {
+      cursor: not-allowed;
+      color: #000000;
+      opacity: 0.38;
+    }
+  }
+
+  .mat-select-disabled {
+    cursor: not-allowed;
+  }
+  // .material-icons{
+  //   position: relative;
+  //   color: map-get($cartus-palette , 'cartus_gray');
+  //   background: none;
+  // }
+  .mat-form-field{
+    width:100% !important;
+  }
+  .close-icon{    
+    position: relative;
+    top: 0.625em;
+    cursor: pointer;
+  }
+  .modal-rightnavarrow{
+    font: size 2.9em;
+  }
+  .hide-arrow-xs{
+    display: block !important;
+    @media screen and (max-width:600px){
+      display: none !important;
+    }
+  }
+  
+}
+
+.mat-expansion-panel-header {
+  font-size: 0.875em;
+}
+.addcandidate-toppadding{
+  margin-top:0.9em;
+}
+// Corebenefit style starts
+.corebenefit-section{
+  background-color: map-get($cartus-palette , 'cartus_pale_gray');
+  color:map-get($cartus-palette, 'cartus_primary_dark_brown');
+  padding: 0.8em 2.1em 0.8em 1.1em;;
+  margin-top: 0.625em;
+}
+.corebenefit{
+  display: flex;
+  justify-content: space-between;
+  font-size:1em;
+  text-align: left;
+  p{
+    margin: 0;
+    font-size: 0.7em;
+  }
+  .budget{
+    font-weight: bold;
+    font-size:0.9em;
+  }
+  .total-budget{
+    font-weight: bold;
+    font-size:0.9em;
+  }
+
+}
+.mat-expansion-panel-header-description{
+  flex-grow: 0;
+  align-items: flex-end;
+  color:map-get($cartus-palette, 'cartus_gray');
+}
+mat-expansion-panel
+{
+  border: 1px solid #949494;box-shadow: none;
+}
+// Corebenefit style starts
+.statusBtn{
+  @media screen and(min-width:768px){
+    display:-webkit-flex;
+    display:flex;
+    list-style-type:none;
+    padding:0;
+    justify-content:flex-end;
+    width:100%;
+  }
+
+    .leftBtn {
+      @media screen and(min-width:768px){
+      margin-right:auto;
+      }
+      @media screen and(max-width:600px){
+        width:100%;
+        margin-bottom: 0.3125em;
+      }
+  }
+  .approveBtn{
+    border-radius: 5px 0 0 5px;
+  }
+  span.share .material-icons{
+    color:map-get($cartus-palette, 'cartus_primary_blue_contrast');
+    position: relative;
+    top:0.125em;
+    @media screen and (max-width:600px){
+      top: 0.325em;
+    }
+  }
+  .shareBtn{
+    background-color:map-get($cartus-palette, 'cartus_accent_blue');
+    border-radius: 0 5px 5px 0;
+    border: 0;
+    margin-left:0.0625em;
+    @media screen and (max-width:600px){
+      line-height: 2.7em;
+      border-left: 1px solid map-get($cartus-palette, 'cartus_nav_tile' );
+    }
+  }
+}
