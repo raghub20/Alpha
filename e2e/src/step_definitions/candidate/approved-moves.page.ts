@@ -2,8 +2,9 @@ import { browser, element, by, promise, ElementFinder, protractor, ExpectedCondi
 import _ from 'lodash';
 export class ApprovedMoves {
     get() {
-        return browser.get('http://localhost:4200/');
-        //return browser.get('/#/project-alpha');
+        browser.refresh();
+        return browser.get('http://localhost:4200/#/project-alpha/approved-moves');
+        //return browser.get('/#/project-alpha/approved-moves');
     }
 
     async getHeader(headerName: string): Promise<ElementFinder> {
@@ -81,7 +82,33 @@ export class ApprovedMoves {
      }
 
     async verifyTableSortData(headerName, sortType) {
+        let tableData = [];
         let rows: ElementFinder[] = await this.getApprovedMovesTableBody();
+        let columnIndex = await this.getHeaderIndex(headerName);
+        let actualData = [];
+        for(let i=0; i<rows.length; i++) {
+            let row: ElementFinder = rows[i];
+            let columns: ElementFinder[] = await row.all(by.tagName('td'));
+            let columnText = await columns[columnIndex].getText();
+            if(headerName == 'Authorized Amount') {
+                tableData.push(parseFloat(columnText));
+            } else {
+                tableData.push(columnText);
+            }
+        }
+        actualData = tableData;
+        if(sortType == 'asceding'){
+            tableData.sort();
+        } else {
+            tableData.sort().reverse();
+        }
+        for(let i=0; i<actualData.length; i++) {
+            if(actualData[i] != tableData[i]) {
+                return false;
+            }
+        }
+
+        /*let rows: ElementFinder[] = await this.getApprovedMovesTableBody();
         let columnIndex = await this.getHeaderIndex(headerName);
         let previousText = '';
         for(let i=0; i<rows.length; i++) {
@@ -92,6 +119,7 @@ export class ApprovedMoves {
                 return this.verifyTableNumberSortData(columnIndex, sortType);
             }
             if(sortType == 'asceding') {
+
                 if(i>0) {
                     if(previousText.localeCompare(columnText) == 1) {
                         console.log("previous text = " + previousText);
@@ -109,7 +137,7 @@ export class ApprovedMoves {
                 }
             }
             previousText = columnText;
-        }
+        }*/
         return true;
     }
 
@@ -151,7 +179,7 @@ export class ApprovedMoves {
         return new promise.Promise((resolve) => resolve('user')); // TODO: Find and return real user
     }
     getApprovedMovesTab(): ElementFinder{
-        return element(by.xpath("//a[contains(text(),' Approved Moves ')]"));
+        return element(by.cssContainingText('span', 'Approved Moves'));
     }
     getApprovedMovesView():ElementFinder{
         return element(by.css("h2"));

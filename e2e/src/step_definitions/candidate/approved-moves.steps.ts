@@ -12,9 +12,8 @@ let actual: string;
 
 setDefaultTimeout(300 * 1000);
 
-Given('the User Navigates to Transferee’s Profile View', async () => {
-  await approvedmoves.get();
-  await approvedmoves. getApprovedMovesTab().click(); 
+Given('User will navigate to approved moves tab', async () => {
+  await approvedmoves.get(); 
   await approvedmoves.getApprovedMovesView().isDisplayed();   // verifying candidates screen displayed
 });
 
@@ -98,12 +97,21 @@ When('User will click on {string} button', async (buttonText) => {
  return await buttonEle.click();
 });
 
-When('User will select the {string} from select column view', async(columnNamesStr) => {
+When('User will {string} the {string} from select column view', async(selectOrNot, columnNamesStr) => {
   let columnNamesArr = columnNamesStr.split(',');
+  let isSelect = true;
+  if(selectOrNot.toLowerCase() == 'unselect') {
+    isSelect = false;
+  }
   for(let i=0; i<columnNamesArr.length; i++) {
     if(columnNamesArr[i].trim() != '') {
       let checkboxEle = await approvedmoves.getColumnCheckboxEle(columnNamesArr[i].trim());
-      await checkboxEle.label.click();
+      let currentAttr = JSON.parse(await checkboxEle.root.getAttribute('ng-reflect-checked'));
+      if(isSelect && !currentAttr) {
+        await checkboxEle.label.click();
+      } else if(!isSelect && currentAttr) { //Unselect the checkbox
+        await checkboxEle.label.click();
+      }
     }
   }
 });

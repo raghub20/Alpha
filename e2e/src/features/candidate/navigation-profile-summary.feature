@@ -1,39 +1,28 @@
 Feature: Navigation Tabs in Profile Summary Page
-
    To verify client able to navigate to Cost Models, Candidates Then Authorized Moves
 
-   Background:
+Background:
+   Given User will open the alpha project in desktop mode
 
-      Given The user is on the candidate profile summary page
+#@Desktop
+@sprint_1
+Scenario: To verify the mechanism to navigate to Cost Models
+   When User will see the Cost Models tab
+   And User will click on Cost Models tab
+   And User will see Create Cost Model button in Cost Model page
 
-   @Desktop
+@sprint_1
+Scenario: To verify the mechanism to navigate to Candidates
+When User will see the Candidate tab
+Then User will click on Candidate tab 
+And User will see Add button in Candidate page
 
-   Scenario: To verify the mechanism to navigate to Cost Models
+@sprint_1
+Scenario: To verify the mechanism to navigate to Approved Moves
+When User will see the Approved Moves tab
+Then User will click on Approved Moves tab
+And User will see Approved Moves header
 
-      When The user sees the Cost Models Tab
-
-      Then The user clicks the Cost Models Tab
-
-      Then The user sees the Cost Models Page
-
-
-   Scenario: To verify the mechanism to navigate to Candidates
-
-      When The user sees the Candidates Tab
-
-      Then The user clicks the Candidates Tab
-
-      Then The user sees the Candidates Page
-
-
-
-   Scenario: To verify the mechanism to navigate to Approved Moves 
-
-      When The user sees the Approved Moves Tab
-
-      Then The user clicks the Approved Moves Tab
-
-      Then The user sees the Approved Moves Page
 
 
 
