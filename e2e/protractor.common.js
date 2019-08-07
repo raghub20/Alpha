@@ -14,7 +14,7 @@ const config = {
   framework: 'custom',  // set to "custom" instead of cucumber.
   frameworkPath: require.resolve('protractor-cucumber-framework'),  // path relative to the current config file
   specs: [
-    '../e2e/src/features/**/*.feature'     // Specs here are the cucumber feature files
+    '../e2e/src/features/**/cost-model.feature'     // Specs here are the cucumber feature files
   ],
   // cucumber command line options
   cucumberOpts: {

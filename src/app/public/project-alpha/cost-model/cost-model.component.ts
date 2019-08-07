@@ -12,7 +12,6 @@ import { CostModel } from '../../../core/models/cost-model';
 import { CostModelsService } from '../../../core/services/cost-models.service';
 import { ModelColumnsComponent } from './model-columns/model-columns.component';
 import { AddCostModelComponent } from './add-cost-model/add-cost-model.component';
-import { NotificationsService } from '../../../../../src/app/core/services/notifications.service';
 
 @Component({
   selector: 'app-cost-model',
@@ -34,8 +33,7 @@ export class CostModelComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private costModelsService: CostModelsService,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private notificationsService: NotificationsService) { }
+    private changeDetectorRefs: ChangeDetectorRef) { }
 
   /** To sort the mat table columns */
   @ViewChild(MatSort) sort: MatSort;
@@ -128,7 +126,6 @@ export class CostModelComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.updateDataSource();
-      this.notificationsService.flashNotification('success', 'Cost Model added successfully', true, 'dismiss');
     });
   }
   /* Resend Invite Modal window */

@@ -20,7 +20,7 @@
         <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
           <mat-form-field>
             <mat-label>Level</mat-label>
-            <mat-select formControlName="Level" >
+            <mat-select formControlName="Level" (blur)="showPredictedRelocationCost()">
               <mat-option *ngFor="let level of levels" [value]="level.levelName">
                 {{level.levelName}}
               </mat-option>
@@ -34,7 +34,7 @@
       <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0" >
         <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
           <mat-form-field>
-            <input type="text" placeholder="Departure" matInput formControlName="Departure" [matAutocomplete]="departureList" >
+            <input type="text" placeholder="Departure" matInput formControlName="Departure" [matAutocomplete]="departureList" (blur)="showPredictedRelocationCost()">
             <mat-autocomplete #departureList="matAutocomplete" >
               <mat-option *ngFor="let departure of departures | async" [value]="departure.name">
                 {{departure.name}}
@@ -52,7 +52,7 @@
         </div>
         <div fxFlex="45%" fxLayout.xs="column" fxFlex.xs="100%">          
           <mat-form-field>
-            <input type="text" placeholder="Destination" matInput formControlName="Destination" [matAutocomplete]="destinationList">
+            <input type="text" placeholder="Destination" matInput formControlName="Destination" [matAutocomplete]="destinationList" (blur)="showPredictedRelocationCost()">
             <mat-autocomplete #destinationList="matAutocomplete">
               <mat-option *ngFor="let destination of destinations | async" [value]="destination.name">
                 {{destination.name}}
@@ -62,6 +62,50 @@
               {{ errors['Destination'] }}
             </mat-error>
           </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf="showLoader" class="loader">Loading....</div>
+      <div *ngIf="displayPredictedRelocationCost" class="predicted-relocation-cost">
+        <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0em">
+          <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%">        
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Single <mat-icon matPrefix>person</mat-icon>
+                  </mat-panel-title>
+                  <mat-panel-description fxLayoutAlign="end center">
+                    20,400 - 30,400 USD
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>I'm visible because I am open</div>
+              </mat-expansion-panel>
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Couple <mat-icon matPrefix>people</mat-icon>
+                  </mat-panel-title>
+                  <mat-panel-description fxLayoutAlign="end center">
+                    25,900 - 45,000 USD
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>I'm visible because I am open</div>
+              </mat-expansion-panel>
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Family <mat-icon matPrefix>people</mat-icon>
+                    <mat-icon class="custom-people-icon" matPrefix>person</mat-icon>
+                    <mat-icon class="custom-add-icon" matPrefix>add</mat-icon>
+                  </mat-panel-title>
+                  <mat-panel-description fxLayoutAlign="end center">
+                    71,900 - 125,000 USD
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>I'm visible because I am open</div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
         </div>
       </div>
     </form>

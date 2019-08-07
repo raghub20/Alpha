@@ -4,15 +4,16 @@ form {
   padding : 0;
 }
 
+.addCostModelModal {
+  width: 50%;
+}
+
 .input-headline {
   font-size: 2.33em;
   line-height: 32px;
   font-weight: 400;
 }
 
-.mat-expansion-panel-header{
-  font-size:14px;
-}
 .mat-option {
   font-size:1em;
 }
@@ -23,10 +24,9 @@ form {
   background-color: #AAAAAA;
 }
 
-// .mat-dialog-actions {
-//   justify-content: flex-end;
-//   padding-top: 24px;
-// }
+.predicted-relocation-cost {
+  margin-top: 0.9em;
+}
 
 .addCostModelFormContainer{
   input{
@@ -46,9 +46,6 @@ form {
     top: 10px;
     cursor: pointer;
   }
-  // .modal-rightnavarrow{
-  //   font: size 2.9em;
-  // }
   .hide-arrow-xs{
     display: block !important;
     .modal-rightnavarrow {
@@ -60,51 +57,24 @@ form {
   }
 }
 
-// .mat-dialog-title {
-//   margin: 0em;
-// }
+.mat-expansion-panel-header-title {
+  .mat-icon {
+    padding-left: 0.25em;
+  }
+}
 
-// .mat-dialog-content {
-//   padding: 1.5em;
-// }
+.custom-people-icon {
+  height: 0.75em;
+  width: 0.75em;
+  font-size: 1em;
+  top: 0.35em;
+  padding-left: 0em !important;
+}
 
-// .mat-dialog-actions {
-//   justify-content: flex-end;
-//   padding: 1em 0em;
-// }
-
-
-.addCostModelModal {
-    
-  // .mat-dialog-container
-  // {
-  //     border-radius: 4px;
-  //     padding: 1.5em;
-  //     overflow:hidden;
-  //     min-height: 2.1em;
-  // }
-  // .mat-dialog-content{
-  //     // max-height:100%;
-  //     padding-bottom:2em;
-  // }
-
-  // .budget-details {
-  //     margin-top: 0.9em;
-  // }
- 
-  // @media screen and (max-width: 599px){
-  //     max-width:100% !important;
-  //     height:100%; 
-  //     width:100%;      
-  //     .mat-dialog-container
-  //     {
-  //         border-radius:0;
-  //         width:100%;
-  //         box-shadow: none;
-  //         border:none;
-  //     }
-
-
-  // }
-  
+.custom-add-icon {
+  height: 0.75em;
+  width: 0.75em;
+  font-size: 0.75em;
+  top: 0.5em;
+  padding-left: 0em !important;
 }

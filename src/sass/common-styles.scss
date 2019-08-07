@@ -12,7 +12,7 @@
         overflow:hidden;
         min-height: 450px;
     }
-    width: 50%;
+    // width: 50%;
         
         .mat-dialog-content{
             text-align: center;
@@ -795,32 +795,36 @@ h2 {
     color:#fff;
 }
 
-.mat-expansion-panel .mat-expanded{
-    background-color:map-get($cartus-palette, 'cartus_blue');
-}
+// .mat-expansion-panel .mat-expanded{
+//     background-color:map-get($cartus-palette, 'cartus_blue');
+// }
 
-    .mat-expansion-panel-header.mat-expanded {
-        background-color: map-get($cartus-palette, 'cartus_blue')!important;
-      }
+//     .mat-expansion-panel-header.mat-expanded {
+//         background-color: map-get($cartus-palette, 'cartus_blue')!important;
+//       }
       
-      .mat-expansion-panel-header{
-        background-color: #fff;
-    }
+//       .mat-expansion-panel-header{
+//         background-color: #fff;
+//     }
     
-    .mat-expansion-panel-header .mat-expanded{
-        background-color: map-get($cartus-palette, 'cartus_blue')!important;
+//     .mat-expansion-panel-header .mat-expanded{
+//         background-color: map-get($cartus-palette, 'cartus_blue')!important;
         
-    }
-    .mat-expanded .mat-expansion-panel-header-title {
-        color:#fff;
-    }
-    .mat-expanded .mat-expansion-panel-header-description {
-        color:#fff;
-    }
+//     }
+//     .mat-expanded .mat-expansion-panel-header-title {
+//         color:#fff;
+//     }
+//     .mat-expanded .mat-expansion-panel-header-description {
+//         color:#fff;
+//     }
     
 
 
 /* Common Material Dialog Starting From Cost Model Screen */
+.cdk-overlay-pane {
+    width: 50%;
+}
+
 .mat-dialog-title {
     margin: 0em !important;
 }
@@ -871,5 +875,17 @@ h2 {
     &:disabled {
         color: map-get($cartus-palette, 'cartus_gray');
         background-color: map-get($cartus-palette, 'cartus_disabled_gray');
+    }
+}
+
+/* Common Material Expansion Panel Starting From Cost Model Screen */
+.mat-expansion-panel-header {
+    font-size: 1em;
+}
+      
+.mat-expansion-panel-header.mat-expanded {
+    background-color: map-get($cartus-palette, 'cartus_dark_accent_blue') !important;
+    .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+        color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
     }
 }
