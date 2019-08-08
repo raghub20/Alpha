@@ -68,41 +68,46 @@
       <div *ngIf="displayPredictedRelocationCost" class="predicted-relocation-cost">
         <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0em">
           <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%">        
-            <mat-accordion>
-              <mat-expansion-panel>
+            <mat-accordion [multi]="true">
+              <mat-expansion-panel *ngFor="let estimate of costModelEstimates;let i=index">
                 <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Single <mat-icon matPrefix>person</mat-icon>
+                  <mat-panel-title >
+                    {{estimate.title}} <mat-icon matPrefix *ngIf="i===0">person</mat-icon>
+                    <mat-icon matPrefix *ngIf="i===1">people</mat-icon>
+                    <mat-icon matPrefix *ngIf="i===2">people</mat-icon>
+                    <mat-icon class="custom-people-icon" matPrefix *ngIf="i===2">person</mat-icon>
+                    <mat-icon class="custom-add-icon" matPrefix *ngIf="i===2">add</mat-icon>
                   </mat-panel-title>
                   <mat-panel-description fxLayoutAlign="end center">
-                    20,400 - 30,400 USD
+                    {{estimate.minAmount | currency:'&nbsp;'}} - {{estimate.maxAmount | currency:'&nbsp;'}} {{estimate.currency}}
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                <div>I'm visible because I am open</div>
-              </mat-expansion-panel>
-              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Couple <mat-icon matPrefix>people</mat-icon>
-                  </mat-panel-title>
-                  <mat-panel-description fxLayoutAlign="end center">
-                    25,900 - 45,000 USD
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div>I'm visible because I am open</div>
-              </mat-expansion-panel>
-              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Family <mat-icon matPrefix>people</mat-icon>
-                    <mat-icon class="custom-people-icon" matPrefix>person</mat-icon>
-                    <mat-icon class="custom-add-icon" matPrefix>add</mat-icon>
-                  </mat-panel-title>
-                  <mat-panel-description fxLayoutAlign="end center">
-                    71,900 - 125,000 USD
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div>I'm visible because I am open</div>
+                <div *ngFor="let product of estimate.products" class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayoutGap.xs="0em">
+                  <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="50%">
+                    <div class="core-services">
+                      <p>{{product.name}}</p>
+                      <p>{{product.descriptionLine1}}</p>
+                      <p>{{product.descriptionLine2}}</p>
+                    </div>
+                  </div>
+                  <div fxFlex="50%" fxLayoutAlign="end" fxFlex.xs="50%">
+                    <div class="core-services-amount">
+                      <p>{{product.minAmount | currency:'&nbsp;'}} - {{product.maxAmount | currency:'&nbsp;'}} {{product.currency}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayoutGap.xs="0em">
+                  <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                    <div class="tax-assistance">
+                      <p>TAX ASSISTANCE</p>
+                    </div>
+                  </div>
+                  <div fxFlex="50%" fxLayoutAlign="end" fxFlex.xs="100%">
+                    <div class="tax-assistance-amount">
+                      <p>{{estimate.taxMinAmount | currency:'&nbsp;'}} - {{estimate.taxMaxAmount | currency:'&nbsp;'}} {{estimate.currency}}</p>
+                    </div>
+                  </div>
+                </div>
               </mat-expansion-panel>
             </mat-accordion>
           </div>

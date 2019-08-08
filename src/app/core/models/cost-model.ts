@@ -1,6 +1,6 @@
-import { Candidate} from './candidate';
 import { HrLink } from './hr-link';
 import { Level } from './level';
+import { CostModelEstimate } from './cost-model-estimate';
 
 export interface CostModel {
     costModelId: string;
@@ -9,6 +9,7 @@ export interface CostModel {
     departure: string;
     destination: string;
     hrLinks: HrLink[];
+    lineItems: CostModelEstimate[];
     updateDate: string;
     createdBy: string;
     createdDate: string;

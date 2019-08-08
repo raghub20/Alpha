@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MaterialModule } from '../../../../material/material.module';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { CandidateProfilesService } from '../../../../core/services/candidate-profiles.service';
 import { LocationService } from '../../../../core/services/location.service';
 import { LevelService } from '../../../../core/services/level.service';
@@ -15,6 +15,8 @@ import { map, startWith } from 'rxjs/operators';
 import { CostModel } from '../../../../core/models/cost-model';
 import { CostModelsService } from '../../../../core/services/cost-models.service';
 import { NotificationsService } from '../../../../core/services/notifications.service';
+import { CostModelEstimate } from '../../../../core/models/cost-model-estimate';
+import { CostModelEstimateService } from '../../../../core/services/cost-model-estimate.service';
 
 /**
  * Exporting the errormessages
@@ -52,6 +54,7 @@ export class AddCostModelComponent {
   /** variable declared for destinations */
   destinations: Observable<Location[]>;
   panelOpenState = false;
+  costModelEstimates: CostModelEstimate[];
   displayPredictedRelocationCost = false;
   showLoader = false;
 
@@ -70,7 +73,8 @@ export class AddCostModelComponent {
     private locationService: LocationService,
     private levelService: LevelService,
     private changeDetectorRef: ChangeDetectorRef,
-    private notificationsService: NotificationsService) {
+    private notificationsService: NotificationsService,
+    private costModelEstimateService: CostModelEstimateService) {
 
       /* Setting default title of the dialof window */
       this.title = 'Create Cost Model';
@@ -192,6 +196,8 @@ export class AddCostModelComponent {
     this.addCostModelForm.controls.Destination.valid && this.addCostModelForm.controls.Level.value !== '' &&
     this.addCostModelForm.controls.Level.valid) {
       console.log('Call an API passing Level, Departure, Destination values');
+      /* Get Cost Model Estimates */
+      this.costModelEstimates = this.costModelEstimateService.getCostModelEstimates();
       this.displayPredictedRelocationCost = true;
     }
   }
