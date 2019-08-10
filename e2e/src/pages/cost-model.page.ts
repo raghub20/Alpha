@@ -72,7 +72,15 @@ export class CostModelPage {
     }
 
     getCostRangeFor(type) {
-        return element(by.cssContainingText('.mat-expansion-panel-header-title', type)).element(by.xpath('ancestor::mat-expansion-panel-header')).element(by.tagName('mat-panel-description')).getText();
+        return element(by.cssContainingText('.mat-expansion-panel-header-title', type))
+        .element(by.xpath('ancestor::mat-expansion-panel-header')).element(by.tagName('mat-panel-description'));
     }
+
+    getServiceText(costType, description) {
+        return element(
+            by.xpath('//mat-panel-title[contains(text(), "' + costType + '")]//ancestor::mat-expansion-panel//p[text()="' + description + '"]'));
+    }
+
+
    
 }

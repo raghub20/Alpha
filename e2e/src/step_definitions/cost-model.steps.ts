@@ -1,5 +1,6 @@
 import { When, Then } from "cucumber";
 import { CostModelPage } from "../pages/cost-model.page";
+import { FunctionLibrary } from './../util/function-library';
 import { browser, $ } from "protractor";
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
@@ -9,6 +10,7 @@ chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 let costModelPage = new CostModelPage();
+let lib = new FunctionLibrary();
 
 When("User will navigate to cost model page", async function() {
     await costModelPage.navigateToCostModel();
@@ -88,7 +90,8 @@ Then('User will select the {string} level from dropdown', async function (option
 });
 
 Then('User will view the total  relocation cost range for couple', async function () {  
-    let actualDescription = await costModelPage.getCostRangeFor('Couple');
+    let el = await costModelPage.getCostRangeFor('2 - 3 People');
+    let actualDescription = await el.getText();
     expect(actualDescription).contains('USD');
     actualDescription = actualDescription.replace('USD', '').trim();
     let currencyArr = actualDescription.split('-');
@@ -96,16 +99,36 @@ Then('User will view the total  relocation cost range for couple', async functio
 });
 
 Then('User will view the total  relocation cost range for family', async function () {
-    let actualDescription = await costModelPage.getCostRangeFor('Family');
+    let el = await costModelPage.getCostRangeFor('4+ People');
+    let actualDescription = await el.getText();
     expect(actualDescription).contains('USD');
     actualDescription = actualDescription.replace('USD', '').trim();
     let currencyArr = actualDescription.split('-');
     expect(parseFloat(currencyArr[0].trim())).lessThan(parseFloat(currencyArr[1].trim()));
 });
+
 Then("User will view the total  relocation cost range for single",async () => {
-    let actualDescription = await costModelPage.getCostRangeFor('Single');
+    let el = await costModelPage.getCostRangeFor('1 Person');
+    let actualDescription = await el.getText();
     expect(actualDescription).contains('USD');
     actualDescription = actualDescription.replace('USD', '').trim();
     let currencyArr = actualDescription.split('-');
     expect(parseFloat(currencyArr[0].trim())).lessThan(parseFloat(currencyArr[1].trim()));
+});
+
+When('User will expand {string} section', async (costRangeType) => {
+    let el = await costModelPage.getCostRangeFor(costRangeType);
+    await lib.scrollToElement(el);
+    return await el.click();
+});
+
+Then('User will see the below text in {string} section', async (costRangeType, dataTable) => {
+    let expectedData = dataTable.hashes();
+    let results = [];
+    let el = await costModelPage.getCostRangeFor(costRangeType);
+    await lib.scrollToElement(el);
+    for(let i=0; i<expectedData.length; i++) {
+        results.push(expect(costModelPage.getServiceText(costRangeType, expectedData[i]['Expected Text']).isPresent()).eventually.to.be.true);
+    }
+    return Promise.all(results);
 });
