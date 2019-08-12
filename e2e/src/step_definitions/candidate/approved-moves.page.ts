@@ -2,9 +2,8 @@ import { browser, element, by, promise, ElementFinder, protractor, ExpectedCondi
 import _ from 'lodash';
 export class ApprovedMoves {
     get() {
-        browser.refresh();
-        return browser.get('http://localhost:4200/#/project-alpha/approved-moves');
-        //return browser.get('/#/project-alpha/approved-moves');
+        //return browser.get('http://localhost:4200/#/project-alpha/approved-moves');
+        return browser.get('/#/project-alpha/approved-moves');
     }
 
     async getHeader(headerName: string): Promise<ElementFinder> {
