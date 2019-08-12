@@ -21,6 +21,7 @@ export class RelocationComponent implements OnInit {
   * variable to declare no
   */
   relocNo = 'NO';
+  /**initialising the model of type CandidateNeedsAssessment */
 
   candidateAssessment: CandidateNeedsAssessment = { familyDetails: {} as FamilyDetails } as CandidateNeedsAssessment;
     /**
@@ -33,22 +34,18 @@ export class RelocationComponent implements OnInit {
   @Output() notify: EventEmitter<CandidateNeedsAssessment> = new EventEmitter<CandidateNeedsAssessment>();
  
   /**
-   * To check for the selected value yes
+   * If yes is selected execute the onClickYes function
    */
   onClickYes() {
     this.candidateAssessment.familyDetails.relocationStatus = 'Yes';
-    this.candidateAssessment.familyDetails.selectedYes = true;
-    this.candidateAssessment.familyDetails.selectedNo = false;
-    this.isNextButton = (this.candidateAssessment.familyDetails.selectedYes === true) ? false : true;
+    this.isNextButton = (this.candidateAssessment.familyDetails.relocationStatus === 'Yes') ? false : true;
   }
    /**
-   * To check for the selected value No
+* If no is selected execute the onClickNo function
    */
   onClickNo() {
-    this.candidateAssessment.familyDetails.relocationStatus = 'No';
-    this.candidateAssessment.familyDetails.selectedYes = false;
-    this.candidateAssessment.familyDetails.selectedNo = true;
-    this.isNextButton = (this.candidateAssessment.familyDetails.selectedNo === true) ? false : true;
+    this.candidateAssessment.familyDetails.relocationStatus = 'No';    
+    this.isNextButton = (this.candidateAssessment.familyDetails.relocationStatus === 'No') ? false : true;
   }
     /**
    * To emit the value to parent 
@@ -65,12 +62,10 @@ export class RelocationComponent implements OnInit {
        * Intialising the selected value
        */
   ngOnInit() {
-    this.candidateAssessment.familyDetails.selectedYes = false;
-    this.candidateAssessment.familyDetails.selectedNo = false;
     if (this.needsAssessment.familyDetails) {
       this.candidateAssessment = this.needsAssessment;
     }
-    this.isNextButton = ((this.candidateAssessment.familyDetails.selectedYes === true) || (this.candidateAssessment.familyDetails.selectedNo === true))? false : true;
+    this.isNextButton = ((this.candidateAssessment.familyDetails.relocationStatus === 'Yes') || (this.candidateAssessment.familyDetails.relocationStatus === 'No'))? false : true;
  
   }
 

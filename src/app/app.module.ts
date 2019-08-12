@@ -36,11 +36,11 @@ import { WelcomePageComponent } from './public/candidate-assessment/candidate-as
 import { RightsectionComponent } from './public/candidate-assessment/candidate-assessment-rightsection/rightsection/rightsection.component';
 import { PeopleRelocationComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/people-relocation/people-relocation.component';
 import { CurrentAddressComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/current-address/current-address.component';
-import { CityComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/city/city.component';
 import { CurrentResidnceComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/current-residnce/current-residnce.component';
 import { ReviewComponent } from './public/candidate-assessment/review/review.component';
 import { NumberOfRoomsComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/number-of-rooms/number-of-rooms.component';
 import { TypeOfHomeComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/type-of-home/type-of-home.component';
+import { DestinationComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/destination/destination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +50,7 @@ import { TypeOfHomeComponent } from './public/candidate-assessment/candidate-ass
     RightsectionComponent,
     PeopleRelocationComponent,
     CurrentAddressComponent,
-    CityComponent,
+    DestinationComponent,
     CurrentResidnceComponent,
     ReviewComponent,
     NumberOfRoomsComponent,

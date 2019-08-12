@@ -1,11 +1,11 @@
  <!-- Current address content -->
- <div class="stepper-Previousbtn"><button matStepperPrevious>
+ <div class="stepper-Previousbtn" id="back"><button matStepperPrevious>
     <!-- <mat-icon>arrow_back</mat-icon> -->
     <img src="../../../../../assets/images/candidate-assessment/previous-arrow.svg" alt="Number of people" title="Number of people"/>
    </button>
   </div>
   <div class="relocation-Content current-Address">
-     <div class="candidate-headertxt">Please enter your current address</div>  
+     <div class="candidate-headertxt" id="currentAddress">Please enter your current address</div>  
      <!-- Form section starts     -->
      <form fxLayout="column" [formGroup]="AddressForm">
       <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column" fxLayoutGap.xs="0">
@@ -47,7 +47,7 @@
      <!-- Form section ends -->
    </div>
      <!-- Button section starts -->
-     <div class="candidate-btn-container">
+     <div class="candidate-btn-container" id="next">
       <button mat-button matStepperNext class="candidate-btn" [disabled]="!AddressForm.valid" (click)="submit(AddressForm)" >Next</button>
       </div>
       <!-- Button section ends -->

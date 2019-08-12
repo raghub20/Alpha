@@ -29,11 +29,11 @@ export class NumberOfRoomsComponent implements OnInit {
 
   /**
    *
-   * @param formBuilder - to check for the required filed
+   * @param formBuilder - formBuilder
    */
   constructor(private formBuilder: FormBuilder) {
     /**
-     * To check for the required filed validator
+     * To check for the required field validator
      */
     this.RoomsForm = this.formBuilder.group({
       Count: ['', Validators.required]
@@ -50,6 +50,7 @@ export class NumberOfRoomsComponent implements OnInit {
    * Increment onclick
    */
   incNum() {
+    /**check the condition */
     if (this.count < 3) {
     this.count = this.count + 1;
     this.RoomsForm.get('Count').setValue(this.count);
@@ -59,6 +60,7 @@ export class NumberOfRoomsComponent implements OnInit {
   * decrement onclick
   */
   decNum() {
+    /**check the condition */
     if ( this.count > 1) {
     this. count = this.count - 1;
     this.RoomsForm.get('Count').setValue(this.count);

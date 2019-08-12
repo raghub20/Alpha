@@ -9,26 +9,26 @@ import { CandidateNeedsAssessment, ResidenceDetails } from 'src/app/core/models/
   styleUrls: ['./current-residnce.component.scss']
 })
 export class CurrentResidnceComponent implements OnInit {
-/**
- * To disable the button by default
- */
+  /**
+   * To disable the button by default
+   */
   isNextButton = true;
   /**
    * Assign the variable to own
    */
-  residenceOwn =  'Own';
-    /**
-   * Assign the variable to rent
-   */
+  residenceOwn = 'Own';
+  /**
+ * Assign the variable to rent
+ */
   residenceRent = 'Rent';
-   /**
-   * Getting input from parent component
-   */
+  /**
+  * Getting input from parent component
+  */
   @Input() needsAssessment: CandidateNeedsAssessment;
 
-   /**
-   * Emitting the value from child to parent
-   */
+  /**
+  * Emitting the value from child to parent
+  */
   @Output() notify: EventEmitter<CandidateNeedsAssessment> = new EventEmitter<CandidateNeedsAssessment>();
   /**
    * Base constructor
@@ -38,39 +38,30 @@ export class CurrentResidnceComponent implements OnInit {
        * Intialising the selected value
        */
   ngOnInit() {
+    /**If value is selected initialise them */
     if (!this.needsAssessment.residenceDetails) {
       this.needsAssessment.residenceDetails = {} as ResidenceDetails;
     }
-    this.isNextButton = ((this.needsAssessment.residenceDetails.isSelectedOwn === true) || (this.needsAssessment.residenceDetails.isSelectedRent === true)) ? false : true;
+    this.isNextButton = ((this.needsAssessment.residenceDetails.ownerStatus === 'Own') || (this.needsAssessment.residenceDetails.ownerStatus === 'Rent')) ? false : true;
   }
   /**
-   * To check for the selected value own
+   * If own is selected execute the onClickOwn function
    */
   onClickOwn() {
     this.needsAssessment.residenceDetails.ownerStatus = 'Own';
-    this.needsAssessment.residenceDetails.isSelectedOwn = true;
-    this.needsAssessment.residenceDetails.isSelectedRent = false;
-    if (this.needsAssessment.residenceDetails.isSelectedOwn === true) {
-      this.isNextButton = false;
-    }
+    this.isNextButton = false;
   }
-   /**
-   * To check for the selected value rent
-   */
+  /**
+  * If rent is selected execute the onClickRent function
+  */
   onClickRent() {
     this.needsAssessment.residenceDetails.ownerStatus = 'Rent';
-    this.needsAssessment.residenceDetails.isSelectedOwn = false;
-    this.needsAssessment.residenceDetails.isSelectedRent = true;
-    if (this.needsAssessment.residenceDetails.isSelectedRent === true) {
-      this.isNextButton = false;
-    }
+    this.isNextButton = false;
   }
-   /**
-   * To emit the value to parent 
-   */
+  /**
+  * To emit the selected value to parent 
+  */
   emit() {
     this.notify.emit(this.needsAssessment);
   }
-
-
 }

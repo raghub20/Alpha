@@ -34,7 +34,10 @@ export class Needsassessment {
         return element(by.xpath("//div[@class='mat-select-value']"));
     }
     selectDestinationAddressField():ElementFinder{
-        return element(by.cssContainingText(".mat-option-text","Newyork"));
+        return element(by.cssContainingText("span.mat-option-text","Newyork"));
+    }
+    selectedDestinationAddressField():ElementFinder{
+        return element(by.xpath("//span[contains(text(),'Newyork')]"));
     }
     homeownerOrRenter():ElementFinder{
         return element(by.cssContainingText(".candidate-headertxt","Do you currently own or rent?"));
@@ -69,11 +72,17 @@ export class Needsassessment {
     homeowner():ElementFinder{
         return element(by.cssContainingText("div.select-Na-cardimagecont.relocationYes"," Own "));
     }
+    homeownerselected():ElementFinder{
+        return element(by.cssContainingText("div.select-Na-cardimagecont.relocationYes.selected"," Own "));
+    }
     tworooms():ElementFinder{
-        return element.all(by.css("button.btnSign")).get(0);
+        return element(by.xpath("//img[@src='../../../../../assets/images/candidate-assessment/baseline-add-circle.svg']"));
     }
     apartment():ElementFinder{
         return element(by.cssContainingText("div.select-Na-cardimagecont.relocationYes"," Apartment/Condo/Co-Op "));
+    }
+    apartmentselected():ElementFinder{
+        return element(by.cssContainingText("div.select-Na-cardimagecont.relocationYes.selected"," Apartment/Condo/Co-Op "));
     }
 
 }

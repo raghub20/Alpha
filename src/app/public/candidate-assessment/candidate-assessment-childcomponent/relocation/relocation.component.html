@@ -1,29 +1,31 @@
- <!-- Relocation content -->
- <div class="relocation-Content">
-    <div class="candidate-headertxt">Is anyone else relocating with you ?</div>  
-    <div class="select-Na-cardcont">
-        <div  class="select-Na-cardimagecont relocationYes" (click)="onClickYes()" [ngClass]="{ 'selected': candidateAssessment.familyDetails.selectedYes == true }">
-            <div class="relocation-Boxcont" >
-               <img src="../../../../../assets/images/candidate-assessment/yes-thumb.svg"  /> 
-               <img src="../../../../../assets/images/candidate-assessment/yes-thumb-white.svg" />
-            </div>
-            <div>
+<!-- Relocation content -->
+<div class="relocation-Content">
+   <div class="candidate-headertxt">Is anyone else relocating with you ?</div>
+   <div class="select-Na-cardcont">
+      <div class="select-Na-cardimagecont relocationYes" (click)="onClickYes()"
+         [ngClass]="{ 'selected': candidateAssessment.familyDetails.relocationStatus == 'Yes' }">
+         <div class="relocation-Boxcont">
+            <img src="../../../../../assets/images/candidate-assessment/yes-thumb.svg" />
+            <img src="../../../../../assets/images/candidate-assessment/yes-thumb-white.svg" />
+         </div>
+         <div>
             {{relocYes}}
-            </div>
-            </div>
-            <div  class="select-Na-cardimagecont relocationYes" (click)="onClickNo()" [ngClass]="{ 'selected': candidateAssessment.familyDetails.selectedNo == true }">
-                <div class="relocation-Boxcont">
-                   <img src="../../../../../assets/images/candidate-assessment/no-thumb.svg" /> 
-                   <img src="../../../../../assets/images/candidate-assessment/yes-thumb.svg" />
-                </div>
-                <div>
-                {{relocNo}}
-             </div>
-          </div>
-    </div>    
-  </div>
-  <!-- Button section starts -->
-<div class="candidate-btn-container">
-<button mat-button matStepperNext class="candidate-btn" [disabled]="isNextButton" (click)="emit()">Next</button>
+         </div>
+      </div>
+      <div class="select-Na-cardimagecont relocationYes" (click)="onClickNo()"
+         [ngClass]="{ 'selected': candidateAssessment.familyDetails.relocationStatus == 'No' }">
+         <div class="relocation-Boxcont">
+            <img src="../../../../../assets/images/candidate-assessment/no-thumb.svg" />
+            <img src="../../../../../assets/images/candidate-assessment/yes-thumb.svg" />
+         </div>
+         <div>
+            {{relocNo}}
+         </div>
+      </div>
+   </div>
 </div>
- <!-- Button section ends -->
+<!-- Button section starts -->
+<div class="candidate-btn-container" id="next">
+   <button mat-button matStepperNext class="candidate-btn" [disabled]="isNextButton" (click)="emit()">Next</button>
+</div>
+<!-- Button section ends -->

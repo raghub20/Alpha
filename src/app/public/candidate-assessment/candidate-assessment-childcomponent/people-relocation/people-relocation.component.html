@@ -1,81 +1,60 @@
  <!-- Number of people relocating content -->
- <div class="stepper-Previousbtn"><button matStepperPrevious>
+ <div class="stepper-Previousbtn" id="back"><button matStepperPrevious>
    <!-- <mat-icon>arrow_back</mat-icon> -->
    <img src="../../../../../assets/images/candidate-assessment/previous-arrow.svg" alt="Number of people" title="Number of people"/>
   </button>
  </div>
  <div class="relocation-Content">
-    <div class="candidate-headertxt">How many people, including yourself, are relocating ?</div>  
-    <div class="select-Na-cardcont">
-      <!-- card section starts -->
-       <!-- <div class="select-Na-cardimagecont">
-         <div class="relocation-Personcont">
-           <img src="../../../../../assets/images/candidate-assessment/person-one.svg" alt="Number of people" title="Number of people"/>
-           <span>1</span>
-          </div>
-       </div> -->
-       <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(onePerson)" [ngClass]="{'selected': needsAssessment.familyDetails.selectedOne == true}">
-          <div class="relocation-Boxcont">
-              <img src="../../../../../assets/images/candidate-assessment/person-one.svg" alt="Number of people" title="Number of people"/>
-              <img src="../../../../../assets/images/candidate-assessment/person-one.svg" alt="Number of people" title="Number of people"/>
-          </div>
-          <div>
-          {{onePerson}}
-          </div>
-          </div>
-       <!-- card section ends -->
-       <!-- card section starts -->
-       <!-- <div class="select-Na-cardimagecont">
-         <div class="relocation-Personcont"><img src="../../../../../assets/images/candidate-assessment/person-two.svg" alt="Number of people" title="Number of people"/>
-          <span>2</span>
+  <div class="candidate-headertxt">How many people, including yourself, are relocating ?</div>  
+  <div class="select-Na-cardcont">
+    <!-- card section starts -->               
+     <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(onePerson)" [ngClass]="{'selected': needsAssessment.familyDetails.noOfRelocatePeople == '1'}">
+        <div class="relocation-Boxcont">
+            <img src="../../../../../assets/images/candidate-assessment/person-one.svg" alt="Number of people" title="Number of people"/>
+            <img src="../../../../../assets/images/candidate-assessment/person-one.svg" alt="Number of people" title="Number of people"/>
         </div>
-       </div> -->
-       <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(twoPeople)"[ngClass]="{'selected': needsAssessment.familyDetails.selectedTwo  == true}">
+        <div>
+        {{onePerson}}
+        </div>
+        </div>
+     <!-- card section ends -->
+     <!-- card section starts -->       
+     <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(twoPeople)"[ngClass]="{'selected': needsAssessment.familyDetails.noOfRelocatePeople == '2'}">
+        <div class="relocation-Boxcont">
+            <img src="../../../../../assets/images/candidate-assessment/person-two.svg" alt="Number of people" title="Number of people"/> 
+            <img src="../../../../../assets/images/candidate-assessment/person-two.svg" alt="Number of people" title="Number of people"/>
+        </div>
+        <div>
+        {{twoPeople}}
+        </div>
+        </div>
+     <!-- card section ends -->
+     <!-- card section starts -->       
+      <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(threePeople)" [ngClass]="{'selected': needsAssessment.familyDetails.noOfRelocatePeople == '3'}">
           <div class="relocation-Boxcont">
-              <img src="../../../../../assets/images/candidate-assessment/person-two.svg" alt="Number of people" title="Number of people"/> 
-              <img src="../../../../../assets/images/candidate-assessment/person-two.svg" alt="Number of people" title="Number of people"/>
+              <img src="../../../../../assets/images/candidate-assessment/person-three.svg" alt="Number of people" title="Number of people"/>
+              <img src="../../../../../assets/images/candidate-assessment/person-three.svg" alt="Number of people" title="Number of people"/>
           </div>
           <div>
-          {{twoPeople}}
+          {{threePeople}}
           </div>
           </div>
-       <!-- card section ends -->
-       <!-- card section starts -->
-       <!-- <div class="select-Na-cardimagecont">
-          <div class="relocation-Personcont"><img src="../../../../../assets/images/candidate-assessment/person-three.svg" alt="Number of people" title="Number of people"/>
-            <span>3</span>
+      <!-- card section ends -->
+      <!-- card section starts -->      
+      <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(fourPlusPeople)"[ngClass]="{'selected': needsAssessment.familyDetails.noOfRelocatePeople == '4'}">
+          <div class="relocation-Boxcont">
+              <img src="../../../../../assets/images/candidate-assessment/person-four.svg" alt="Number of people" title="Number of people"/>
+              <img src="../../../../../assets/images/candidate-assessment/person-four-white.svg" alt="Number of people" title="Number of people"/>
           </div>
-        </div> -->
-        <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(threePeople)" [ngClass]="{'selected': needsAssessment.familyDetails.selectedThree == true}">
-            <div class="relocation-Boxcont">
-                <img src="../../../../../assets/images/candidate-assessment/person-three.svg" alt="Number of people" title="Number of people"/>
-                <img src="../../../../../assets/images/candidate-assessment/person-three.svg" alt="Number of people" title="Number of people"/>
-            </div>
-            <div>
-            {{threePeople}}
-            </div>
-            </div>
-        <!-- card section ends -->
-        <!-- card section starts -->
-       <!-- <div class="select-Na-cardimagecont">
-          <div class="relocation-Personcont"><img src="../../../../../assets/images/candidate-assessment/person-four.svg" alt="Number of people" title="Number of people"/>
-            <span>4+</span>
+          <div>
+          {{fourPlusPeople}}
           </div>
-        </div> -->
-        <div  class="select-Na-cardimagecont relocation-Personcont" (click)="peopleCount(fourPlusPeople)"[ngClass]="{'selected': needsAssessment.familyDetails.selectedFour == true}">
-            <div class="relocation-Boxcont">
-                <img src="../../../../../assets/images/candidate-assessment/person-four.svg" alt="Number of people" title="Number of people"/>
-                <img src="../../../../../assets/images/candidate-assessment/person-four-white.svg" alt="Number of people" title="Number of people"/>
-            </div>
-            <div>
-            {{fourPlusPeople}}
-            </div>
-            </div>
-        <!-- card section ends -->
-    </div>    
-  </div>
+          </div>
+      <!-- card section ends -->
+  </div>    
+</div>
     <!-- Button section starts -->
-    <div class="candidate-btn-container">
+    <div class="candidate-btn-container" id="next">
         <button mat-button matStepperNext class="candidate-btn" [disabled]="isNextButton" (click)="emit()">Next</button>
         </div>
      <!-- Button section ends -->

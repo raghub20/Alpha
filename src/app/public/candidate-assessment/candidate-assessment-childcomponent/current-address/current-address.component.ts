@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CandidateNeedsAssessment, DepartureAddr } from 'src/app/core/models/candidateneeds-assessment.model';
-import { CandidateAssessmentComponent } from '../../candidate-assessment.component';
+import { CandidateNeedsAssessment } from 'src/app/core/models/candidateneeds-assessment.model';
+import { Address } from './../../../../core/models/address.model';
 /**
- * To add the error messages 
+ * To store the error messages 
  */
 export const errorMessages: { [key: string]: string } = {
   Street: 'You must enter Street address',
@@ -51,7 +50,7 @@ export class CurrentAddressComponent implements OnInit {
    */
   constructor(private formBuilder: FormBuilder) {
     /**
-     *  required filed validation
+     *  required field validation
      */
     this.AddressForm = this.formBuilder.group({
       Address: ['', Validators.required],
@@ -65,7 +64,7 @@ export class CurrentAddressComponent implements OnInit {
       * Retriving city value and assigning to parent
       */
   submit(form: FormGroup) {
-    this.needsAssessment.departureAddr = {} as DepartureAddr;
+    this.needsAssessment.departureAddr = {} as Address;
     this.needsAssessment.departureAddr.streetAddress = form.get('Address').value;
     this.needsAssessment.departureAddr.town = form.get('Town').value;
     this.needsAssessment.departureAddr.state = form.get('State').value;
@@ -77,6 +76,9 @@ export class CurrentAddressComponent implements OnInit {
        * Intialising the selected value
        */
   ngOnInit() {
+    /**
+     * if value is selected initialise them to the specific field
+     */
     if (this.needsAssessment.departureAddr) {
       this.AddressForm.controls['Address'].setValue(this.needsAssessment.departureAddr.streetAddress);
       this.AddressForm.controls['Town'].setValue(this.needsAssessment.departureAddr.town);
