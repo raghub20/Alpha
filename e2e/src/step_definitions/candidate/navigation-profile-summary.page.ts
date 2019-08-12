@@ -3,8 +3,7 @@ import { browser, element, by } from 'protractor';
 export class NavigationProfile  {
 
     get() {
-        return browser.get("http://localhost:4200/");
-       // return browser.get('/#/project-alpha');     
+       return browser.get('/#/project-alpha');     
     }
 
     getCostModelTab() {

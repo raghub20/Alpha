@@ -13,7 +13,7 @@ export class ApprovedMovesService {
       'moveId': '21312',
       'candidate': {
         'candidateId': '1111',
-        'fullname': 'Matthew, Maturity',
+        'fullname': 'Maturity, Matthew',
         'level': {
           'levelId': 'level2',
           'levelName': 'Level 2 (100,001 to 250,000 USD)',
@@ -55,7 +55,7 @@ export class ApprovedMovesService {
       'moveId': '21312',
       'candidate': {
         'candidateId': '2222',
-        'fullname': 'Christopher, Beal',
+        'fullname': 'Beal, Christopher',
         'level': {
           'levelId': 'level1',
           'levelName': 'Level 1 (250,000+ USD)',
@@ -97,7 +97,7 @@ export class ApprovedMovesService {
       'moveId': '21312',
       'candidate': {
         'candidateId': '3333',
-        'fullname': 'Dan, Goulet',
+        'fullname': 'Goulet, Dan',
         'level': {
           'levelId': 'level2',
           'levelName': 'Level 2 (100,001 to 250,000 USD)',
@@ -139,7 +139,7 @@ export class ApprovedMovesService {
       'moveId': '21312',
       'candidate': {
         'candidateId': '4444',
-        'fullname': 'James, Cordon',
+        'fullname': 'Cordon, James',
         'level': {
           'levelId': 'level3',
           'levelName': 'Level 3 (0 to 100,000 USD)',
@@ -181,7 +181,7 @@ export class ApprovedMovesService {
       'moveId': '21312',
       'candidate': {
         'candidateId': '5555',
-        'fullname': 'Francesca, Hayes',
+        'fullname': 'Hayes, Francesca',
         'level': {
           'levelId': 'level1',
           'levelName': 'Level 1 (250,000+ USD)',
@@ -223,7 +223,7 @@ export class ApprovedMovesService {
       'moveId': '21312',
       'candidate': {
         'candidateId': '6666',
-        'fullname': 'Adam, Hu',
+        'fullname': 'Hu, Adam',
         'level': {
           'levelId': 'level2',
           'levelName': 'Level 2 (100,001 to 250,000 USD)',
@@ -265,7 +265,7 @@ export class ApprovedMovesService {
       'moveId': '21312',
       'candidate': {
         'candidateId': '7777',
-        'fullname': 'Suehong, Jones',
+        'fullname': 'Jones, Suehong',
         'level': {
           'levelId': 'level2',
           'levelName': 'Level 2 (100,001 to 250,000 USD)',

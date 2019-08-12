@@ -34,37 +34,64 @@
         <!-- </div>
         </section> -->
 
-        <div class="bounds">
+        <div class="candidate-NA-Manincont">
     
-          <div class="content" 
-               fxLayout="row" 
+          <div fxLayout="row" 
                fxLayout.xs="column" 
                fxFlexFill >
                
-              <div fxFlex="75%" class="sec1" fxFlex.xs="100%">
-                <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="onStepChange($event)">
+            <div fxFlex="75%" class="needs-Leftsec" fxFlex.xs="100%">
+                 <mat-horizontal-stepper  #stepper (selectionChange)="onStepChange($event)">
                   <mat-step>
-                        <app-welcome-page></app-welcome-page>                        
+                    <div *ngIf="stepper.selectedIndex==0">
+                        <app-welcome-page></app-welcome-page> 
+                    </div>
+                                               
                   </mat-step>                  
                   <mat-step>
-                     <app-relocation></app-relocation>                        
+                      <div *ngIf="stepper.selectedIndex==1">
+                     <app-relocation [needsAssessment]="assessmentModel" (notify)="onNotify($event)"></app-relocation>   
+                     </div>                     
                   </mat-step>
                   <mat-step>
-                    <app-people-relocation></app-people-relocation>
+                      <div *ngIf="stepper.selectedIndex==2">
+                    <app-people-relocation [needsAssessment]="assessmentModel" (notify)="onNotify($event)"></app-people-relocation>
+                    </div>
                   </mat-step>
                   <mat-step>
-                    <app-current-address></app-current-address>
+                      <div *ngIf="stepper.selectedIndex==3">
+                    <app-current-address [needsAssessment]="assessmentModel" (notify)="onNotify($event)"></app-current-address>
+                    </div>
                   </mat-step>
                   <mat-step>
-                      <app-city></app-city>
+                      <div *ngIf="stepper.selectedIndex==4">
+                      <app-city [needsAssessment]="assessmentModel" (notify)="onNotify($event)"></app-city>
+                      </div>
                     </mat-step>
                     <mat-step>
-                      <app-current-residnce></app-current-residnce>
+                        <div *ngIf="stepper.selectedIndex==5">
+                      <app-current-residnce [needsAssessment]="assessmentModel" (notify)="onNotify($event)"></app-current-residnce>
+                      </div>
                     </mat-step>
-                </mat-horizontal-stepper>
+                    <mat-step>
+                        <div *ngIf="stepper.selectedIndex==6">
+                      <app-type-of-home [needsAssessment]="assessmentModel" (notify)="onNotify($event)"></app-type-of-home>
+                      </div>
+                    </mat-step>
+                    <mat-step>
+                        <div *ngIf="stepper.selectedIndex==7">
+                      <app-number-of-rooms [needsAssessment]="assessmentModel" (notify)="onNotify($event)"></app-number-of-rooms>
+                      </div>
+                    </mat-step>
+                    <mat-step>
+                        <div *ngIf="stepper.selectedIndex==8">
+                      <app-review [needsAssessment]="assessmentModel"></app-review>
+                      </div>
+                    </mat-step>
+                </mat-horizontal-stepper> 
               </div>
               
-              <div fxFlex="25%" class="sec3" fxFlex.xs="100%">
+              <div fxFlex="25%" class="needs-Rightsec" fxFlex.xs="100%">
                   <app-rightsection></app-rightsection>
               </div>
           </div>

@@ -1,33 +1,36 @@
 @import '../../../sass/cartus-palette.scss';
 
-.candidates-container {
-    max-width: 1600px !important;
-}
+// .candidates-container {
+//     max-width: 1600px !important;
+// }
 
-  .example-radio-group {
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0;
-  }
+//   .example-radio-group {
+//     display: flex;
+//     flex-direction: column;
+//     margin: 15px 0;
+//   }
   
-  .example-radio-button {
-    margin: 5px;
-  }
+//   .example-radio-button {
+//     margin: 5px;
+//   }
   
-  :host ::ng-deep .mat-horizontal-stepper-header-container {
-    display: none !important;
-  }
+//   :host ::ng-deep .mat-horizontal-stepper-header-container {
+//     display: none !important;
+//    }
+   .mat-horizontal-stepper-header-container{
+     display: none !important;
+   }
   // Candidate style starts here
   .candidate-Na-Leftcontainer{
     width:80%;
-    padding: 70px 20px 100px 50px;
+    padding: 4.37em 1.25em 6.25em 3.12em;
     background-color: #fff;
   }
   .candidate-Na-Rightcontainer{
     width:20%;
   }
   .candidate-steppersection{
-    padding: 20px;
+    padding: 1.25em;
   }
   // Relocation styles
   .select-Na-cardcont{
@@ -37,71 +40,121 @@
     flex-wrap: wrap;
     flex-direction: row;
   }
-  .select-Na-cardimagecont div{   
-    margin: 10px;
+  .select-Na-cardimagecont{   
+    margin: 0.625em;
     text-align: center;
-    font-size: 30px;
+    // font-size: 1.5em;
     border: 1px solid #707070;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
-    &.relocation-Boxcont{
-      width: 295px;
-      height:295px;
+    cursor:pointer;
+    // span{
+    //   font-size: 1.125em;
+    //   position: relative;
+    //   bottom: -1.25em;
+    // }
+    // &:hover{
+    //   background-color: blue;
+    // }
+    &.relocationYes{
+      width:18.4375em;
+      height:18.4375em;
+    }
+
+    .relocation-Boxcont{
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
    &.relocation-Personcont{
-      width:224px;
-      height:224px;
+      width:14em;
+      height:14em;
     }
-  }
-  .select-Na-cardimagecont div img{
-    display: block;
+    &.relocation-Homecont{
+      width:15.8em;
+      height:15.8em;
+    }
   }
   .txt{
     justify-content: end;
   }
   .candidate-headertxt{
     border-bottom: 1px solid #707070;
-    font-size:32px;
+    font-size:1.5em;
     color:#808080;
-    margin-bottom:30px;
-    padding-top:30px;
-    padding-bottom:20px;
+    margin-bottom:1.25em;
+    padding-top:1.875em;
+    padding-bottom:0.625em;
     text-align: left;
+    @media screen and (max-width:600px){
+      margin-bottom: 1.875em;
+      padding-top: 0.625em;
+      padding-bottom: 0.625em;
+      font-size:1.15em;
+    }
+  }
+  div.select-Na-cardimagecont img{
+    margin-bottom: 0.625em;
+  }
+  div.select-Na-cardimagecont img:last-child {
+    display: none;  
+  }
+  div.select-Na-cardimagecont:hover img:last-child {
+    display: block; 
+  }
+  div.select-Na-cardimagecont:hover img:first-child {
+    display: none;  
+  }
+  div.select-Na-cardimagecont:hover{
+   color:#fff;
+   background-color:#6192D3;
+  }
+  .text1{
+    bottom:-1.875em;
+    position: relative;
+  }
+  div.select-Na-cardimagecont.selected{
+    background-color:#6192D3;
+    color: #fff;
+    img:last-child{
+      display:block;
+    }
+    img:first-child{
+      display:none;
+    }
   }
   // button css
 .candidate-btn-container{
   display:flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 3.125em;
 }
 .candidate-btn{
   justify-content: center;
-  width:364px;
-  height:97px;
+  width:22.75em;
+  height:6.06em;
   border:1px solid #707070;
   color:#565656;
-  font-size:24px;
-  &:active{
-    // text-decoration: underline;
-    // border: 2px solid map-get($cartus-palette, 'cartus_dark_accent_blue');
-    // background-color: map-get($cartus-palette, 'cartus_accent_blue');
-}
-&:hover{
-    // background-color: map-get($cartus-palette, 'cartus_dark_accent_blue');
-}   
+  span{
+    font-size:1.5em;
+  }
+  @media screen and (max-width:600px){
+    height:4.18em;
+  }
+  
 &:disabled{
-    // color:map-get($cartus-palette,'cartus_gray');
-    // background-color: map-get($cartus-palette,'cartus_disabled_gray');
+    border:1px solid #E3E3E3;
+    color:#E3E3E3;
 }
 }
 
 
 /* Add application styles & imports to this file! */
 
-.bounds {
+.candidate-NA-Manincont {
   background-color:#ddd;
   width:100%;
   @media screen and (min-width:768px) {
@@ -109,24 +162,27 @@
   }
 }
 
-.sec1 {
+.needs-Leftsec {
   background:#fff;
+  color:#565656 !important;
+  input.mat-input-element{
+    color:#565656 !important;
+    font-size:1.25em;
+    font-weight:100;
+  }
 }
 
 
-.sec3 {
+.needs-Rightsec {
   background:#F5F5F6;
 }
 
-.sec1, .sec2, .sec3 {
-  padding-top:20px;
+.needs-Leftsec, .needs-Rightsec {
+  padding-top:1.25em;
   text-align:center
 }
 
-.content {
-  // min-width: 300px;
-  /*height: 400px;*/
-}
+
 
 // Matstepper arrow
 .stepper-Previousbtn button{
@@ -135,14 +191,63 @@
   background: none;
   outline: none;
   text-align: left;
-  display:flex;
+  display:block;
 }
 .stepper-Previousbtn mat-icon{
   color:#F5F5F6;
-  width:100px;
-  font-size:50px;
+  width:6.25em;
+  display: block;
+}
+.stepper-Previousbtn img{
+  width:3.125em;
+  height:3.125em;
+  display: block;
+  cursor: pointer;
 }
 // Address styles
 .current-Address mat-form-field{
 width:100%;
+}
+// Review css
+.reviewContainer{
+  flex-direction: row;
+  display: flex;
+  .mat-form-field-suffix .mat-icon{
+    cursor: pointer;
+  }
+  // form .mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline
+  // {
+  //   background:none !important;
+  //   border:1px solid red !important;
+  // }
+}
+//Mat input fileds
+.relocation-Content{
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.incBtnCont{
+  border-bottom: 1px solid #707070;
+  width:100%;
+}
+.incBtnCont input{
+  text-align: left;
+}
+.incBtnCont img{
+  width:1.56em;
+  height: 1.56em;
+}
+.btnSign{
+  border:0;
+  background:transparent;
+  outline:none;
+  cursor:pointer;
+  padding-right: 1.5em;
+  padding-left: 0em;
+}
 }

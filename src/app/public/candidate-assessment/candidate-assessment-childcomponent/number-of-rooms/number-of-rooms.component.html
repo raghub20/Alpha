@@ -1,0 +1,25 @@
+ <!-- Number of rooms content -->
+ <div class="stepper-Previousbtn"><button matStepperPrevious>
+  <!-- <mat-icon>arrow_back</mat-icon> -->
+  <img src="../../../../../assets/images/candidate-assessment/previous-arrow.svg" alt="Number of people" title="Number of people"/>
+ </button>
+</div>
+ <div class="relocation-Content">
+  <div class="candidate-headertxt">How many rooms are in your home?</div>  
+  <!-- Form section starts     -->
+  <form fxLayout="column" [formGroup]="RoomsForm">
+  <div  fxLayout="row"  fxLayout.xs="column" fxLayoutGap.xs="0">
+  <div fxLayoutAlign="start" fxFlex="40%" fxLayout.xs="column" fxFlex.xs="100%" class="incBtnCont" >
+  <input type="number" matInput formControlName="Count">
+  <button (click)="incNum()" class="btnSign"><img src="../../../../../assets/images/candidate-assessment/baseline-add-circle.svg" alt="Number of people" title="Number of people"/></button> 
+  <button (click)="decNum()" class="btnSign"><img src="../../../../../assets/images/candidate-assessment/baseline-remove-circle.svg" alt="Number of people" title="Number of people"/></button> 
+  </div>
+  </div>
+  </form>
+ <!-- Form section ends -->  
+</div>
+<!-- Button section starts -->
+<div class="candidate-btn-container">
+<button mat-button matStepperNext class="candidate-btn" (click)="submit(RoomsForm)" >Next</button>
+</div>
+<!-- Button section ends -->

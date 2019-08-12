@@ -1,0 +1,35 @@
+@import '../../candidate-assessment/candidate-assessment.component.scss';
+
+.mat-input-element {
+    padding-left: 1em !important;
+    font-size:1.25em;
+}
+input ::placeholder
+{
+    font-size:0.875em;
+}
+
+.mat-icon, .mat-datepicker-toggle-default-icon {
+    padding-right: 1em !important;
+}
+
+.mat-datepicker-toggle {
+    padding-right: 1.5em !important;
+    
+}
+
+.mat-select {
+    .mat-select-value-text {
+        margin-left: 1em !important;
+    }
+    //padding-left: 1.5em !important;
+    //padding-right: 1.5em !important;
+}
+
+.mat-form-field .mat-select.mat-select-disabled .mat-select-arrow-wrapper {
+    padding-right: 1.5em !important;
+}
+.mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline{
+    background: none !important;
+    border-bottom:1px solid #8a7f7f !important;
+}

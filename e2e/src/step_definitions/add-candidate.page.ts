@@ -52,7 +52,7 @@ export class CandidatesProfile {
         return element(by.xpath("//span[contains(text(),'CANCEL')]"));
     }
     getSendInvitebuttonE1(): ElementFinder{
-        return element(by.xpath("//button[contains(text(),'Send Invite')]"));
+        return element(by.xpath("//span[contains(text(),'Send Invite')]"));
     }
     getFirstnamevalidationE1(): ElementFinder{
         return element(by.xpath("//mat-error[contains(text(),' You must enter first name ')]"));

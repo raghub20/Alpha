@@ -2,23 +2,28 @@
  <div class="relocation-Content">
     <div class="candidate-headertxt">Is anyone else relocating with you ?</div>  
     <div class="select-Na-cardcont">
-      <!-- card section starts -->
-       <div class="select-Na-cardimagecont">
-         <div class="relocation-Boxcont">
-           <img src="../../../../../assets/images/candidate-assessment/yes-thumb.svg" alt="Yes" title="Yes"/>
-           <span>YES</span>
+        <div  class="select-Na-cardimagecont relocationYes" (click)="onClickYes()" [ngClass]="{ 'selected': candidateAssessment.familyDetails.selectedYes == true }">
+            <div class="relocation-Boxcont" >
+               <img src="../../../../../assets/images/candidate-assessment/yes-thumb.svg"  /> 
+               <img src="../../../../../assets/images/candidate-assessment/yes-thumb-white.svg" />
+            </div>
+            <div>
+            {{relocYes}}
+            </div>
+            </div>
+            <div  class="select-Na-cardimagecont relocationYes" (click)="onClickNo()" [ngClass]="{ 'selected': candidateAssessment.familyDetails.selectedNo == true }">
+                <div class="relocation-Boxcont">
+                   <img src="../../../../../assets/images/candidate-assessment/no-thumb.svg" /> 
+                   <img src="../../../../../assets/images/candidate-assessment/yes-thumb.svg" />
+                </div>
+                <div>
+                {{relocNo}}
+             </div>
           </div>
-       </div>
-       <!-- card section ends -->
-       <!-- card section starts -->
-       <div class="select-Na-cardimagecont">
-         <div class="relocation-Boxcont"><img src="../../../../../assets/images/candidate-assessment/no-thumb.svg" alt="No" title="No"/>NO</div>
-       </div>
-       <!-- card section ends -->
     </div>    
   </div>
   <!-- Button section starts -->
 <div class="candidate-btn-container">
-<button mat-button matStepperNext class="candidate-btn" >Next</button>
+<button mat-button matStepperNext class="candidate-btn" [disabled]="isNextButton" (click)="emit()">Next</button>
 </div>
  <!-- Button section ends -->

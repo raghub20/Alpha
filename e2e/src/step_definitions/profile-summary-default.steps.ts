@@ -3,6 +3,7 @@ import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { Defaultcolumn } from './profile-summary-default.page';
 import { Choosecolumn } from './choose-column-data.page';
+import { browser } from 'protractor';
 
 
 chai.use(chaiAsPromised);
@@ -23,7 +24,9 @@ Given('The user is on the candidate profiles page for all candidates', async fun
 
 
 When('The client sees profiles of all candidates', async function () {
-  return await defaultcolumn.getcandidates().isDisplayed();
+  await browser.manage().window().setSize(1400,900).then(async()=>{
+    return await defaultcolumn.getcandidates().isDisplayed();
+  });
 });
 
 
@@ -32,6 +35,7 @@ When('The client sees profiles of all candidates', async function () {
 
 
 When('client sees Candidate first name and last name', async function () {
+  await browser.manage().window().setSize(1400,900).then(async()=>{
   await choosecolumn.getverifyfullname().isDisplayed().then(async () => {
     return await defaultcolumn.getfirstlastname().getText().then(async (text) => {
       var i: number;
@@ -40,7 +44,7 @@ When('client sees Candidate first name and last name', async function () {
     });
   });
 });
-
+});
 
 Then('Client sees Level', async function () {
   return await expect(choosecolumn.getverifylevel().isDisplayed()).to.eventually.be.true;
@@ -77,7 +81,9 @@ Then('Client sees Status', async function () {
 
 
 When('Client clicks on Candidate name sort', async function () {
+  await browser.manage().window().setSize(1400,900).then(async()=>{
   return await defaultcolumn.getsortfullname().isDisplayed();
+  });
 });
 
 

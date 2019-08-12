@@ -7,34 +7,47 @@
   <div class="relocation-Content current-Address">
      <div class="candidate-headertxt">Please enter your current address</div>  
      <!-- Form section starts     -->
-     <form fxLayout="column">
-        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column" fxLayoutGap.xs="0">
-        <div fxFlex="60%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+     <form fxLayout="column" [formGroup]="AddressForm">
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column" fxLayoutGap.xs="0">
+      <div fxFlex="60%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+        <mat-form-field>
+          <input type="text" placeholder="Street Address" matInput formControlName="Address"> 
+          <mat-error>
+            {{ errors['Street'] }}
+          </mat-error>
+          
+        </mat-form-field>
+      </div>       
+      <div fxFlex="25%" >
+        <mat-form-field>
+          <input type="text" placeholder="Town" matInput formControlName="Town">
+          <mat-error>
+            {{ errors['Town'] }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="20%" >
           <mat-form-field>
-            <input type="text" placeholder="Street Address" matInput formControlName="address">
-          </mat-form-field>
-        </div>       
-        <div fxFlex="25%" >
-          <mat-form-field>
-            <input type="text" placeholder="Town" matInput formControlName="Town">
+            <input type="text" placeholder="State" matInput formControlName="State">
+            <mat-error>
+              {{ errors['State'] }}
+            </mat-error>
           </mat-form-field>
         </div>
-        <div fxFlex="20%" >
+        <div fxFlex="15%">
             <mat-form-field>
-              <input type="text" placeholder="State" matInput formControlName="State">
+              <input type="text" placeholder="ZIP" matInput formControlName="ZIP">
+              <mat-error>
+                {{ errors['ZIP'] }}
+              </mat-error>
             </mat-form-field>
           </div>
-          <div fxFlex="15%">
-              <mat-form-field>
-                <input type="text" placeholder="ZIP" matInput formControlName="ZIP">
-              </mat-form-field>
-            </div>
-      </div>
-     </form>
+    </div>
+   </form>
      <!-- Form section ends -->
    </div>
      <!-- Button section starts -->
- <div class="candidate-btn-container">
-     <button mat-button matStepperNext class="candidate-btn" >Next</button>
-     </div>
+     <div class="candidate-btn-container">
+      <button mat-button matStepperNext class="candidate-btn" [disabled]="!AddressForm.valid" (click)="submit(AddressForm)" >Next</button>
+      </div>
       <!-- Button section ends -->

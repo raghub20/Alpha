@@ -105,7 +105,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'j.cordon@gmail.com',
       'businessUnit': 'Engineering',
-      'invitationSentDate': '28-JAN-2019',
+      'invitationSentDate': '',
       'createdDate': '23-JAN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '30-JAN-19',
@@ -159,7 +159,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'adam.hu@gmail.com',
       'businessUnit': 'Marketing',
-      'invitationSentDate': '21-JUN-2019',
+      'invitationSentDate': '',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -186,7 +186,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'suehong.jones@gmail.com',
       'businessUnit': 'Human Resources',
-      'invitationSentDate': '2-JUN-2019',
+      'invitationSentDate': '',
       'createdDate': '2-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '20-JUN-19',
@@ -213,7 +213,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'aleksandr.rector@gmail.com',
       'businessUnit': 'Product Solutions',
-      'invitationSentDate': '21-JUN-2019',
+      'invitationSentDate': '',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -240,7 +240,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'mathew.richardson@gmail.com',
       'businessUnit': 'Human Resources',
-      'invitationSentDate': '21-JUN-2019',
+      'invitationSentDate': '',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -267,7 +267,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'pritpal.varaha@gmail.com',
       'businessUnit': 'Finance',
-      'invitationSentDate': '21-JUN-2019',
+      'invitationSentDate': '',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -294,7 +294,7 @@ export class CandidateProfilesService {
       'isAssessmentReceived': false,
       'emailAddress': 'robin.ellacott@gmail.com',
       'businessUnit': 'Engineering',
-      'invitationSentDate': '21-JUN-2019',
+      'invitationSentDate': '',
       'createdDate': '21-JUN-19',
       'createdBy': 'Matthew, Maturity',
       'lastUpdatedDate': '21-JUN-19',
@@ -333,8 +333,8 @@ export class CandidateProfilesService {
         serviceCurrency: 'USD',
       }],
       taxAmt: 17300,
-      totalRecomBudgetAmt: 51550,
-      totalCostAmt: 51550,
+      totalRecomBudgetAmt: 33850,
+      totalCostAmt: 33850,
       totalCostCurrency: 'USD'
     },
     {
@@ -427,7 +427,7 @@ export class CandidateProfilesService {
   /** calculatetax  */
   calcTaxAssistance(data: CandidateBudget) {
     this.getTax = data;
-    this.totalSum = this.getTax.taxAmt + this.getTax.totalCostAmt;
+    this.totalSum = this.getTax.taxAmt + this.getTax.totalRecomBudgetAmt;
     return (this.totalSum);
   }
 
@@ -518,6 +518,4 @@ export class CandidateProfilesService {
 
     return day + '-' + monthNames[monthIndex] + '-' + year;
   }
-
-
 }

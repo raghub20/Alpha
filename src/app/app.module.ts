@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, DatePipe } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -21,7 +21,9 @@ import {
   MatListModule,
   MatStepperModule,
   MatRadioModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDatepicker,
+  MatDatepickerModule
 } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,6 +38,9 @@ import { PeopleRelocationComponent } from './public/candidate-assessment/candida
 import { CurrentAddressComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/current-address/current-address.component';
 import { CityComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/city/city.component';
 import { CurrentResidnceComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/current-residnce/current-residnce.component';
+import { ReviewComponent } from './public/candidate-assessment/review/review.component';
+import { NumberOfRoomsComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/number-of-rooms/number-of-rooms.component';
+import { TypeOfHomeComponent } from './public/candidate-assessment/candidate-assessment-childcomponent/type-of-home/type-of-home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +51,10 @@ import { CurrentResidnceComponent } from './public/candidate-assessment/candidat
     PeopleRelocationComponent,
     CurrentAddressComponent,
     CityComponent,
-    CurrentResidnceComponent
+    CurrentResidnceComponent,
+    ReviewComponent,
+    NumberOfRoomsComponent,
+    TypeOfHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +78,9 @@ import { CurrentResidnceComponent } from './public/candidate-assessment/candidat
     MatStepperModule,
     MatRadioModule,
     MatGridListModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule, 
     AppRoutingModule // I must be last!! https://angular.io/guide/router#module-import-order-matters
   ],
   providers: [
@@ -77,7 +88,8 @@ import { CurrentResidnceComponent } from './public/candidate-assessment/candidat
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-  HighlightSearchPipe
+  HighlightSearchPipe,
+  DatePipe
   ],
   bootstrap: [
     AppComponent

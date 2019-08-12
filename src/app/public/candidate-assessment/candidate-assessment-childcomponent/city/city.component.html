@@ -5,16 +5,22 @@
    </button>
   </div>
   <div class="relocation-Content current-Address">
-     <div class="candidate-headertxt">Please enter your current address</div>  
+     <div class="candidate-headertxt">Where are you moving to?</div>  
      <!-- Form section starts     -->
-     <form fxLayout="column">
+     <form fxLayout="column" [formGroup]="DestinationAddressForm">
         <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column" fxLayoutGap.xs="0">
             <div fxFlex="30%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
-        <mat-form-field>
-            <mat-select placeholder="City">
-              <mat-option value="option">Option</mat-option>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select  formControlName="City">
+              <mat-option *ngFor="let city of cityList" [value]="city.cityName">
+                {{city.cityName}}
+              </mat-option>
             </mat-select>
-          </mat-form-field> 
+            <mat-error>
+              {{ errors['City'] }}
+            </mat-error>
+       </mat-form-field>
           </div>
         </div>
      </form>
@@ -22,6 +28,6 @@
    </div>
      <!-- Button section starts -->
      <div class="candidate-btn-container">
-        <button mat-button matStepperNext class="candidate-btn" >Next</button>
+        <button mat-button matStepperNext class="candidate-btn" [disabled]="!DestinationAddressForm.valid" (click)="submit(DestinationAddressForm)">Next</button>
      </div>
       <!-- Button section ends -->

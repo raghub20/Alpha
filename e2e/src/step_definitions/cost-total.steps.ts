@@ -23,12 +23,21 @@ Before(() => {
 
 Then('The client verifies total recommended budget is sum of total cost and tax assistance cost', async function () {
   await totalamount.getTotalRecommendedBudget().getText().then(async (text) => {
-    var int1: number = parseInt(text);
+    var totalreccomend: string = text.toString();
+    totalreccomend = text.toString().replace(",","");
+    var recomend: Array<string> = totalreccomend.split("USD");
+    var int1: number = parseFloat(recomend[0]);
     await totalamount.getTaxassistancebudget().getText().then(async (text2) => {
-      var int2: number = parseInt(text2);
+      var taxassist: string = text2.toString();
+      taxassist = text2.toString().replace(",","");
+      var assist: Array<string> = taxassist.split("USD");
+      var int2: number = parseInt(assist[0]);
       var result = int1 + int2;
       await totalcost.getTotalCost().getText().then(async (text3) => {
-        var result2: number = parseInt(text3)
+      var totalcost: string = text3.toString();
+      totalcost = text3.toString().replace(",","");
+      var total: Array<string> = totalcost.split("USD");
+        var result2: number = parseInt(total[0])
         return await expect(result).to.equals(result2);
       });
     });
@@ -63,15 +72,24 @@ Then('The client verifies total recommended budget is total cost', async functio
 
 Then('The client verifies total recommended budget is sum of total cost and tax assistance cost in mobile view', async function () {
   await browser.driver.manage().window().setSize(500, 900).then(async () => {
-  await totalamount.getTotalRecommendedBudget().getText().then(async (text) => {
-    var int1: number = parseInt(text);
-    await totalamount.getTaxassistancebudget().getText().then(async (text2) => {
-      var int2: number = parseInt(text2);
-      var result = int1 + int2;
-      await totalcost.getTotalCost().getText().then(async (text3) => {
-        var result2: number = parseInt(text3)
-        return await expect(result).to.equals(result2);
-      });
+    await totalamount.getTotalRecommendedBudget().getText().then(async (text) => {
+      var totalreccomend: string = text.toString();
+      totalreccomend = text.toString().replace(",","");
+      var recomend: Array<string> = totalreccomend.split("USD");
+      var int1: number = parseFloat(recomend[0]);
+      await totalamount.getTaxassistancebudget().getText().then(async (text2) => {
+        var taxassist: string = text2.toString();
+        taxassist = text2.toString().replace(",","");
+        var assist: Array<string> = taxassist.split("USD");
+        var int2: number = parseInt(assist[0]);
+        var result = int1 + int2;
+        await totalcost.getTotalCost().getText().then(async (text3) => {
+        var totalcost: string = text3.toString();
+        totalcost = text3.toString().replace(",","");
+        var total: Array<string> = totalcost.split("USD");
+          var result2: number = parseInt(total[0])
+          return await expect(result).to.equals(result2);
+        });
       });
     });
   });

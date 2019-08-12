@@ -50,12 +50,15 @@ Then('The user sees a text field for business unit', () => {
 Then('The user sees a Email field', () => {
     candidatesProf.getEmailE1().isPresent();   // verifying email field is present displayed
 });
+
 Then('The user sees a Save button to save the record', () => {
     candidatesProf.getSavebuttonE1().isPresent();   // verifying save button is present displayed
 });
+
 Then('The user sees a Cancel button to cancel the entire process', () => {
     candidatesProf.getCancelbuttonE1().isPresent();   // verifying cancel button  is present displayed
 });
+
 Then('The user sees a Send Invitation To Candidate button to send invitation', () => {
     return candidatesProf.getSendInvitebuttonE1().isPresent();   // verifying send invitation button is present displayed
 });

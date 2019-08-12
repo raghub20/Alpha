@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'candidate-assessment',
     component: CandidateAssessmentComponent
+  },
+  {
+    path: 'candidate-assessment/step/:id',
+    component: CandidateAssessmentComponent
   }
 ];
 

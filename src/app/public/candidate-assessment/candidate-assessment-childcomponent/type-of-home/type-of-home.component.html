@@ -1,0 +1,63 @@
+ <!-- Relocation content -->
+ <div class="stepper-Previousbtn"><button matStepperPrevious>
+  <!-- <mat-icon>arrow_back</mat-icon> -->
+  <img src="../../../../../assets/images/candidate-assessment/previous-arrow.svg" alt="Number of people" title="Number of people"/>
+ </button>
+</div>
+ <div class="relocation-Content">
+    <div class="candidate-headertxt">Is anyone else relocating with you ?</div>  
+    <div class="select-Na-cardcont">
+      <!-- card section starts -->
+       <!-- <div class="select-Na-cardimagecont">
+         <div class="relocation-Homecont">
+           <img src="../../../../../assets/images/candidate-assessment/home-icon-blue.png" alt="Yes" title="Yes"/>
+           <span>House</span>
+          </div>
+       </div> -->
+       <div  class="select-Na-cardimagecont relocationYes"  (click)="checkHomeType(home)" [ngClass]="{ 'selected': needsAssessment.residenceDetails.isSelectedHome == true }">
+          <div class="relocation-Boxcont" >
+              <img src="../../../../../assets/images/candidate-assessment/home-icon-blue.svg" alt="Yes" title="Yes"/>
+              <img src="../../../../../assets/images/candidate-assessment/home-icon-white.svg" alt="Yes" title="Yes"/>
+          </div>
+          <div>
+          {{home}}
+          </div>
+          </div>
+       <!-- card section ends -->
+       <!-- card section starts -->
+       <!-- <div class="select-Na-cardimagecont">
+         <div class="relocation-Homecont"><img src="../../../../../assets/images/candidate-assessment/condo-icon-blue.png" alt="No" title="No"/>
+         <span>Apartment/Condo/Co-Op</span></div>
+       </div> -->
+       <div  class="select-Na-cardimagecont relocationYes" (click)="checkHomeType(aptmnt)" [ngClass]="{ 'selected': needsAssessment.residenceDetails.isSelectedAptmnt == true }">
+          <div class="relocation-Boxcont" >
+            <img src="../../../../../assets/images/candidate-assessment/condo-icon-blue.png" alt="No" title="No"/>
+            <img src="../../../../../assets/images/candidate-assessment/condo-icon-blue.png" alt="No" title="No"/>
+          </div>
+          <div>
+            {{aptmnt}}
+          </div>
+          </div>
+       <!-- card section ends -->
+        <!-- card section starts -->
+        <!-- <div class="select-Na-cardimagecont">
+          <div class="relocation-Homecont"><img src="../../../../../assets/images/candidate-assessment/townhome-blue.png" alt="No" title="No"/>
+          <span>Townhouse</span></div>
+        </div> -->
+        <div  class="select-Na-cardimagecont relocationYes" (click)="checkHomeType(town)" [ngClass]="{ 'selected': needsAssessment.residenceDetails.isSelectedTown == true }">
+            <div class="relocation-Boxcont" >
+               <img src="../../../../../assets/images/candidate-assessment/townhome-blue.svg" alt="No" title="No"/>
+               <img src="../../../../../assets/images/candidate-assessment/townhome-blue.svg" alt="No" title="No"/>
+            </div>
+            <div>
+               {{town}}
+            </div>
+            </div>
+        <!-- card section ends -->
+    </div>    
+  </div>
+  <!-- Button section starts -->
+<div class="candidate-btn-container">
+<button mat-button matStepperNext class="candidate-btn" [disabled]="isNextButton" (click)="emit()">Next</button>
+</div>
+ <!-- Button section ends -->
