@@ -2,7 +2,7 @@ import { setDefaultTimeout, After, Status, BeforeAll, AfterAll } from 'cucumber'
 import { browser } from 'protractor';
 import { MockedSetup} from './mocked-setup'
 
-setDefaultTimeout(300 * 1000); // Bump step timeout to 300 seconds for older OS/browsers and VMs
+setDefaultTimeout(3000 * 1000); // Bump step timeout to 300 seconds for older OS/browsers and VMs
 
 let mockedSetup = new MockedSetup();
 

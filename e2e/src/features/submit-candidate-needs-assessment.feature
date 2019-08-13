@@ -1,3 +1,4 @@
+@regression
 Feature: Validate candidate needs assessment data submission
 To validate the candidate needs assessment data is submitted
 

@@ -8,7 +8,7 @@
     <div class="candidate-headertxt">Do you currently own or rent?</div>  
     <div class="select-Na-cardcont">
       <!-- card section starts -->
-       <div  class="select-Na-cardimagecont relocationYes" (click)="onClickOwn()"[ngClass]="{ 'selected': needsAssessment.residenceDetails.isSelectedOwn == 'Own' }">
+       <div  class="select-Na-cardimagecont relocationYes" (click)="onClickOwn()" [ngClass]="{ 'selected': needsAssessment.residenceDetails.ownerStatus === 'Own' }">
           <div class="relocation-Boxcont" id="own">
               <img src="../../../../../assets/images/candidate-assessment/own-blue.svg" alt="own" title="own"/>
               <img src="../../../../../assets/images/candidate-assessment/own-white.svg" alt="own" title="own"/>
@@ -19,7 +19,7 @@
           </div>
        <!-- card section ends -->
        <!-- card section starts -->
-       <div  class="select-Na-cardimagecont relocationYes" (click)="onClickRent()" [ngClass]="{ 'selected': needsAssessment.residenceDetails.isSelectedRent == 'Rent' }">
+       <div  class="select-Na-cardimagecont relocationYes" (click)="onClickRent()"  [ngClass]="{ 'selected': needsAssessment.residenceDetails.ownerStatus === 'Rent' }">
           <div class="relocation-Boxcont" id="rent">
               <img src="../../../../../assets/images/candidate-assessment/rent-blue.svg" alt="rent" title="rent"/>
               <img src="../../../../../assets/images/candidate-assessment/rent-blue.svg" alt="rent" title="rent"/>

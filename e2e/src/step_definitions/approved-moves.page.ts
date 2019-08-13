@@ -1,8 +1,9 @@
 import { browser, element, by, promise, ElementFinder, protractor, ExpectedConditions as EC} from 'protractor';
 import _ from 'lodash';
 export class ApprovedMoves {
-    get() {
-        return browser.get('/#/project-alpha/approved-moves');
+    async get() {
+        await browser.manage().window().maximize();
+        return await browser.get('/#/project-alpha/approved-moves');
     }
 
     async getHeader(headerName: string): Promise<ElementFinder> {

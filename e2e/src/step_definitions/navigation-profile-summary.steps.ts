@@ -9,11 +9,11 @@ const expect = chai.expect;
 let navigationprofile: NavigationProfile = new NavigationProfile();
 
 Given('User will open the alpha project in desktop mode', async() => {
-  return navigationprofile.get();
+  return await navigationprofile.get();
 });
 
 When('User will see the Cost Models tab', async () => {
-  let el = await navigationprofile.getCostModelTab() 
+  let el = await navigationprofile.getCostModelTab(); 
   return expect(el.isDisplayed()).to.eventually.be.true;
 });
 

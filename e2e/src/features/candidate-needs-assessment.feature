@@ -1,3 +1,4 @@
+@regression
 Feature: Validate fields available for candidate needs assessment
 To validate the fields available for candidate needs assessment
 

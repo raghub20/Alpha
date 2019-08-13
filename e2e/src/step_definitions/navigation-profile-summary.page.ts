@@ -2,31 +2,29 @@ import { browser, element, by, ExpectedConditions as EC } from 'protractor';
 
 export class NavigationProfile  {
 
-    get() {
-        browser.manage().window().maximize();
-       return browser.get('/#/project-alpha/approved-moves');   
+    async get() {
+        await browser.manage().window().maximize();
+       return await browser.get('/#/project-alpha/approved-moves');   
        //return browser.get('http://localhost:4200/#/project-alpha');   
     }
 
-    getCostModelTab() {
-        let el = element(by.css('a[ng-reflect-router-link="cost-models"] span'));
-        return browser.wait(EC.elementToBeClickable(el), 12000).then(() => {
-            return el;
-        });
-        //return element(by.css('a[ng-reflect-router-link="cost-models"] span'));
-    }
-
-    getCandidateTab() {
-        //return element(by.css('a[ng-reflect-router-link="candidate-profiles"] span'));
-        let el = element(by.css('a[ng-reflect-router-link="candidate-profiles"] span'));
+    async getCostModelTab() {
+        let el = await element(by.css('a[ng-reflect-router-link="cost-models"] span'));
         return browser.wait(EC.elementToBeClickable(el), 12000).then(() => {
             return el;
         });
     }
 
-    getApprovedMovesTab() {
-        //return element(by.css('a[ng-reflect-router-link="approved-moves"] span'));
-        let el = element(by.css('a[ng-reflect-router-link="approved-moves"] span'));
+    async getCandidateTab() {
+        let el = await element(by.css('a[ng-reflect-router-link="candidate-profiles"] span'));
+        console.log("Candidate tab =============" + el);
+        return browser.wait(EC.elementToBeClickable(el), 12000).then(() => {
+            return el;
+        });
+    }
+
+    async getApprovedMovesTab() {
+        let el = await element(by.css('a[ng-reflect-router-link="approved-moves"] span'));
         return browser.wait(EC.elementToBeClickable(el), 12000).then(() => {
             return el;
         });
