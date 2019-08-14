@@ -1,3 +1,4 @@
+@regression
 Feature: Verify total recommended budget
 To verify the total recommended budget
 

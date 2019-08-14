@@ -16,6 +16,7 @@ Before(() => {
   
 });
 
+
 //Desktop
 //1) Scenario: To verify all the criteria to determine predicted budget range
 
@@ -23,6 +24,7 @@ Before(() => {
 Given('The user clicks on a candidate record having ready for review status', async function () {
   await budgetcriteria.get();
   await openmodalwind.getreadyforreviewE1().isDisplayed().then(async()=>{
+    
     return await openmodalwind.getreadyforreviewE1().click();
   });
 });
@@ -33,6 +35,7 @@ When('The client contact sees the candidate information', async function () {
     return await expect(openmodalwind.getmodalwindowforreadyforreview().getText()).to.eventually.not.be.null;
   });
 });
+
 
 
 
@@ -86,7 +89,7 @@ Then('The client checks the tax assistance check box as false', async function (
    await budgetcriteria.getTaxassistancecheckboxclick().isDisplayed().then(async()=>{
     return await budgetcriteria.getTaxassistancecheckboxclick().click();
    });
-      });
+  });
 
 
 
@@ -125,7 +128,7 @@ Then('The client sees {string} button', async function (string) {
 });
 
 //Mobile
-//1) Scenario: To verify all the criteria to determine predicted budget range
+//1) Scenario: To verify all the criteria to determine predicted budget range in mobile view
 
 
 When('The client contact sees the candidate information in mobile view', async function () {
@@ -140,7 +143,7 @@ When('The client contact sees the candidate information in mobile view', async f
 
 
 Then('The client sees list of services in core services factored in calculation of the recommended budget in mobile view', async function () {
-    await budgetcriteria.getCoreServices().isDisplayed().then(async()=>{
+  await budgetcriteria.getCoreServices().isDisplayed().then(async()=>{
       return await expect(budgetcriteria.getCoreServices().getText()).to.not.be.null
   });
 });
@@ -171,13 +174,17 @@ Then('The client sees total recommended budget in mobile view', async function (
 
 
 Then('The client sees tax assistance and cost associated to tax assistance in mobile view', async function () {
-  await expect(budgetcriteria.getTaxassistance().getText()).to.not.be.null;
-  return await expect(budgetcriteria.getTaxassistancebudget().getText()).to.not.be.null;
+  await budgetcriteria.getTaxassistance().getText().then(async(text)=>{
+    await expect(text).contains('tax');
+    await budgetcriteria.getTaxassistancebudget().getText().then(async(text)=>{
+    return await expect(text).to.not.be.null;
+  })
+});
 });
 
 
 
-//2) Scenario: To verify the working of tax assistance check box
+//2) Scenario: To verify the working of tax assistance check box in mobile view
 
 
 When('client sees tax assistance check box the client sees the checkbox is checked true by default in mobile view', async function () {
@@ -206,7 +213,7 @@ Then('The client sees the checkbox is checked false in mobile view', async funct
 
 
 
-//3) Scenario: To verify presence of buttons and icons in budget prediction
+//3) Scenario: To verify presence of buttons and icons in budget prediction in mobile view
 
 
 Then('The client sees {string} page in mobile view', async function (string) {

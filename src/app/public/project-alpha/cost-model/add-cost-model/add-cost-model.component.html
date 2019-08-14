@@ -8,6 +8,7 @@
   
   <mat-dialog-content>    
     <form fxLayout="column" [formGroup]="addCostModelForm">
+      <div *ngIf="!deleteDialog">
       <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0em">
         <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
           <mat-form-field>
@@ -17,10 +18,15 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
+        <div fxFlex fxLayout.xs="column" class="hide-arrow-xs" style="visibility: hidden;">
+            <i class="material-icons modal-rightnavarrow">
+              arrow_forward_ios
+              </i>
+        </div>
+        <div fxFlex="45%" fxLayout.xs="column" fxFlex.xs="100%">
           <mat-form-field>
             <mat-label>Level</mat-label>
-            <mat-select formControlName="Level" >
+            <mat-select formControlName="Level" (blur)="showPredictedRelocationCost()" id="level">
               <mat-option *ngFor="let level of levels" [value]="level.levelName">
                 {{level.levelName}}
               </mat-option>
@@ -34,7 +40,7 @@
       <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0" >
         <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
           <mat-form-field>
-            <input type="text" placeholder="Departure" matInput formControlName="Departure" [matAutocomplete]="departureList" >
+            <input type="text" placeholder="Departure" matInput formControlName="Departure" [matAutocomplete]="departureList" id="departure" (blur)="showPredictedRelocationCost()">
             <mat-autocomplete #departureList="matAutocomplete" >
               <mat-option *ngFor="let departure of departures | async" [value]="departure.name">
                 {{departure.name}}
@@ -52,7 +58,7 @@
         </div>
         <div fxFlex="45%" fxLayout.xs="column" fxFlex.xs="100%">          
           <mat-form-field>
-            <input type="text" placeholder="Destination" matInput formControlName="Destination" [matAutocomplete]="destinationList">
+            <input type="text" placeholder="Destination" matInput formControlName="Destination" [matAutocomplete]="destinationList" id="destination" (blur)="showPredictedRelocationCost()">
             <mat-autocomplete #destinationList="matAutocomplete">
               <mat-option *ngFor="let destination of destinations | async" [value]="destination.name">
                 {{destination.name}}
@@ -64,11 +70,66 @@
           </mat-form-field>
         </div>
       </div>
+      <div *ngIf="showLoader" class="loader">Loading....</div>
+      <div *ngIf="displayPredictedRelocationCost" class="predicted-relocation-cost" id="predicted_relocation_cost">
+        <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column" fxLayoutGap.xs="0em">
+          <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%">        
+            <mat-accordion [multi]="true">
+              <mat-expansion-panel *ngFor="let estimate of costModelEstimates;let i=index">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="title">
+                    {{estimate.title}} <mat-icon matPrefix *ngIf="i===0">person</mat-icon>
+                    <mat-icon matPrefix *ngIf="(i===1 || i===2)">people</mat-icon>
+                    <mat-icon class="custom-people-icon" matPrefix *ngIf="i===2">person</mat-icon>
+                    <mat-icon class="custom-add-icon" matPrefix *ngIf="i===2">add</mat-icon>
+                  </mat-panel-title>
+                  <mat-panel-description fxLayoutAlign="end center">
+                    {{estimate.minAmount | currency:'&nbsp;'}} - {{estimate.maxAmount | currency:'&nbsp;'}} {{estimate.currency}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngFor="let product of estimate.products" class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayoutGap.xs="0em">
+                  <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="50%">
+                    <div class="core-services">
+                      <p>{{product.name}}</p>
+                      <p>{{product.descriptionLine1}}</p>
+                      <p>{{product.descriptionLine2}}</p>
+                    </div>
+                  </div>
+                  <div fxFlex="50%" fxLayoutAlign="end" fxFlex.xs="50%">
+                    <div class="core-services-amount">
+                      <p>{{product.minAmount | currency:'&nbsp;'}} - {{product.maxAmount | currency:'&nbsp;'}} {{product.currency}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayoutGap.xs="0em">
+                  <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                    <div class="tax-assistance">
+                      <p>TAX ASSISTANCE</p>
+                    </div>
+                  </div>
+                  <div fxFlex="50%" fxLayoutAlign="end" fxFlex.xs="100%">
+                    <div class="tax-assistance-amount">
+                      <p>{{estimate.taxMinAmount | currency:'&nbsp;'}} - {{estimate.taxMaxAmount | currency:'&nbsp;'}} {{estimate.currency}}</p>
+                    </div>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="deleteDialog">
+          <div fxFlex="100%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+            <p> Please click on delete to confirm the deletion of the following model(s):<br> {{ this.data.modelName  }} cost model. </p>
+          </div>
+      </div>
     </form>
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button (click)="onNoClick()" mat-button color="primary" id="cancel">CANCEL</button>
-    <button [disabled]="!addCostModelForm.valid" class="mat-button contained-button" (click)="saveCostModel()" id="save_cost_model">Save</button>
+    <button mat-button id="cancel_cost_model" (click)="onNoClick()">CANCEL</button>
+    <button mat-raised-button id="save_cost_model" [disabled]="!addCostModelForm.valid" (click)="saveCostModel()">Save</button>
+    <button *ngIf="deleteDialog" class="mat-button contained-button" (click)="deleteCostModel()" id="invite">Delete</button>
   </mat-dialog-actions>
 </div>

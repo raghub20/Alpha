@@ -48,7 +48,19 @@ export class ModelColumnsComponent implements OnInit {
     {
       displayName: 'Last Update Date',
       value: 'updateDate',
-      flag: false,
+      flag: true,
+      disabled: false
+    },
+    {
+      displayName: 'Expiration Date',
+      value: 'expirationDate',
+      flag: true,
+      disabled: false
+    },
+    {
+      displayName: 'Status',
+      value: 'status',
+      flag: true,
       disabled: false
     }
   ];
@@ -131,6 +143,24 @@ export class ModelColumnsComponent implements OnInit {
         disabled: false
       },
       {
+        displayName: 'Last Update Date',
+        value: 'updateDate',
+        flag: true,
+        disabled: false
+      },
+      {
+        displayName: 'Expiration Date',
+        value: 'expirationDate',
+        flag: true,
+        disabled: false
+      },
+      {
+        displayName: 'Status',
+        value: 'status',
+        flag: true,
+        disabled: false
+      },
+      {
         displayName: 'Delete',
         value: 'action',
         flag: true,
@@ -177,7 +207,7 @@ export class ModelColumnsComponent implements OnInit {
   resetValues(): void {
     this.populateArray();
     this.columnsList.forEach((col, ind) => {
-      if ((col.value !== 'modelName') && (col.value != 'level.levelName') && (col.value != 'departure') && (col.value != 'destination') && (col.value != 'action')) {
+      if ((col.value !== 'modelName') && (col.value != 'level.levelName') && (col.value != 'departure') && (col.value != 'destination') && (col.value != 'updateDate') && (col.value != 'expirationDate') && (col.value != 'status') &&(col.value != 'action')) {
         col.flag = false;
       }
     });

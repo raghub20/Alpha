@@ -7,7 +7,7 @@ import { MatSnackBarConfig, MatSnackBar, MatSnackBarVerticalPosition, MatSnackBa
 export class NotificationsService {
 
   setAutoHide: boolean = true;
-  autoHide: number = 1500;
+  autoHide: number = 3000;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   

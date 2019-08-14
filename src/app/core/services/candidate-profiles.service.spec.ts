@@ -17,7 +17,7 @@ describe('CandidateProfilesService', () => {
     })
       .compileComponents();
   }));
-  
+
   beforeEach(() => {
     service = new CandidateProfilesService();
     levelList = new LevelService();
@@ -52,7 +52,7 @@ describe('CandidateProfilesService', () => {
         createdBy: 'Matthew, Maturity',
         lastUpdatedDate: '21-JUN-19'
     };
-    service.addCandidateProfile(data, levelList,false);
+    service.addCandidateProfile(data, levelList,false,(Math.floor((Math.random() * 100000) + 1)).toString());
   });
 
   it('should call getCandidateProfiles  method', () => {

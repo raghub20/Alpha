@@ -212,30 +212,19 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <!-- Add/Edit button state -->
-<div *ngIf="!transferreFlag">
-    <button (click)="onNoClick()" mat-button color="primary" id="addEditCancel">CANCEL</button>
-    <button mat-button class="mat-button outlined-button" (click)="saveDraft()" id="addEditSave" [disabled]="!addCandidateForm.get('FirstName').valid || !addCandidateForm.get('LastName').valid">Save</button>
-    <button [disabled]="!addCandidateForm.valid" mat-button class="mat-button contained-button" (click)="sendInvite()" id="addEditSendInvite">Send Invite</button>
-</div>
-    <!-- Add/Edit button state -->
-    <!-- Ready for review state btn -->
-    <div *ngIf="transferreFlag && !btnChangeFlag" class="statusBtn">
-      <button mat-button class="mat-button outlined-button leftBtn" id="show">Show Budget Details</button>
+    <div class="statusBtn">
+      <button *ngIf="transferreFlag && !btnChangeFlag" mat-button class="mat-button outlined-button leftBtn" id="show">Show Budget Details</button>
       <button (click)="onNoClick()" mat-button color="primary" id="cancel">CANCEL</button>
-      <button class="mat-button contained-button approveBtn" id="invite">
+      <button *ngIf="!transferreFlag" mat-button class="mat-button outlined-button" (click)="saveDraft()" id="addEditSave" [disabled]="!addCandidateForm.get('FirstName').valid || !addCandidateForm.get('LastName').valid">Save</button>
+      <button *ngIf="!transferreFlag" [disabled]="!addCandidateForm.valid" mat-button class="mat-button contained-button" (click)="sendInvite()" id="addEditSendInvite">Send Invite</button>
+      <button *ngIf="transferreFlag && !btnChangeFlag" class="mat-button contained-button approveBtn" id="invite">
         <span class="approve">Approve</span>
       </button>
-      <button class="shareBtn">
+      <button *ngIf="transferreFlag && !btnChangeFlag" class="shareBtn">
         <span class="share"><i class="material-icons">share</i></span>
       </button>
-    </div>
-    <!-- Ready for review state btn -->
-    <!-- Pending vanline btn -->
-    <div *ngIf="transferreFlag && btnChangeFlag" class="statusBtn">
-      <button mat-button color="primary" id="cancel" (click)="onNoClick()">CANCEL</button>
-      <button [disabled]="isDirty" mat-button class="mat-button contained-button" (click)="updateCandidateAssessment()"
-        id="updateCandidateAssessment">Update</button>
+      <button *ngIf="transferreFlag && btnChangeFlag" [disabled]="isDirty" mat-button class="mat-button contained-button" (click)="updateCandidateAssessment()"
+          id="updateCandidateAssessment">Update</button>
     </div>
   </mat-dialog-actions>
 </div>

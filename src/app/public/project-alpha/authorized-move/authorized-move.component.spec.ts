@@ -7,56 +7,15 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HighlightSearchPipe } from '../highlight-search.pipe';
 import { MatTableModule } from '@angular/material';
 import { ApprovedMove } from '../../../core/models/approved-move';
+import { ApprovedMovesService } from 'src/app/core/services/approved-moves.service';
 
 describe('AuthorizedMoveComponent', () => {
   let component: AuthorizedMoveComponent;
   let fixture: ComponentFixture<AuthorizedMoveComponent>;
   let el: HTMLElement;
+  let service: ApprovedMovesService;
+  let de:DebugElement[];
   
-  const approvedMove: ApprovedMove = {
-    'moveId': '21312',
-      'candidate': {
-        'candidateId': '1111',
-      'fullname': 'Matthew, Maturity',
-      'level': {
-        'levelId': 'level2',
-        'levelName': 'Level 2 (100,001 to 250,000 USD)',
-        'levelDescription': 'Level 2 - Salary details'
-      },
-      'departure': 'NJ, Nutley',
-      'destination': 'TX, Austin',
-      'status': 'Invitation Not Sent',
-      'isAssessmentReceived': false,
-      'emailAddress': 'mathew.maturity@gmail.com',
-      'businessUnit': 'Human Resources',
-      'invitationSentDate': '21-JUN-19',
-      'createdDate': '21-JUN-19',
-      'createdBy': 'Matthew, Maturity',
-      'lastUpdatedDate': '21-JUN-19',
-      'streetAddress': '41 Apple Ridge Rd',
-      'city': 'Danbury',
-      'state': 'CT',
-      'zipcode': '06810',
-      'noOfRooms': '4',
-      'housingType': 'Rents Apartment',
-      'noOfChildren': '3',
-      'total': '5'
-    },
-    'authorizedAmount': '75,000 USD',
-    'spentAmount': '45,000 USD',
-    'departure': 'NY, New York',
-    'destination': 'NJ, Jersey City',
-    'status': 'Authorized',
-    'lastUpdateDate': '05/20/2019',
-    'paymentReceived': 'YES',
-    'authorizedBy': 'Tom Jefferson',
-    'authorizedDate': '05/15/2019',
-    'authorizedClientName': 'Starbucks',
-    'createdBy': 'alpha_admin',
-    'createdDate': '05/06/2019'
-
-  };
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ MaterialModule,MatTableModule ],
@@ -69,11 +28,17 @@ describe('AuthorizedMoveComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthorizedMoveComponent);
     component = fixture.componentInstance;
+    service = new ApprovedMovesService();
     fixture.detectChanges();
-  });
+ });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render page heading as Approved Moves', () => {
+    const hTag = fixture.nativeElement.querySelector('h2');
+    expect(hTag.innerHTML).toContain('Approved Moves');
   });
 
   it('should display default 6 columns in the table', () => {
@@ -94,7 +59,57 @@ describe('AuthorizedMoveComponent', () => {
     // find pager
     const pager = fixture.nativeElement.querySelectorAll('mat-paginator');
     expect(pager).toBeTruthy();
-    
   });
-  
+
+  it('should call applyFilter function when user types', async () => {
+    spyOn(component, "applyFilter");
+   el = fixture.debugElement.query(By.css('#searchInput')).nativeElement;
+    expect(el).toBeTruthy();
+    const event = new KeyboardEvent("keyup");
+    el.dispatchEvent(event);
+    fixture.detectChanges();
+    expect(component.applyFilter).toHaveBeenCalledTimes(1);
+  });
+
+  it('should show select columns dialog when user clicks on the select columns icon', async () => {
+    spyOn(component, "openModal");
+    el = fixture.debugElement.query(By.css('#selectColumns')).nativeElement;
+    expect(el).toBeTruthy();
+    el.click();
+    fixture.detectChanges();
+    expect(component.openModal).toHaveBeenCalledTimes(1);
+  });
+
+  it('should open transferee assessment dialog when clicked on table row', async() => {
+    const tableRows: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.mat-row');
+    tableRows.forEach( a => {
+      a.click();
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.open).toHaveBeenCalled();
+      });
+    });
+  });
+
+  it('should select all when clicked on checkbox', async() => {
+    const tableRows: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.mat-header-row');
+    const headerCheckBox = tableRows[0];
+    headerCheckBox.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.masterToggle).toHaveBeenCalled();
+    });
+  });
+
+  it('should select a row when clicked on checkbox', async() => {
+    const tableRows: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.mat-row');
+    const headerCheckBox = tableRows[0];
+    expect(headerCheckBox).toBeTruthy();
+    headerCheckBox.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.selection.toggle).toHaveBeenCalled();
+    });
+  });
+
 });

@@ -1,0 +1,38 @@
+ <!-- current residence content -->
+ <div class="stepper-Previousbtn" id="back"><button matStepperPrevious>
+  <!-- <mat-icon>arrow_back</mat-icon> -->
+  <img src="../../../../../assets/images/candidate-assessment/previous-arrow.svg" alt="Number of people" title="Number of people"/>
+ </button>
+</div>
+ <div class="relocation-Content">
+    <div class="candidate-headertxt">Do you currently own or rent?</div>  
+    <div class="select-Na-cardcont">
+      <!-- card section starts -->
+       <div  class="select-Na-cardimagecont relocationYes" (click)="onClickOwn()" [ngClass]="{ 'selected': needsAssessment.residenceDetails.ownerStatus === 'Own' }">
+          <div class="relocation-Boxcont" id="own">
+              <img src="../../../../../assets/images/candidate-assessment/own-blue.svg" alt="own" title="own"/>
+              <img src="../../../../../assets/images/candidate-assessment/own-white.svg" alt="own" title="own"/>
+          </div>
+          <div>
+          {{residenceOwn}}
+          </div>
+          </div>
+       <!-- card section ends -->
+       <!-- card section starts -->
+       <div  class="select-Na-cardimagecont relocationYes" (click)="onClickRent()"  [ngClass]="{ 'selected': needsAssessment.residenceDetails.ownerStatus === 'Rent' }">
+          <div class="relocation-Boxcont" id="rent">
+              <img src="../../../../../assets/images/candidate-assessment/rent-blue.svg" alt="rent" title="rent"/>
+              <img src="../../../../../assets/images/candidate-assessment/rent-blue.svg" alt="rent" title="rent"/>
+          </div>
+          <div>
+          {{residenceRent}}
+          </div>
+          </div>
+       <!-- card section ends -->
+    </div>    
+  </div>
+  <!-- Button section starts -->
+<div class="candidate-btn-container" id="next">
+<button mat-button matStepperNext class="candidate-btn" [disabled]="isNextButton" (click)="emit()">Next</button>
+</div>
+ <!-- Button section ends -->

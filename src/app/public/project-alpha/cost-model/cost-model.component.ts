@@ -11,7 +11,8 @@ import { Selection } from '../../../core/models/selection.model';
 import { CostModel } from '../../../core/models/cost-model';
 import { CostModelsService } from '../../../core/services/cost-models.service';
 import { ModelColumnsComponent } from './model-columns/model-columns.component';
-import { AddCostModelComponent } from './add-cost-model/add-cost-model.component'
+import { AddCostModelComponent } from './add-cost-model/add-cost-model.component';
+import { NotificationsService } from '../../../../../src/app/core/services/notifications.service';
 
 @Component({
   selector: 'app-cost-model',
@@ -21,18 +22,22 @@ import { AddCostModelComponent } from './add-cost-model/add-cost-model.component
 export class CostModelComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['select','modelName', 'level.levelName','departure', 'destination', 'action'];
+  displayedColumns: string[] = ['select','modelName', 'level.levelName','departure', 'destination','updateDate','expirationDate','status','action'];
 
   addCandidateForm: FormGroup;
   dataSource: any;
   ELEMENT_DATA: any;
   filterText = '';
+  deleteFlag: boolean = false;
+
+  currentCostModelCount: any;
 
   selection = new SelectionModel<CostModel>(true, []);
   columnList: Selection[] = [];
 
   constructor(public dialog: MatDialog,
     private costModelsService: CostModelsService,
+    private notificationsService: NotificationsService,
     private changeDetectorRefs: ChangeDetectorRef) { }
 
   /** To sort the mat table columns */
@@ -44,6 +49,7 @@ export class CostModelComponent implements OnInit {
 
   ngOnInit() {
     this.ELEMENT_DATA = this.costModelsService.getCostModels();
+    this.currentCostModelCount = this.ELEMENT_DATA.length;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -53,7 +59,7 @@ export class CostModelComponent implements OnInit {
     this.dataSource.filterPredicate = (data, filter) => {
       const dataStr = data.destination + data.modelName + data.departure + data.level.levelName;
       return dataStr.indexOf(filter) !== -1;
-    }
+    };
   }
 
   applyFilter(filterValue: string) {
@@ -71,6 +77,7 @@ export class CostModelComponent implements OnInit {
 
   updateDataSource() {
     this.ELEMENT_DATA = this.costModelsService.getCostModels();
+    this.currentCostModelCount = this.ELEMENT_DATA.length;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -102,7 +109,6 @@ export class CostModelComponent implements OnInit {
 
   /* Open the dialog box AddCandidateComponent in EDIT mode when any row is clicked of the mat table*/
   public open(event, data) {
-   
     const dialogRef = this.dialog.open(AddCostModelComponent, {
       panelClass: 'addCostModelModal',
       data: data
@@ -118,8 +124,32 @@ export class CostModelComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
 
-  
+  public deleteRow(event, data, deleteFlag) {
+    data.isDeleted = deleteFlag;
+    console.log("Delete Flag : " + data.isDeleted);
+    const dialogRef = this.dialog.open(AddCostModelComponent, {
+      panelClass: 'addCostModelModal',
+      data: data
+    });
+
+//    this.selection.select = data;
+    console.log(data, 'ok you clicked on a table row....');
+
+    dialogRef.afterOpened().subscribe(result => {
+      console.log('This dialog was opened');
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('Cost Model List' + this.costModelsService.getCostModels);
+      var updatedCount = (this.costModelsService.costModelList.filter( item => item.isDeleted === false )).length;
+      if (updatedCount < this.currentCostModelCount){
+        this.notificationsService.flashNotification('danger','Cost Model deleted successfully.', true, 'dismiss');
+      }
+      this.updateDataSource();
+    });
   }
 
   openDialog(): void {
@@ -128,6 +158,14 @@ export class CostModelComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('Cost Model List' + this.costModelsService.getCostModels);
+      var updatedCount = (this.costModelsService.costModelList.filter( item => item.isDeleted === false )).length;
+      console.log('Updated Cost Model Count' + updatedCount);
+      console.log('Current Cost Model Count' + this.currentCostModelCount);
+      if (updatedCount > this.currentCostModelCount){
+        this.notificationsService.flashNotification('success','Due to seasonal changes, this cost model expires in 30 days. Cost Model added successfully.', true, 'dismiss');
+      }
       this.updateDataSource();
     });
   }
@@ -153,20 +191,19 @@ export class CostModelComponent implements OnInit {
       panelClass: 'DisplayedColumnsModal',
       data: this.displayedColumns
     });
-    const res = dialogRef.componentInstance.columnsListUpdated.subscribe((response: Selection[]) => {      
+    const res = dialogRef.componentInstance.columnsListUpdated.subscribe((response: Selection[]) => {
       this.columnList = response;
       this.selectedCols = this.columnList;
       this.updateTable();
     });
   }
-  updateTable(){
+  updateTable() {
       this.selectedCols.forEach((item, index) => {
         if (this.displayedColumns.indexOf(item.value) < 0) {
           this.displayedColumns.push(item.value);
-        }
-        else {
+        } else {
           this.displayedColumns = this.displayedColumns.filter((val) => {
-            return item.value == val;
+            return item.value === val;
           });
         }
       });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Location } from '../models/location';
-;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +16,14 @@ export class LocationService {
     { name: 'NY, Fushing', 'id': 'desitnation4' },
     { name: 'NJ, Edison', 'id': 'desitnation2' },
     { name: 'NJ, Newark', 'id': 'desitnation3' }
-];
+  ];
+
+  cityList: Array<string> = ['Newyork' , 'Washington','Danbury, CT'];
+
+  /* Return the candidate json list and loop to display in the table */
+  getCities(): Array<string> {
+    return this.cityList;
+  }
 
   constructor() { }
 

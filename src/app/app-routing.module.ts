@@ -1,5 +1,6 @@
 import { NgModule, InjectionToken } from '@angular/core';
 import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
+import { CandidateAssessmentComponent } from './public/candidate-assessment/candidate-assessment.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,14 @@ const routes: Routes = [
   {
     path: 'project-alpha',
     loadChildren: './public/project-alpha/project-alpha.module#ProjectAlphaModule'
+  },
+  {
+    path: 'candidate-assessment',
+    component: CandidateAssessmentComponent
+  },
+  {
+    path: 'candidate-assessment/step/:id',
+    component: CandidateAssessmentComponent
   }
 ];
 

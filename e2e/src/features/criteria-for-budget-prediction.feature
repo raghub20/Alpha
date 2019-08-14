@@ -1,3 +1,4 @@
+@regression
 Feature: Verify criteria used to determine the predicted budget range
 To verify the presence of all the criteria to determine predicted budget range
 
