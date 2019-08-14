@@ -3,10 +3,11 @@ import { browser, element, by, ExpectedConditions as EC } from 'protractor';
 export class NavigationProfile  {
 
     get() {
-        browser.manage().window().maximize();
-       return browser.get('/#/project-alpha/approved-moves');   
+        browser.manage().window().setSize(1400, 900);
+        return browser.get('/#/project-alpha/approved-moves');   
        //return browser.get('http://localhost:4200/#/project-alpha');   
     }
+
 
     getCostModelTab() {
         let el = element(by.css('a[ng-reflect-router-link="cost-models"] span'));
@@ -33,7 +34,7 @@ export class NavigationProfile  {
     }
 
     getCreateCostModelButton() {
-        return element(by.partialButtonText('Create Cost Model'));
+        return element(by.partialButtonText('Add Cost Model'));
     }
 
     getCandidateAddButton() {
