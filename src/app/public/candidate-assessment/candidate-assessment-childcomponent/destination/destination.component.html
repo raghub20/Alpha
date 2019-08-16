@@ -1,0 +1,33 @@
+ <!-- City content -->
+ <div class="stepper-Previousbtn" id="back"><button matStepperPrevious>
+    <!-- <mat-icon>arrow_back</mat-icon> -->
+    <img src="../../../../../assets/images/candidate-assessment/previous-arrow.svg" alt="Number of people" title="Number of people"/>
+   </button>
+  </div>
+  <div class="relocation-Content current-Address">
+     <div class="candidate-headertxt">Where are you moving to?</div>  
+     <!-- Form section starts     -->
+     <form fxLayout="column" [formGroup]="DestinationAddressForm">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column" fxLayoutGap.xs="0">
+            <div fxFlex="30%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select  formControlName="City">
+              <mat-option *ngFor="let city of cityList" [value]="city" id="destinationDropdown">
+                {{city}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              {{ errors['City'] }}
+            </mat-error>
+       </mat-form-field>
+          </div>
+        </div>
+     </form>
+     <!-- Form section ends -->
+   </div>
+     <!-- Button section starts -->
+     <div class="candidate-btn-container" id="next">
+        <button mat-button matStepperNext class="candidate-btn" [disabled]="!DestinationAddressForm.valid" (click)="submit(DestinationAddressForm)">Next</button>
+     </div>
+      <!-- Button section ends -->
