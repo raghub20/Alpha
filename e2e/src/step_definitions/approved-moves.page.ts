@@ -16,8 +16,12 @@ export class ApprovedMoves {
     }
 
     getNextPage(): ElementFinder {
-        return element(by.xpath("//button[@class='mat-paginator-navigation-next mat-icon-button']"));
-     }
+        return element(by.css('[ng-reflect-message="Next page"]'));
+    }
+
+     getPreviousPage() : ElementFinder {
+        return element(by.css('[ng-reflect-message="Previous page"]'));
+    }
 
     async performSort(headerName: string, sortType: string) {
         let headerEle = await this.getHeader(headerName);
@@ -193,5 +197,21 @@ export class ApprovedMoves {
     
     async getResetButton() {
         return await element(by.cssContainingText('span','RESET'));
+    }
+
+    async getStatusDateData() : Promise<Array<string>> {
+        let statusData = [];
+        let isNextButtonEnabled = true;
+        while(isNextButtonEnabled) {
+            let statusDateTds : ElementFinder[] = await element.all(by.xpath('//td[contains(@class, "mat-column-lastUpdateDate")]'));
+            for(let i=0; i<statusDateTds.length; i++) {
+                statusData.push(await statusDateTds[i].getText());
+            }
+            isNextButtonEnabled = await this.getNextPage().isEnabled();
+            if(isNextButtonEnabled) {
+                await this.getNextPage().click();
+            }
+        }
+        return statusData;
     }
 }

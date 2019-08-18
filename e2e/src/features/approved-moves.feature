@@ -98,6 +98,16 @@ Then User will check columns are "checked"
 |Status Date |
 And User will click on "OK" button
 Then User will verify "7" headers are displayed in the approved moves table
+
+@197
+Scenario: Verify the Status Date format
+When User will open table column section of approved moves page
+And User will wait until the table columns to load
+And User will "Unselect" the "Authorized Amount, Departure, Destination" from select column view
+And User will click on "OK" button
+Then User will verify "Status Date" is in "YYYY-MM-DD" format
+Then User will wait for "5" seconds
+
 ##################################################################
 # Mobile testcases
 ##################################################################
@@ -127,7 +137,7 @@ Examples:
 | Authorized Amount, Departure, Destination, Status Date  | 3 | Unselect |
 | Status Date, Email, Level, Business Unit, Created By, Authorized By, Authorized Amount, Departure, Destination | 12 | Select |
 
-Scenario: Verify the approved moves default columns are checked after click on reset button
+Scenario: Mobile :: Verify the approved moves default columns are checked after click on reset button
 Given User will navigate to approved moves tab in mobile mode
 When User will open table column section of approved moves page
 And User will wait until the table columns to load
@@ -141,3 +151,13 @@ Then User will check columns are "checked"
 | Status Date |
 And User will click on "OK" button
 Then User will verify "7" headers are displayed in the approved moves table
+
+@197
+Scenario: Mobile :: Verify the Status Date format
+Given User will navigate to approved moves tab in mobile mode
+When User will open table column section of approved moves page
+And User will wait until the table columns to load
+And User will "Unselect" the "Authorized Amount, Departure, Destination" from select column view
+And User will click on "OK" button
+Then User will verify "Status Date" is in "YYYY-MM-DD" format
+Then User will wait for "5" seconds

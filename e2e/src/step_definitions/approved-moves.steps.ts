@@ -3,6 +3,7 @@ import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { ApprovedMoves } from './approved-moves.page';
 import { browser, ExpectedConditions as EC } from 'protractor';
+import moment = require('moment');
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
@@ -11,6 +12,7 @@ let approvedmoves: ApprovedMoves = new ApprovedMoves();
 let actual: string;
 
 setDefaultTimeout(300 * 1000);
+
 Given('User will navigate to approved moves tab in mobile mode', () => {
   return approvedmoves.openApprovedMovesInMobileMode();
 });
@@ -135,4 +137,16 @@ Then('User will check columns are {string}', async (checkedOrUnchecked : string,
     let actualVal = await el.input.getAttribute('aria-checked');
     expect(actualVal).to.be.equal(isChecked);
   }
+});
+
+Then('User will verify {string} is in {string} format', async (headerName, dateFormat) => {
+  let statusData = await approvedmoves.getStatusDateData();
+  for(let i=0; i<statusData.length; i++) {
+    let result = moment(statusData[i], 'YYYY-MM-DD').format('YYYY-MM-DD');
+    console.log("date = " + result);
+    if(result == 'Invalid date') {
+      return fail('Status Date : ' + statusData[i] + ' is not in expected date format. That is ' + dateFormat);
+    }
+  }
+  return Promise.resolve();
 });
