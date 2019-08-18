@@ -5,19 +5,17 @@ As a client’s contact, I can view the all the transferee profiles created by m
 Background: 
   Given User will navigate to approved moves tab
 
-  @Desktop
-  Scenario: Verify Full Name, Departure, Destination, Authorized, Status headers are displayed
+  @Desktop 
+  Scenario: Verify Full Name, Departure, Destination, Authorized, Status Date,Status headers are displayed
   Then User will verify "Full Name" header is displayed
   And User will verify "Departure" header is displayed
   And User will verify "Destination" header is displayed
   And User will verify "Status" header is displayed
   And User will verify "Authorized Amount" header is displayed
-  # And User will verify "Last Updated Date "header is displayed
+  And User will verify "Status Date" header is displayed
   And User will verify search box is displayed
   And User will click the Next Pages
  
-
-  
   Scenario Outline: Verify sorting of the data present in summary
   When User will do "<Sort Type>" sort of approved moves table by clicking on "<Header Name>" header
   Then User will verify the "<Sort Type>" sorted data for the header "<Header Name>"
@@ -33,9 +31,8 @@ Background:
   |Authorized Amount          | descending    |
   | Full Name                 | asceding      |
   | Full Name                 | descending    |
-  # |Last Updated Date          |asceding       |   
-  # |Last Updated Date          |descending     |
-
+  |Status Date          |asceding       |   
+  |Status Date          |descending     |
 
 Scenario Outline: Verify Search functionality of approved moves
 When User will enter "<Search Item>" in search box
@@ -63,14 +60,14 @@ And User will check columns are enabled as "true"
   |Authorized Amount    |
   | Departure           |
   | Destination |
-  | Last Updated Date |
+  | Status Date |
   | Email |
   | Level |
   | Business Unit |
   | Created By |
   | Authorized By |
 And User will click on "OK" button
-And User will verify "6" headers are displayed in the approved moves table
+And User will verify "7" headers are displayed in the approved moves table
 
 @SR_157
 Scenario Outline: Verify the approved moves table headers based on the column section
@@ -83,26 +80,24 @@ Then User will verify "<Expected Header Count>" headers are displayed in the app
 Examples:
 | Columns | Expected Header Count | SelectOrNot |
 # verifying default header count
-| | 6 | Select |
-| Authorized Amount, Departure, Destination  | 3 | Unselect |
-| Last Updated Date, Email, Level, Business Unit, Created By, Authorized By, Authorized Amount, Departure, Destination | 12 | Select |
+|          | 7                     | Select |
+| Authorized Amount, Departure, Destination, Status Date | 3 | Unselect |
+| Status Date, Email, Level, Business Unit, Created By, Authorized By, Authorized Amount, Departure, Destination | 12 | Select |
 
-#Issue in the application, hence this scenario will fail.
-@SR_157
+@SR_157 
 Scenario: Verify the approved moves default columns are checked after click on reset button
 When User will open table column section of approved moves page
 And User will wait until the table columns to load
-And User will "Select" the "Authorized Amount, Departure, Destination" from select column view
+And User will "Select" the "Authorized Amount, Departure, Destination, Status Date" from select column view
 And User will click on RESET button
 Then User will check columns are "checked"
 |Column Name|
 |Authorized Amount |
 | Departure |
 | Destination |
+|Status Date |
 And User will click on "OK" button
-Then User will verify "6" headers are displayed in the approved moves table
-
-
+Then User will verify "7" headers are displayed in the approved moves table
 ##################################################################
 # Mobile testcases
 ##################################################################

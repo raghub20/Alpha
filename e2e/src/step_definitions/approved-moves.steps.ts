@@ -8,16 +8,16 @@ chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 let approvedmoves: ApprovedMoves = new ApprovedMoves();
+let actual: string;
 
 setDefaultTimeout(300 * 1000);
+Given('User will navigate to approved moves tab in mobile mode', () => {
+  return approvedmoves.openApprovedMovesInMobileMode();
+});
 
 Given('User will navigate to approved moves tab', async () => {
   await approvedmoves.get(); 
   await approvedmoves.getApprovedMovesView().isDisplayed();   // verifying candidates screen displayed
-});
-
-Given('User will navigate to approved moves tab in mobile mode', () => {
-  return approvedmoves.openApprovedMovesInMobileMode();
 });
 
 Then('User will wait for {string} seconds', (waitForSeconds) => {

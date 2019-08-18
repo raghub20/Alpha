@@ -5,7 +5,7 @@ To verify filtered columns are displayed in profile summary
   Background: 
     Given The client contact is on candidate profile summary page
   
-  @Desktop
+  @Desktop @197
   Scenario: To verify client contact able to filter the columns to see all fields in candidate profile summary
   
      When The client contact clicks the column filter icon
@@ -28,8 +28,8 @@ To verify filtered columns are displayed in profile summary
       And The client contact is able to see created by column
       And The client contact is able to see Email column
   
+  @197
   Scenario: To verify client contact able to filter and remove columns in candidate profile summary
-  
      When The client contact clicks the column filter icon
      Then The client contact is able to see column filter pop up
       And The client contact checks all the columns true
@@ -61,12 +61,12 @@ To verify filtered columns are displayed in profile summary
      Then The client contact is able to see column filter pop up
      Then The client contact is unable to uncheck status
   
-  Scenario: To verify the number of columns selected
-  
-     When The client contact clicks the column filter icon
-      And All the check box are unchecked
-     Then The client contact checks level column as true
-      And The client contact verifies selected columns
+  @197
+Scenario: To verify the number of columns selected
+   When The client contact clicks the column filter icon
+   And All the check box are unchecked
+   Then The client contact checks level column as true
+   And The client contact verifies selected columns
      Then The client contact checks departure as true
       And The client contact verifies selected columns
      Then The client contact checks destination as true
@@ -82,8 +82,8 @@ To verify filtered columns are displayed in profile summary
      Then The client contact checks Email as true
       And The client contact verifies selected columns
   
+  @197
   Scenario: To verify the number of columns unselected
-  
      When The client contact clicks the column filter icon
       And The client contact checks all the columns true
      Then The client contact checks level column as false
