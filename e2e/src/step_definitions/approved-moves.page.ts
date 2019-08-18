@@ -2,11 +2,18 @@ import { browser, element, by, promise, ElementFinder, protractor, ExpectedCondi
 import _ from 'lodash';
 export class ApprovedMoves {
     get() {
-        return browser.get('/#/project-alpha/approved-moves');
+        //return browser.get('/#/project-alpha/approved-moves');
+        return browser.get('http://localhost:4200/#/project-alpha/approved-moves');
+    }
+
+    openApprovedMovesInMobileMode() {
+        return browser.manage().window().setSize(500, 900).then(() => {
+            return this.get();
+        });
     }
 
     async getHeader(headerName: string): Promise<ElementFinder> {
-        return await element(by.cssContainingText('button.mat-sort-header-button', headerName));
+        return await element.all(by.cssContainingText('button.mat-sort-header-button', headerName)).first();
     }
 
     getNextPage(): ElementFinder {
