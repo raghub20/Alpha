@@ -1,0 +1,84 @@
+<!-- Relocation content -->
+<div class="relocation-Content">
+  <div class="candidate-headertxt">Review</div>  
+  
+  <div class="reviewContainer"> 
+                                 
+      <form fxFlex="100%" fxLayoutGap.lg="3em" fxFlexOffset.sm="1em" fxLayout.xs="column" [formGroup]="ReviewForm">
+            
+    <!-- left side content -->
+    <div fxFlex="60%" fxFlex.xs="100%">
+            <div fxLayout="column">
+              <!-- <mat-form-field>
+                <input matInput placeholder="Is anyone else relocating with you?" formControlName="Relocate"> 
+                <mat-icon matSuffix>mode_edit</mat-icon>           
+              </mat-form-field> -->
+              <mat-form-field>
+                <mat-select placeholder="Is anyone else relocating with you?" formControlName="Relocate" (click)="edit('Relocate')">
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>                    
+                <input type="text" matInput placeholder="How many people, including yourself, are relocating?" formControlName="RelocatePeopleCount" (blur)="onBlurMethod('RelocatePeopleCount')">
+                <mat-icon matSuffix (click)="edit('RelocatePeopleCount')">mode_edit</mat-icon>
+              </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Current Address" formControlName="Address" (blur)="onBlurMethod('Address')">
+                <mat-icon matSuffix (click)="edit('Address')">mode_edit</mat-icon>            
+              </mat-form-field> 
+              <mat-form-field>
+                  <input matInput placeholder="Where are you moving to?" formControlName="Destination" (blur)="onBlurMethod('Destination')"> 
+                  <mat-icon matSuffix (click)="edit('Destination')">mode_edit</mat-icon>           
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Do you currently own or rent?" formControlName="OwnerStatus" (blur)="onBlurMethod('OwnerStatus')">  
+                    <mat-icon matSuffix (click)="edit('OwnerStatus')">mode_edit</mat-icon>          
+                  </mat-form-field>  
+                  <mat-form-field>
+                      <input matInput placeholder="What type of home do you own?" formControlName="HomeType" (blur)="onBlurMethod('HomeType')"> 
+                      <mat-icon matSuffix (click)="edit('HomeType')">mode_edit</mat-icon>          
+                    </mat-form-field>            
+                      <div fxLayout="row"  fxLayout.xs="column" fxLayoutGap.xs="0" class="relocation-Content" >
+                        <div fxLayoutAlign="start" fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%" class="incBtnCont" >
+                        <input type="number" matInput  formControlName="Count">
+                        <button (click)="incNum()" class="btnSign"><img src="../../../../../assets/images/candidate-assessment/baseline-add-circle.svg" alt="Number of people" title="Number of people"/></button> 
+                        <button (click)="decNum()" class="btnSign"><img src="../../../../../assets/images/candidate-assessment/baseline-remove-circle.svg" alt="Number of people" title="Number of people"/></button> 
+                        </div>
+                      </div>
+                             
+            </div>
+          
+    </div>
+     <!-- left side ends -->
+    <!-- Right side content -->
+    <div fxFlex="30%" fxFlex.xs="100%">
+        <div fxLayout="column">
+          <mat-form-field>
+            <input matInput placeholder="What is your preferred contact number" formControlName="Contact" (blur)="onBlurMethod('Contact')"> 
+            <mat-icon matSuffix (click)="edit('Contact')">mode_edit</mat-icon>
+            <mat-error>
+              {{ errors['Contact'] }}
+            </mat-error>           
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput readonly [matDatepicker]="picker" placeholder="What is your estimated move date?" formControlName="Date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+             
+            </mat-form-field>         
+          </div>
+    </div>
+  <!-- Right side ends -->
+</form>
+</div>
+</div>
+<!-- Button section starts -->
+<div class="candidate-btn-container">
+<button mat-button matStepperNext class="candidate-btn" [disabled]="!ReviewForm.valid"  (click)="submit(ReviewForm)">Accept & Submit</button>
+</div>
+<!-- Button section ends -->
+
+
+
+

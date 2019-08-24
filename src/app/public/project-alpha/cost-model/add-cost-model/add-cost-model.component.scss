@@ -1,0 +1,134 @@
+@import '../../../../../sass/cartus-palette.scss';
+
+form {
+  padding : 0;
+}
+
+.addCostModelModal {
+  width: 50%;
+}
+
+.input-headline {
+  font-size: 2.33em;
+  line-height: 32px;
+  font-weight: 400;
+}
+
+.mat-option {
+  font-size:1em;
+}
+
+.mat-raised-button.mat-send-button{
+  border: 1px solid #77797B;
+  color: #77797B;
+  background-color: #AAAAAA;
+}
+
+.predicted-relocation-cost {
+  margin-top: 0.9em;
+}
+
+.addCostModelFormContainer{
+  input{
+    color:#575A5D;
+    font-weight: 100;
+  }
+  .material-icons{
+    position: relative;
+    color:#575A5D;
+    background: none;
+  }
+  .mat-form-field{
+    width:100% !important;
+  }
+  .close-icon{    
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+  }
+  .hide-arrow-xs{
+    display: block !important;
+    .modal-rightnavarrow {
+      top: 0.6em;
+    }
+    @media screen and (max-width:600px){
+      display: none !important;
+    }
+  }
+}
+
+.mat-expansion-panel-header-title {
+  .mat-icon {
+    padding-left: 0.25em;
+  }
+}
+
+.custom-people-icon {
+  height: 0.75em;
+  width: 0.75em;
+  font-size: 1em;
+  top: 0.35em;
+  padding-left: 0em !important;
+}
+
+.custom-add-icon {
+  height: 0.75em;
+  width: 0.75em;
+  font-size: 0.75em;
+  top: 0.5em;
+  padding-left: 0em !important;
+}
+
+.mat-accordion {
+  .mat-expansion-panel.mat-expanded {
+    &:nth-child(1) {
+      .mat-expansion-panel-header.mat-expanded {
+        background-color: map-get($cartus-palette, 'cartus_dark_accent_blue') !important;
+        .mat-expansion-panel-header-title, .mat-expansion-panel-header-description, .mat-icon {
+          color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+        }
+      }
+    }
+    &:nth-child(2) {
+      .mat-expansion-panel-header.mat-expanded {
+        background-color: map-get($cartus-palette, 'cartus_couple_color') !important;
+        .mat-expansion-panel-header-title, .mat-expansion-panel-header-description, .mat-icon {
+          color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+        }
+      }
+    }
+    &:nth-child(3) {
+      .mat-expansion-panel-header.mat-expanded {
+        background-color: map-get($cartus-palette, 'cartus_family_color') !important;
+        .mat-expansion-panel-header-title, .mat-expansion-panel-header-description, .mat-icon {
+            color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+        }
+      }
+    }
+    .core-services,.core-services-amount, .flexible-services, .flexible-services-amount,
+    .tax-assistance, .tax-assistance-amount {
+      display: inline-block;
+      margin-top: 1em;
+      p {
+        margin: 0em;
+      }
+    }
+    .core-services-amount, .flexible-services-amount, .tax-assistance-amount {
+      p {
+        padding-right: 1.75em;
+        @media screen and (max-width:600px){
+          padding-right: 0em;
+        }
+      }
+    }
+  }
+  @media screen and (max-width:600px){
+    .mat-icon {
+      display: none;
+    }
+  }
+}
+
+.mat-expansion-indicator::after {
+  color: map-get($cartus-palette, 'cartus_primary_blue_contrast') !important;
+}

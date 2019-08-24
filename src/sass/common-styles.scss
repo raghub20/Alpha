@@ -1,0 +1,871 @@
+@import '../sass/cartus-palette.scss';
+
+/*Add candidate popup css*/
+.addCandidateModal{
+    // .mat-form-field-appearance-legacy .mat-form-field-infix{
+    //     padding:20px 0;
+    // }
+    .mat-dialog-container
+    {
+        border-radius: 4px;
+        padding: 1.5em;
+        overflow:hidden;
+        min-height: 450px;
+    }
+    // width: 50%;
+        
+        .mat-dialog-content{
+            text-align: center;
+            .mat-icon, p:first-of-type {
+                color: map-get($cartus-palette , 'cartus_dark_accent_blue');
+            }
+            p:first-of-type {
+                margin: 0em;
+            }
+        }
+  
+   
+    @media screen and (max-width: 599px){
+        max-width:100% !important;
+        height:100%; 
+        width:100%;      
+        .mat-dialog-container
+        {
+            border-radius:0;
+            width:100%;
+            box-shadow: none;
+            border:none;
+        }
+        .housing-container, .people-container {
+            margin-top: 0.9em;
+        }
+    }
+    
+}
+
+.tranfereeDetailsModal{
+  
+    .mat-dialog-container
+    {
+        border-radius: 4px;
+        padding: 24px;
+        overflow:hidden;
+        min-height: 450px;
+    }
+   
+    @media screen and (max-width: 599px){
+        max-width:100% !important;
+        height:100%; 
+        width:100%;      
+        .mat-dialog-container
+        {
+            border-radius:0;
+            width:100%;
+            box-shadow: none;
+            border:none;
+        }
+        .people-container {
+            margin-top: 0.9em;
+        }
+    }
+    
+}
+
+.transfereeAssessmentModal{
+ 
+    .mat-dialog-container
+    {
+        border-radius: 4px;
+        padding: 24px;
+        overflow-y:hidden;
+        min-height: 450px;
+    }
+   
+    @media screen and (max-width: 599px){
+        max-width:100% !important;
+        height:100%; 
+        width:100%;      
+        .mat-dialog-container
+        {
+            border-radius:0;
+            width:100%;
+            box-shadow: none;
+            border:none;
+        }
+        .people-container {
+            margin-top: 0.9em;
+        }
+    }
+    
+}
+
+/* DISPLAYEDCOLUMNS Modal popup*/
+.DisplayedColumnsModal {
+    .mat-grid-tile .mat-figure{
+        align-items: center;
+        justify-content: left;   
+        -ms-flex-pack: left;
+    }
+    .mat-dialog-content{
+        overflow: hidden;
+    }
+    @media screen and (max-width:600px){
+        max-width:100% !important;
+        max-height:100%;
+        width:100% !important;
+        height: 100%;
+        .settings-tablecol {
+            height: 25em;
+            width: 100%;
+            }
+        .mat-grid-tile .mat-figure{
+            left:0.6em;
+        }
+        .mat-dialog-actions{
+            justify-content: flex-end;
+        }
+        .mat-dialog-container{
+            border-radius: 0;
+        }
+    }
+@media screen and (min-width:768px){
+   .settings-tablecol {
+    height: 11.55em;
+    width: 27em;
+    }
+}
+.mat-checkbox .mat-checkbox-ripple{
+  width:0;
+  height: 0;
+}
+.settings-tablecol {
+    box-sizing: border-box;
+    border:1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+.settings-scrolldiv{
+    overflow-y: auto;
+    flex-shrink: 50;
+    flex-basis: 100%;
+    padding-top: 0.25em;
+    }
+     .settings-scrolldiv::-webkit-scrollbar {
+         width: 0.37em;
+      background-color: #F5F5F5;
+    }
+    .settings-scrolldiv::-webkit-scrollbar-thumb {
+         background-color: map-get($cartus-palette, 'cartus_primary_dark_brown');
+        }
+    .settings-scrolldiv::-webkit-scrollbar-track {
+         -webkit-box-shadow : inset 0 0 6px rgba(0,0,0,0.1);
+         box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+         background-color: #fff;
+     }
+    .mat-checkbox-layout .mat-checkbox-label{
+        font-size: 0.75em;
+    }
+    .mat-dialog-title{
+        margin-bottom: 0;
+    }
+    .mat-dialog-container{
+        padding:0.6em;
+        overflow: hidden;
+    }
+    
+    .mat-checkbox-frame{
+       border-width:1px;
+    }
+    .mat-checkbox-background, .mat-checkbox-frame{
+        border-radius: 4px;
+        border-color: map-get($cartus-palette, 'cartus_light_gray' );  
+    }
+    .mat-checkbox-disabled .mat-checkbox-background{
+        background-color: #aaa!important;   
+    }
+    .mat-checkbox-checked .mat-checkbox-background
+    {
+        background-color: map-get($cartus-palette, 'cartus_accent_blue');
+    }
+    .mat-grid-tile .mat-figure{
+        left:0.4em;
+        display:block;
+    }
+    .mat-dialog-actions{
+        justify-content: flex-end;
+        -ms-flex-pack: left;
+        padding: 1.2em 0 2.1em 0;
+    }      
+}
+/* Seetings Modal popup ends*/
+
+/* button styles */
+button{
+    &.contained-button{
+        font-family: 'Avenir-Light', sans-serif;
+        color: map-get($cartus-palette, 'cartus_nav_tile');
+        font-size: 1em;
+        height: 2.5em;
+        line-height:1.5em;
+        border-radius:0.25em;
+        padding:0.5em;
+        background-color: map-get($cartus-palette, 'cartus_accent_blue');
+        border:none;
+        // margin-bottom:1.5em;
+        min-width:6.25em;
+        &:active{
+            text-decoration: underline;
+            border: 2px solid map-get($cartus-palette, 'cartus_dark_accent_blue');
+            background-color: map-get($cartus-palette, 'cartus_accent_blue');
+        }
+        &:hover{
+            background-color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+        }   
+        &:disabled{
+            color:map-get($cartus-palette,'cartus_gray');
+            background-color: map-get($cartus-palette,'cartus_disabled_gray');
+        }
+    }
+    &.outlined-button{
+        font-family: 'Avenir-Light', sans-serif;
+        color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+        font-size: 1em;
+        height: 2.5em;
+        line-height:1.5em;
+        border-radius:0.25em;
+        padding:0.5em;
+        border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+        min-width:6.25em;
+        &:active{
+            text-decoration: underline;
+            color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+            border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+            background-color: map-get($cartus-palette, 'cartus_hover_tint');
+        }
+        &:hover{
+            //background-color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+            color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+            border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+        }   
+        &:disabled{
+            color:map-get($cartus-palette,'cartus_gray');
+            border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+        }
+    }
+    &.text-button{
+        font-family: 'Avenir-Light', sans-serif;
+        color: map-get($cartus-palette, 'cartus_accent_blue');
+        font-size: 1em;
+        height: 2.5em;
+        line-height:1.5em;
+        border-radius:0.25em;
+        padding:0.5em;
+        // margin-bottom:1.5em;
+        min-width:6.25em;
+        &:active{
+            text-decoration: underline;
+            border: 2px solid map-get($cartus-palette, 'cartus_dark_accent_blue');
+            color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+        }
+        &:hover{
+            color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+            background-color: map-get($cartus-palette, 'cartus_hover_tint');
+        }   
+        &:disabled{
+            color:map-get($cartus-palette,'cartus_gray');
+            background-color: map-get($cartus-palette,'cartus_disabled_gray');
+        }
+    }   
+}
+
+/*menu styles */
+.menu-style[aria-expanded="true"]{
+    color:map-get($cartus-palette, 'cartus_dark_accent_blue');
+    .menuName{
+        text-decoration: underline;  
+    }
+    .menuIconBlock{
+        .expandMore{
+            display:none;
+        }
+        .expandLess{
+            display:block;
+        }
+    }
+}
+.menu-style{
+    font-family:'Avenir-Book',sans-serif;
+    color:map-get($cartus-palette, 'cartus_light_gray');
+    &:hover{
+        .menuName{
+            text-decoration: underline;
+        }
+        background-color:map-get($cartus-palette,'cartus_hover_tint');
+    }
+    &:active{
+        .menuName{
+            text-decoration: underline;
+        }
+        color:map-get($cartus-palette, 'cartus_dark_accent_blue');   
+    }
+    .menuIconBlock{
+        .mat-icon{
+            font-weight:bold;
+            font-size:1.75em;
+        }
+        .expandMore{
+            display:block;
+        }
+        .expandLess{
+            display:none;
+        }
+    }
+}
+.cdk-overlay-pane{
+    .mat-menu-panel {
+        min-width: 135px;
+        margin-top:8px;
+        .mat-menu-content{
+            padding:0;
+            button.mat-menu-item{
+                font-family:'Avenir-Roman',sans-serif;
+                &:hover{
+                    color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+                    background-color: map-get($cartus-palette,'cartus_orange_tint');
+                    .mat-icon{
+                        color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.error:hover {
+    color: map-get($cartus-palette, 'cartus_error_feedback');
+}    
+
+
+/* Cartus Design Framework Documenation */
+
+/* Material Design - Typography */
+
+h1 {
+    font-size: 1.5em;
+    color: map-get($cartus-palette, 'cartus_gray' );
+}
+
+h2 {
+    font-size: 1.25em;
+    color: map-get($cartus-palette, 'cartus_gray' );
+}
+
+/* Material Design - Dialog  */
+
+/* Material Design - Buttons & Links */
+
+
+.project_alpha {
+    padding: 0px 20px;
+  }
+
+/* Alpha Search Component */
+
+
+
+  .table_views mat-icon {
+    color:map-get($cartus-palette, 'cartus_light_gray');
+  }
+
+  .text-as-link {
+    color:map-get($cartus-palette, 'cartus_accent_blue');
+    text-decoration: none;
+  }
+
+/* Material Design - Tables */
+
+/* Material Common Table Styles */
+
+.mat-table{
+    width:100%;
+    //border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+
+    th.mat-header-cell{
+        color: map-get($cartus-palette, 'cartus_gray');
+        border-right-color: map-get($cartus-palette, 'cartus_secondary_gray' );
+        padding: 10px 10px 10px 10px;
+        font-size: 0.75em;
+        vertical-align: bottom;
+        padding-bottom: 10px;
+        font-weight: normal;
+        font-family: 'Avenir-Heavy',sans-serif;
+        border-bottom-color: map-get($cartus-palette, 'cartus_secondary_gray');
+    }
+    td.mat-cell{
+        font-size: 0.875em;
+        padding: 10px 10px 10px 10px;
+        line-height: 20px;
+        vertical-align: top;
+        font-family: 'Avenir-Book',sans-serif;
+     
+    }
+
+    .mat-checkbox-frame {
+        border-width:1px;
+    }
+    .mat-row:hover {
+        background-color:map-get($cartus-palette, 'cartus_hover_tint');
+        cursor: pointer;
+    }
+    a {
+        text-decoration: underline;
+    }
+
+ 
+}
+
+/* Alpha Page Content Table Style */
+
+.content_table{
+    td.mat-cell{
+      p{
+        margin:0
+      }
+      &.mat-column-empName{
+        color: map-get($cartus-palette, 'cartus_link_color');
+        em{
+          font-style: normal;
+          font-size: 14px;
+        }
+      }
+      &.mat-column-movePhase{
+        color: map-get($cartus-palette, 'cartus_link_color');
+      }
+    }
+  
+    .mat-paginator-container{
+      position: relative;
+      .mat-paginator-page-size{
+        position:absolute;
+        left:0;
+      }
+      .mat-paginator-range-actions{
+        position:relative;
+        .mat-paginator-range-label{
+          margin: 0;
+          position: absolute;
+          left: 40px;
+        }
+        .mat-paginator-navigation-previous{
+          margin-right: 70px; 
+        }
+      }
+    }
+    .mat-table{
+  
+     
+        .notification-important {
+          .mat-icon {
+            color: map-get($cartus-palette, 'cartus_warning_color');
+            vertical-align: bottom;
+          }
+          a {
+            color: map-get($cartus-palette, cartus_accent_blue);
+            text-decoration: none;
+          }
+        }
+    }
+  }
+
+  /* Material Table Design for Small Screens*/
+
+  @media only screen and (max-width: 400px) {
+  
+    th.mat-column-select, td.mat-column-select {
+      min-width: 2.1em;
+      max-width: 4em;
+      padding-right: 0.5em;
+    }
+    
+    th.mat-column-fullname, td.mat-column-fullname {
+      min-width: 2.1em;
+      max-width: 9em;
+      padding-left: 0.5em;
+    }
+    
+    .mat-table-sticky:nth-child(2) {
+      border-right: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+    }
+    
+    .mat-table-sticky:last-child {
+      border-left: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+    }
+    
+    }
+    
+     /* Material Table Design for Medium Screens*/
+
+    @media only screen 
+      and (min-width: 400px) {
+      
+        td.mat-column-select {
+          min-width: 2.1em;
+          max-width: 4em;
+          padding-right: 0.5em;
+        }
+        
+        th.mat-column-fullname, td.mat-column-fullname {
+          min-width: 2.1em;
+          max-width: 9em;
+          padding-left: 0.5em;
+        }
+        .mat-table-sticky:nth-child(2) {
+            border-right: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+          }
+          
+          .mat-table-sticky:last-child {
+            border-left: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+          }
+      
+      }
+
+      @media only screen 
+      and (min-width: 1200px ) {
+      
+        td.mat-column-select {
+         width:2em;
+          padding-right: 0.5em;
+        }
+        
+        th.mat-column-fullname, td.mat-column-fullname {
+            min-width: 4em;
+            padding-left: 0.5em;
+        }
+        .mat-table-sticky:nth-child(2) {
+            border-right:none;
+          }
+          
+          .mat-table-sticky:last-child {
+            border-left: none;
+          }
+      
+      }
+
+/* Material Design - Forms, Validations, Error */
+
+.mat-form-field-appearance-outline {
+    .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
+      border: map-get($cartus-palette, 'cartus_light_gray' );
+    }
+}
+
+.mat-select-value {
+    color: #575A5D;
+    font-weight: 100;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: map-get($cartus-palette, 'cartus_light_gray' );
+}
+  
+.mat-error {
+    color:map-get($cartus-palette, 'cartus_error_feedback' );
+}
+
+/* Material Design - Lists */
+
+/* Material Design - Icons */
+
+.page_header .mat-icon {
+    color:map-get($cartus-palette, 'cartus_light_gray' ) !important;    
+}
+
+.table_views mat-icon {
+    color:map-get($cartus-palette, 'cartus_light_gray');
+}
+
+/* Material Design - Notifications */
+
+/* Expansion Panels or Accordions */
+
+.mat-raised-button.mat-primary {
+    background-color: map-get($cartus-palette, 'cartus_accent_blue' ) !important;    
+    height: 3.5em;
+}
+
+.mat-outline-button{
+    background-color: map-get($cartus-palette, 'cartus_accent_blue' ) !important;    
+    height: 3.5em;
+}
+    
+.text-as-link {
+    color:map-get($cartus-palette, 'cartus_accent_blue');
+    text-decoration: none;  
+}
+
+.cLinks a{
+    color: map-get($cartus-palette, cartus_accent_blue);
+    text-decoration: none;
+}
+
+
+
+
+
+.project_alpha {
+    padding: 1.2em;
+  }
+  
+  .cLinks a{
+    color: map-get($cartus-palette, cartus_link_color);
+    text-decoration: none;
+  }
+  .viewsetting-icon
+  {
+      padding-left: 1em;
+      padding-top: 0.5em;
+      cursor: pointer;
+      @media screen and (max-width:600px){
+        padding-left: 0.3em;
+      }
+  }
+
+  .viewsetting-icon {
+    color:map-get($cartus-palette, 'cartus_light_gray' );
+  }
+  
+  .page_header {
+      .mat-icon {
+          vertical-align: bottom;
+          cursor: pointer;
+      }
+  }
+
+
+/* Search within Tables */
+.search-within-table {
+    background-color: #fff !important;
+    font-size: 14px;
+    font-weight: normal !important;
+    color: #575A5D;
+    @media screen and (max-width:600px){
+      width: 125px;
+    }
+  }
+
+.search_table .mat-form-field-wrapper {
+    margin:0px !important;
+    padding:0px !important;
+    border:1px solid map-get($cartus-palette, 'cartus_light_gray' );
+    border-radius: 5px;
+  }
+  
+  .search_table .search-input{
+    vertical-align: text-top;
+  }
+
+.highlight-search
+{
+     background-color:map-get($cartus-palette, 'cartus_highlight');
+}
+
+.highlighted {
+  background-color:map-get($cartus-palette, 'cartus_hover_tint');
+}
+
+.search-table  .mat-form-field-wrapper {
+    margin:0px !important;
+    padding:0px !important;
+  }
+ 
+  .search-within-table .mat-form-field-appearance-outline:focus, .mat-form-field-outline:focus {
+    outline: none !important;
+  }
+  
+  .search-within-table .mat-form-field-appearance-outline.mat-focused{ 
+    outline: none !important;
+  }
+  .search-within-table .mat-form-field-flex:hover{
+    outline: none !important;
+  }
+  
+  .search-within-table .mat-form-field-wrapper > .mat-form-field-flex:focus{
+    outline: none !important;
+  }
+  
+
+  .search-within-table {
+    // background-color: #fff !important;
+    // font-size: 14px;
+    // font-weight: normal !important;
+    // color: #575A5D;
+    @media screen and (max-width:600px){
+      width:125px;
+    }
+  }
+
+.search-within-table {
+    .mat-form-field-flex {
+        .mat-form-field-outline {
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+
+
+  .search_table .search-input{
+    vertical-align: text-top;
+  }
+
+  .search_table .mat-form-field-wrapper {
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid #949494;
+    border-radius: 5px;
+}  
+
+.mat-form-field-appearance-outline {
+    .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
+        border: map-get($cartus-palette , 'cartus-light-gray') !important;
+    }
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
+        border-width: 0px !important;
+        transition: none !important;
+    }
+}
+
+.success {
+    background-color:map-get($cartus-palette, 'cartus_notification_icon_green');
+}
+
+.success button {
+    color:#fff;
+}
+
+.danger {
+    background-color:map-get($cartus-palette, 'cartus_error_feedback');
+}
+
+.danger button {
+    color:#fff;
+}
+
+// .mat-expansion-panel .mat-expanded{
+//     background-color:map-get($cartus-palette, 'cartus_blue');
+// }
+
+//     .mat-expansion-panel-header.mat-expanded {
+//         background-color: map-get($cartus-palette, 'cartus_blue')!important;
+//       }
+      
+//       .mat-expansion-panel-header{
+//         background-color: #fff;
+//     }
+    
+//     .mat-expansion-panel-header .mat-expanded{
+//         background-color: map-get($cartus-palette, 'cartus_blue')!important;
+        
+//     }
+//     .mat-expanded .mat-expansion-panel-header-title {
+//         color:#fff;
+//     }
+//     .mat-expanded .mat-expansion-panel-header-description {
+//         color:#fff;
+//     }
+    
+
+
+/* Common Material Dialog Starting From Cost Model Screen */
+// .cdk-overlay-pane {
+//     width: 50%;
+// }
+
+.mat-dialog-title {
+    margin: 0em !important;
+}
+  
+.mat-dialog-content {
+    padding: 1.5em !important;
+}
+  
+.mat-dialog-actions {
+    justify-content: flex-end;
+    padding-top: 1.5em !important;
+}
+
+// @media screen and (max-width: 599px) {
+//     .cdk-overlay-pane {
+//         max-width: 100% !important;
+//         width: 100%;
+//         height: 100%;
+//         .mat-dialog-container {
+//             border-radius: 0px;
+//         }
+//     }
+// }
+
+/* Common Material Buttons Starting From Cost Model Screen */
+.mat-button {
+    font-size: 1em;
+    min-width: 5em !important;
+    padding: 0.5em !important;
+    color: map-get($cartus-palette, 'cartus_accent_blue');
+    &:hover {
+        color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+        background-color: map-get($cartus-palette, 'cartus_hover_tint');
+    }
+    &:disabled {
+        color: map-get($cartus-palette, 'cartus_disabled_gray');
+    }
+}
+
+.mat-raised-button {
+    font-size: 1em;
+    min-width: 9em !important;
+    padding: 0.5em !important;
+    color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+    background-color: map-get($cartus-palette, 'cartus_accent_blue');
+    &:hover {
+        background-color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+    }
+    &:disabled {
+        color: map-get($cartus-palette, 'cartus_gray');
+        background-color: map-get($cartus-palette, 'cartus_disabled_gray');
+    }
+}
+
+/* Common Material Expansion Panel Starting From Cost Model Screen */
+.mat-expansion-panel-header {
+    font-size: 1em;
+}
+
+.addCostModelFormContainer {
+    .mat-expansion-panel.mat-expanded {
+        .mat-expansion-panel-header.mat-expanded {
+            .mat-expansion-indicator::after{
+                color: white !important;
+            }
+        }
+    }    
+}
+
+.addCostModelModal {
+    width: 50%;
+   
+    @media screen and (max-width: 599px){
+        max-width:100% !important;
+        height:100%; 
+        width:100%; 
+    }
+    
+}
