@@ -18,7 +18,6 @@ When("User will navigate to cost model page", async function() {
 
 When("User will click the Add Cost Model Button" , async function() {
    return costModelPage.getAddCostModelButton().click();
-
 });
 
 Then("User will verify model name error message displayed as {string}", async function(expectedErrorMsg){

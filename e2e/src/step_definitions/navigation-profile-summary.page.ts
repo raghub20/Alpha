@@ -1,47 +1,35 @@
-import { browser, element, by, ExpectedConditions as EC } from 'protractor';
+import { browser, element, by, ExpectedConditions as EC, ElementFinder, promise } from 'protractor';
 
 export class NavigationProfile  {
 
-    get() {
-        browser.manage().window().setSize(1400, 900);
-        return browser.get('/#/project-alpha/approved-moves');   
-       //return browser.get('http://localhost:4200/#/project-alpha');   
+    get(): promise.Promise<any> {
+        return browser.get('/#/project-alpha');
     }
 
-
-    getCostModelTab() {
-        let el = element(by.css('a[ng-reflect-router-link="cost-models"] span'));
-        return browser.wait(EC.elementToBeClickable(el), 12000).then(() => {
-            return el;
-        });
-        //return element(by.css('a[ng-reflect-router-link="cost-models"] span'));
+    getCostModelTab(): ElementFinder {
+        return element(by.cssContainingText('a.mat-tab-link.ng-star-inserted','Cost Models'));
     }
 
-    getCandidateTab() {
-        //return element(by.css('a[ng-reflect-router-link="candidate-profiles"] span'));
-        let el = element(by.css('a[ng-reflect-router-link="candidate-profiles"] span'));
-        return browser.wait(EC.elementToBeClickable(el), 12000).then(() => {
-            return el;
-        });
+    getCandidateTab(): ElementFinder {
+        return element(by.cssContainingText('a.mat-tab-link.ng-star-inserted','Candidates'));
     }
 
-    getApprovedMovesTab() {
-        //return element(by.css('a[ng-reflect-router-link="approved-moves"] span'));
-        let el = element(by.css('a[ng-reflect-router-link="approved-moves"] span'));
-        return browser.wait(EC.elementToBeClickable(el), 12000).then(() => {
-            return el;
-        });
+    getApprovedMovesTab(): ElementFinder {
+        return element(by.cssContainingText('a.mat-tab-link.ng-star-inserted','Approved Moves'));
     }
 
-    getCreateCostModelButton() {
-        return element(by.partialButtonText('Add Cost Model'));
+    getCreateCostModelButton(): ElementFinder {
+        //return element(by.partialButtonText('Create Cost Model'));
+        return element(by.cssContainingText('button','Add Cost Model'));
     }
 
-    getCandidateAddButton() {
+    getCandidateAddButton(): ElementFinder {
         return element(by.tagName('app-candidate-profile')).element(by.partialButtonText('Add'));   
     }
 
-    getApprovedMovesSectionHeader() {
+    getApprovedMovesSectionHeader():ElementFinder {
         return element(by.css('app-authorized-move section h2'));
     }
+
+
 }

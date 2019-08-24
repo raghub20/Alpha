@@ -10,684 +10,572 @@ const expect = chai.expect;
 let needsassessment: Needsassessment;
 
 Before(() => {
-  needsassessment = new Needsassessment();
+    needsassessment = new Needsassessment();
 });
 
 var EC = protractor.ExpectedConditions;
 
-//1) Scenario: To validate all input fields for candidate needs assessment
 
 Given('The candidate is on the needs assessment home page', async function () {
-  return needsassessment.get();
+    return needsassessment.get();
 });
 
 
+//1) Scenario: To validate all input fields for candidate needs assessment
 Then('The candidate sees a mean to indicate if anyone else is relocating', async function () {
-  await browser.driver.manage().window().setSize(1400, 900).then(async () => {
-    return expect(needsassessment.relocatingYesOrNoField().isDisplayed()).to.eventually.be.true;
-  });
+    await browser.driver.manage().window().setSize(1400, 900).then(async () => {
+        await expect(needsassessment.relocatingYesOrNoField().isDisplayed()).to.eventually.be.true;
+    });
 });
-
 
 Then('The candidate sees a mean to indicate number of relocating members', async function () {
-  await needsassessment.relocatingYes().click().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      return expect(needsassessment.numberOfRelocatingMembers().isDisplayed()).to.eventually.be.true;
+    await browser.sleep(3000);
+    await needsassessment.relocatingYes().click().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            return expect(needsassessment.numberOfRelocatingMembers().isDisplayed()).to.eventually.be.true;
+        });
     });
-
-  });
 });
-
 
 Then('The candidate sees a mean to input departure address', async function () {
-  await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
     await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-      await browser.sleep(3000);
-      await needsassessment.oneRelocatingMembers().click().then(async () => {
-        await needsassessment.nextButton().isDisplayed().then(async () => {
-          await needsassessment.nextButton().isDisplayed().then(async () => {
-            await needsassessment.nextButton().click().then(async () => {
-              await browser.sleep(3000);
-              //await browser.wait(EC.elementToBeClickable(needsassessment.departureAddressField()),10000).then(async () => {
-              await needsassessment.departureAddressField().isDisplayed().then(async () => {
-                return expect(needsassessment.departureAddressField().isDisplayed()).to.eventually.be.true;
-                //})
-              });
+        await browser.sleep(3000);
+        await needsassessment.oneRelocatingMembers().click().then(async () => {
+            await needsassessment.nextButton().isDisplayed().then(async () => {
+                await needsassessment.nextButton().click().then(async () => {
+                    await browser.sleep(3000);
+                    return expect(needsassessment.departureAddressField().isDisplayed()).to.eventually.be.true;
+                });
             });
-          });
         });
-      });
     });
-  });
 });
-
-
 
 Then('The candidate sees a mean to input Destination State and City', async function () {
-  await browser.sleep(3000);
-  await needsassessment.departureAddress().sendKeys("Test street").then(async () => {
-    await needsassessment.departureAddressCity().sendKeys("Test city").then(async () => {
-      await needsassessment.departureAddressState().sendKeys("Test state").then(async () => {
-        await needsassessment.departureAddressPincode().sendKeys("12345").then(async () => {
-          await needsassessment.nextButton().isDisplayed().then(async () => {
-            await browser.sleep(3000);
-            await needsassessment.nextButton().click().then(async () => {
-              await needsassessment.destinationAddressField().isDisplayed().then(async () => {
-                return expect(needsassessment.destinationAddressField().isDisplayed()).to.eventually.be.true;
-              });
+    await browser.wait(EC.presenceOf(needsassessment.departureAddress()),5000).then(async () => {
+        await needsassessment.departureAddress().sendKeys("Test street").then(async () => {
+            await needsassessment.departureAddressCity().sendKeys("Test city").then(async () => {
+                await needsassessment.departureAddressState().sendKeys("Test state").then(async () => {
+                    await needsassessment.departureAddressPincode().sendKeys("12345").then(async () => {
+                        await browser.wait(EC.presenceOf(needsassessment.nextButton()),5000).then(async () => {
+                            await needsassessment.nextButton().click().then(async () => {
+                                return expect(needsassessment.destinationAddressField().isDisplayed()).to.eventually.be.true;
+                            });
+                        });
+                    });
+                });
             });
-          });
         });
-      });
     });
-  });
 });
 
-
 Then('The candidate sees a mean to input Homeowner or Renter information', async function () {
-  await browser.sleep(5000);
-  await needsassessment.destinationAddressdropdown().isDisplayed().then(async () => {
-    await needsassessment.destinationAddressdropdown().click().then(async () => {
-      await browser.sleep(10000);
-      await needsassessment.selectDestinationAddressField().isDisplayed().then(async () => {
-        //await browser.wait(EC.elementToBeClickable(needsassessment.selectDestinationAddressField()),10000).then(async () => {
-        await needsassessment.selectDestinationAddressField().click().then(async () => {
-          await needsassessment.nextButton().isDisplayed().then(async () => {
-            await browser.sleep(3000);
-            await needsassessment.nextButton().click().then(async () => {
-              await needsassessment.homeownerOrRenter().isDisplayed().then(async () => {
-                return expect(needsassessment.homeownerOrRenter().isDisplayed()).to.eventually.be.true;
-                //})
-              });
+    await browser.wait(EC.presenceOf(needsassessment.destinationAddressdropdown()),5000).then(async () => {
+        await needsassessment.destinationAddressdropdown().click().then(async () => {
+            await browser.wait(EC.presenceOf(needsassessment.selectDestinationAddressField()),5000).then(async () => {
+                await needsassessment.selectDestinationAddressField().click().then(async () => {
+                    await browser.wait(EC.presenceOf(needsassessment.nextButton()),5000).then(async () => {
+                        await needsassessment.nextButton().click().then(async () => {
+                            return expect(needsassessment.homeownerOrRenter().isDisplayed()).to.eventually.be.true;
+                        });
+                    });
+                });
             });
-          });
         });
-      });
     });
-  })
-})
+});
 
 Then('The candidate sees a mean to indicate type of home', async function () {
-  await needsassessment.homeowner().isDisplayed().then(async () => {
-    await browser.sleep(3000);
-    await needsassessment.homeowner().click().then(async () => {
-      await needsassessment.nextButton().isDisplayed().then(async () => {
+    await needsassessment.homeowner().isDisplayed().then(async () => {
         await browser.sleep(3000);
-        await needsassessment.nextButton().click().then(async () => {
-          await needsassessment.typeOfHome().isDisplayed().then(async () => {
-            return expect(needsassessment.typeOfHome().isDisplayed()).to.eventually.be.true;
-          })
+        await needsassessment.homeowner().click().then(async () => {
+            await needsassessment.nextButton().isDisplayed().then(async () => {
+                await browser.sleep(3000);
+                await needsassessment.nextButton().click().then(async () => {
+                    await expect(needsassessment.typeOfHome().isDisplayed()).to.eventually.be.true;
+                });
+            });
         });
-      });
     });
-  });
 });
 
 Then('The candidate sees a mean to input # of Rooms', async function () {
-  await needsassessment.apartment().isDisplayed().then(async () => {
-    await browser.sleep(5000);
-    await needsassessment.apartment().click().then(async () => {
-      await needsassessment.nextButton().isDisplayed().then(async () => {
-        await needsassessment.nextButton().isDisplayed().then(async () => {
-          await browser.sleep(3000);
-          await needsassessment.nextButton().click().then(async () => {
-            await needsassessment.numberOfRooms().isDisplayed().then(async () => {
-              await needsassessment.numberOfRooms().isDisplayed().then(async () => {
-                return expect(needsassessment.numberOfRooms().isDisplayed()).to.eventually.be.true;
-              });
-            })
-          })
+    await needsassessment.apartment().isDisplayed().then(async () => {
+        await browser.sleep(3000);
+        await needsassessment.apartment().click().then(async () => {
+            await needsassessment.nextButton().isDisplayed().then(async () => {
+                await browser.sleep(3000);
+                await needsassessment.nextButton().click().then(async () => {
+                    await expect(needsassessment.numberOfRooms().isDisplayed()).to.eventually.be.true;
+                });
+            });
         });
-      });
     });
-  });
 });
 
 
 //2) Scenario: To verify destination state and city is prepopulated
-
-
 When('The candidate clicks on the Destination State and City', async function () {
-  await browser.driver.manage().window().setSize(1400, 900).then(async () => {
-    await needsassessment.relocatingYes().isDisplayed().then(async () => {
-      await browser.sleep(3000);
-      await needsassessment.relocatingYes().click().then(async () => {
-        await needsassessment.nextButton().isDisplayed().then(async () => {
-          await needsassessment.nextButton().click().then(async () => {
-            await browser.sleep(3000);
-            await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-              await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-                await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-                  await browser.sleep(3000);
-                  await needsassessment.oneRelocatingMembers().click().then(async () => {
-                    await needsassessment.nextButton().isDisplayed().then(async () => {
-                      await needsassessment.nextButton().isDisplayed().then(async () => {
-                        await browser.sleep(3000);
-                        await needsassessment.nextButton().click().then(async () => {
-                          //await browser.wait(EC.elementToBeClickable(needsassessment.departureAddress()),10000).then(async () => {
-                          await browser.sleep(3000);
-                          await needsassessment.departureAddress().isDisplayed().then(async () => {
-                            await browser.sleep(3000);
-                            await needsassessment.departureAddress().sendKeys("test").then(async () => {
-                              await needsassessment.departureAddressCity().sendKeys("test").then(async () => {
-                                await needsassessment.departureAddressState().sendKeys("test").then(async () => {
-                                  await needsassessment.departureAddressPincode().sendKeys("test").then(async () => {
-                                    await needsassessment.nextButton().isDisplayed().then(async () => {
-                                      await browser.sleep(3000);
-                                      return await needsassessment.nextButton().click();
-                                      //});
+    await browser.driver.manage().window().setSize(1400, 900).then(async () => {
+        await browser.wait(EC.presenceOf(needsassessment.relocatingYes()),5000).then(async () => {
+            await browser.sleep(2000);
+            await needsassessment.relocatingYes().click().then(async () => {
+                await needsassessment.nextButton().isDisplayed().then(async () => {
+                    await needsassessment.nextButton().click().then(async () => {
+                        await browser.wait(EC.presenceOf(needsassessment.oneRelocatingMembers()),5000).then(async () => {
+                            await browser.sleep(2000);
+                            await needsassessment.oneRelocatingMembers().click().then(async () => {
+                                await browser.wait(EC.presenceOf(needsassessment.nextButton()),5000).then(async () => {
+                                    await browser.sleep(2000);
+                                    await needsassessment.nextButton().click().then(async () => {
+                                        await browser.wait(EC.presenceOf(needsassessment.departureAddress()),5000).then(async () => {
+                                            await browser.sleep(2000);
+                                            await needsassessment.departureAddress().sendKeys("test").then(async () => {
+                                                await needsassessment.departureAddressCity().sendKeys("test").then(async () => {
+                                                    await needsassessment.departureAddressState().sendKeys("test").then(async () => {
+                                                        await needsassessment.departureAddressPincode().sendKeys("test").then(async () => {
+                                                            await browser.wait(EC.presenceOf(needsassessment.nextButton()),5000).then(async () => {
+                                                                await browser.sleep(2000);
+                                                                return await needsassessment.nextButton().click();
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
                                     });
-                                  });
                                 });
-                              })
                             });
-                          });
                         });
-                      });
                     });
-                  })
-                })
-              })
-            })
-          })
-        })
-      })
-    })
-  })
+                });
+            });
+        });
+    });
 });
-
 
 Then('The candidate sees prepopulated list of State and City', async function () {
-  await needsassessment.destinationAddressPrepopulate().isDisplayed().then(async () => {
-    return expect(needsassessment.destinationAddressPrepopulate().isDisplayed()).to.eventually.be.true;
-  });
+    await needsassessment.destinationAddressPrepopulate().isDisplayed().then(async () => {
+        return expect(needsassessment.destinationAddressPrepopulate().isDisplayed()).to.eventually.be.true;
+    });
 });
 
+
 //2) Scenario: To verify departure address is mandatory
-
-
 When('The candidate clears address field and clicks outside the field', async function () {
-  await browser.driver.manage().window().setSize(1400, 900).then(async () => {
+    await browser.driver.manage().window().setSize(1400, 900).then(async () => {
     await needsassessment.departureAddressField().click();
     await needsassessment.departureAddressField().clear();
     await needsassessment.departureAddressCity().clear();
     await needsassessment.departureAddressState().clear();
     await needsassessment.departureAddressPincode().clear();
-    //return needsassessment.outsideDeparture().click();
-  });
+    });
 });
 
-
 Then('The candidate sees You must enter departure address error message', function () {
-  //return expect(needsassessment.departureError().isDisplayed()).to.eventually.be.true;
+    //return expect(needsassessment.departureError().isDisplayed()).to.eventually.be.true;
+    return false;
 });
 
 
 //3) Scenario: To verify back arrow displays previous page and displays previously selected values
-
-
 When('The candidate answers if anyone else is relocating', async function () {
-  await browser.driver.manage().window().setSize(1400, 900).then(async () => {
-    await needsassessment.relocatingYes().isDisplayed().then(async () => {
-      await browser.sleep(3000);
-      return needsassessment.relocatingYes().click();
+    await browser.driver.manage().window().setSize(1400, 900).then(async () => {
+        await browser.wait(EC.presenceOf(needsassessment.relocatingYes()),5000).then(async () => {
+            return needsassessment.relocatingYes().click();
+        });
     });
-  });
 });
 
 When('The candidate moves to next and clicks back button', async function () {
-  await browser.driver.manage().window().setSize(1400, 900).then(async () => {
-    await needsassessment.nextButton().isDisplayed().then(async () => {
-      await needsassessment.nextButton().click().then(async () => {
-        await browser.sleep(3000);
-        await needsassessment.backbutton().isDisplayed().then(async () => {
-          await needsassessment.backbutton().isDisplayed().then(async () => {
-            return needsassessment.backbutton().click();
-          });
+    await browser.driver.manage().window().setSize(1400, 900).then(async () => {
+        await needsassessment.nextButton().isDisplayed().then(async () => {
+            await needsassessment.nextButton().click().then(async () => {
+                await browser.sleep(3000);
+                await needsassessment.backbutton().isDisplayed().then(async () => {
+                    return needsassessment.backbutton().click();
+                });
+            });
         });
-      });
     });
-  });
 });
 
-
 Then('The candidate sees the previously selected values in if anyone else is relocating', async function () {
-  await browser.sleep(3000);
-  await needsassessment.relocatingYesEnabled().isDisplayed().then(async () => {
-    return expect(needsassessment.relocatingYesEnabled().isDisplayed()).to.eventually.be.true;
-  })
+    await browser.sleep(5000);
+    await needsassessment.relocatingYesEnabled().isDisplayed().then(async () => {
+        return expect(needsassessment.relocatingYesEnabled().isDisplayed()).to.eventually.be.true;
+    });
 });
 
 Then('The candidate answers number of relocating members', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(3000);
-      await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-        return needsassessment.oneRelocatingMembers().click();
-      });
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
+                return needsassessment.oneRelocatingMembers().click();
+            });
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in number of relocating members', async function () {
-  await browser.sleep(3000);
-  await needsassessment.oneRelocatingEnabled().isDisplayed().then(async () => {
+    await browser.sleep(3000);
     return expect(needsassessment.oneRelocatingEnabled().isDisplayed()).to.eventually.be.true;
-  });
-});
-
+ });
 
 Then('The candidate answers departure address', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      //await browser.actions().mouseMove(needsassessment.departureAddressField()).doubleClick().perform().then(async () => {
-      await needsassessment.departureAddress().sendKeys("123, First cross street");
-      await needsassessment.departureAddressCity().sendKeys("Danbury");
-      await needsassessment.departureAddressState().sendKeys("CT");
-      return needsassessment.departureAddressPincode().sendKeys("01234");
-      //});
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000); 
+            await needsassessment.departureAddress().sendKeys("123, First cross street");
+            await needsassessment.departureAddressCity().sendKeys("Danbury");
+            await needsassessment.departureAddressState().sendKeys("CT");
+            return needsassessment.departureAddressPincode().sendKeys("01234");
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in departure address', async function () {
-  await needsassessment.departureAddress().getAttribute("value").then(async (text1) => {
-    await browser.sleep(3000);
-    await expect(text1).equals('123, First cross street');
-    await needsassessment.departureAddressCity().getAttribute("value").then(async (text2) => {
-      await browser.sleep(3000);
-      await expect(text2).equals('Danbury');
-      await needsassessment.departureAddressState().getAttribute("value").then(async (text3) => {
+    await needsassessment.departureAddress().getAttribute("value").then(async (text1) => {
         await browser.sleep(3000);
-        await expect(text3).equals('CT');
-        await needsassessment.departureAddressPincode().getAttribute("value").then(async (text4) => {
-          await browser.sleep(3000);
-          return expect(text4).equals('01234');
-        })
-      })
-    })
-  })
+        await expect(text1).equals('123, First cross street');
+            await needsassessment.departureAddressCity().getAttribute("value").then(async (text2) => {
+                await browser.sleep(3000);
+                await expect(text2).equals('Danbury');
+                    await needsassessment.departureAddressState().getAttribute("value").then(async (text3) => {
+                        await browser.sleep(3000);
+                        await expect(text3).equals('CT');
+                            await needsassessment.departureAddressPincode().getAttribute("value").then(async (text4) => {
+                                await browser.sleep(3000);
+                                return expect(text4).equals('01234');
+                            });
+                    });
+            });
+    });
 });
 
-
 Then('The candidate answers Destination State and City', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      await needsassessment.destinationAddressdropdown().click().then(async () => {
-        await browser.sleep(3000);
-        return needsassessment.selectDestinationAddressField().click();
-      });
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            await needsassessment.destinationAddressdropdown().click().then(async () => {
+                await browser.sleep(3000);
+                return needsassessment.selectDestinationAddressField().click();
+            });
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in Destination State and City', async function () {
-  await browser.sleep(5000);
-  await needsassessment.selectedDestinationAddressField().isDisplayed().then(async (text) => {
     await browser.sleep(3000);
-    return expect(text).equals(true);
-  })
+    await needsassessment.selectedDestinationAddressField().isDisplayed().then(async (text) => {
+        await browser.sleep(3000);
+        return expect(text).equals(true);
+    });
 });
 
-
 Then('The candidate answers Homeowner or Renter information', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      return needsassessment.homeowner().click();
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            return needsassessment.homeowner().click();
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in Homeowner or Renter information', async function () {
-  await browser.sleep(3000);
-  await needsassessment.homeownerselected().isDisplayed().then(async () => {
+    await browser.sleep(3000);
     return expect(needsassessment.homeownerselected().isDisplayed()).to.eventually.be.true;
-  });
 });
 
-
 Then('The candidate answers type of home', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      await needsassessment.apartment().click();
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            await needsassessment.apartment().click();
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in type of home', async function () {
-  await browser.sleep(3000);
-  await needsassessment.apartmentselected().isDisplayed().then(async () => {
+    await browser.sleep(2000);
     return expect(needsassessment.apartmentselected().isDisplayed()).to.eventually.be.true;
-  });
 });
 
 
 //4) Scenario: To validate all input fields for candidate needs assessment in mobile view
-
-
 Then('The candidate sees a mean to indicate if anyone else is relocating in mobile view', async function () {
-  await browser.driver.manage().window().setSize(500, 900).then(async () => {
-    return expect(needsassessment.relocatingYesOrNoField().isDisplayed()).to.eventually.be.true;
-  });
+    await browser.driver.manage().window().setSize(500, 900).then(async () => {
+        await browser.sleep(2000);
+        await expect(needsassessment.relocatingYesOrNoField().isDisplayed()).to.eventually.be.true;
+    });
 });
-
 
 Then('The candidate sees a mean to indicate number of relocating members in mobile view', async function () {
-  await needsassessment.relocatingYes().click().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      return expect(needsassessment.numberOfRelocatingMembers().isDisplayed()).to.eventually.be.true;
+    await needsassessment.relocatingYes().click().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            return expect(needsassessment.numberOfRelocatingMembers().isDisplayed()).to.eventually.be.true;
+        });
     });
-
-  });
 });
-
 
 Then('The candidate sees a mean to input departure address in mobile view', async function () {
-  await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
     await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-      await browser.sleep(3000);
-      await needsassessment.oneRelocatingMembers().click().then(async () => {
-        await needsassessment.nextButton().isDisplayed().then(async () => {
-          await needsassessment.nextButton().isDisplayed().then(async () => {
-            await needsassessment.nextButton().click().then(async () => {
-              await browser.sleep(3000);
-              //await browser.wait(EC.elementToBeClickable(needsassessment.departureAddressField()),10000).then(async () => {
-              await needsassessment.departureAddressField().isDisplayed().then(async () => {
-                return expect(needsassessment.departureAddressField().isDisplayed()).to.eventually.be.true;
-                //})
-              });
+        await browser.sleep(3000);
+        await needsassessment.oneRelocatingMembers().click().then(async () => {
+            await needsassessment.nextButton().isDisplayed().then(async () => {
+                await needsassessment.nextButton().click().then(async () => {
+                    await browser.sleep(3000);
+                    await needsassessment.departureAddressField().isDisplayed().then(async () => {
+                        return expect(needsassessment.departureAddressField().isDisplayed()).to.eventually.be.true;
+                    });
+                });
             });
-          });
         });
-      });
     });
-  });
 });
-
-
 
 Then('The candidate sees a mean to input Destination State and City in mobile view', async function () {
-  await browser.sleep(3000);
-  await needsassessment.departureAddress().sendKeys("Test street").then(async () => {
-    await needsassessment.departureAddressCity().sendKeys("Test city").then(async () => {
-      await needsassessment.departureAddressState().sendKeys("Test state").then(async () => {
-        await needsassessment.departureAddressPincode().sendKeys("12345").then(async () => {
-          await needsassessment.nextButton().isDisplayed().then(async () => {
-            await browser.sleep(3000);
-            await needsassessment.nextButton().click().then(async () => {
-              await needsassessment.destinationAddressField().isDisplayed().then(async () => {
-                return expect(needsassessment.destinationAddressField().isDisplayed()).to.eventually.be.true;
-              });
+    await browser.sleep(3000);
+    await needsassessment.departureAddress().sendKeys("Test street").then(async () => {
+        await needsassessment.departureAddressCity().sendKeys("Test city").then(async () => {
+            await needsassessment.departureAddressState().sendKeys("Test state").then(async () => {
+                await needsassessment.departureAddressPincode().sendKeys("12345").then(async () => {
+                    await needsassessment.nextButton().isDisplayed().then(async () => {
+                        await browser.sleep(3000);
+                        await needsassessment.nextButton().click().then(async () => {
+                            await needsassessment.destinationAddressField().isDisplayed().then(async () => {
+                                return expect(needsassessment.destinationAddressField().isDisplayed()).to.eventually.be.true;
+                            });
+                        });
+                    });
+                });
             });
-          });
         });
-      });
     });
-  });
 });
 
-
 Then('The candidate sees a mean to input Homeowner or Renter information in mobile view', async function () {
-  await needsassessment.destinationAddressdropdown().isDisplayed().then(async () => {
-    await needsassessment.destinationAddressdropdown().click().then(async () => {
-      await browser.sleep(10000);
-      await needsassessment.selectDestinationAddressField().isDisplayed().then(async () => {
-        //await browser.wait(EC.elementToBeClickable(needsassessment.selectDestinationAddressField()),10000).then(async () => {
-        await needsassessment.selectDestinationAddressField().click().then(async () => {
-          await needsassessment.nextButton().isDisplayed().then(async () => {
+    await needsassessment.destinationAddressdropdown().isDisplayed().then(async () => {
+        await needsassessment.destinationAddressdropdown().click().then(async () => {
             await browser.sleep(3000);
-            await needsassessment.nextButton().click().then(async () => {
-              await needsassessment.homeownerOrRenter().isDisplayed().then(async () => {
-                return expect(needsassessment.homeownerOrRenter().isDisplayed()).to.eventually.be.true;
-                //})
-              });
+            await needsassessment.selectDestinationAddressField().isDisplayed().then(async () => {
+                await needsassessment.selectDestinationAddressField().click().then(async () => {
+                    await needsassessment.nextButton().isDisplayed().then(async () => {
+                        await browser.sleep(3000);
+                        await needsassessment.nextButton().click().then(async () => {
+                            return expect(needsassessment.homeownerOrRenter().isDisplayed()).to.eventually.be.true;
+                        });
+                    });
+                });
             });
-          });
         });
-      });
     });
-  })
-})
+});
 
 Then('The candidate sees a mean to indicate type of home in mobile view', async function () {
-  await needsassessment.homeowner().isDisplayed().then(async () => {
-    await browser.sleep(3000);
-    await needsassessment.homeowner().click().then(async () => {
-      await needsassessment.nextButton().isDisplayed().then(async () => {
+    await needsassessment.homeowner().isDisplayed().then(async () => {
         await browser.sleep(3000);
-        await needsassessment.nextButton().click().then(async () => {
-          await needsassessment.typeOfHome().isDisplayed().then(async () => {
-            return expect(needsassessment.typeOfHome().isDisplayed()).to.eventually.be.true;
-          })
+        await needsassessment.homeowner().click().then(async () => {
+            await needsassessment.nextButton().isDisplayed().then(async () => {
+                await browser.sleep(3000);
+                await needsassessment.nextButton().click().then(async () => {
+                    await needsassessment.typeOfHome().isDisplayed().then(async () => {
+                        return expect(needsassessment.typeOfHome().isDisplayed()).to.eventually.be.true;
+                    });
+                });
+            });
         });
-      });
     });
-  });
 });
 
 Then('The candidate sees a mean to input # of Rooms in mobile view', async function () {
-  await needsassessment.apartment().isDisplayed().then(async () => {
-    await browser.sleep(5000);
-    await needsassessment.apartment().click().then(async () => {
-      await needsassessment.nextButton().isDisplayed().then(async () => {
-        await needsassessment.nextButton().isDisplayed().then(async () => {
-          await browser.sleep(3000);
-          await needsassessment.nextButton().click().then(async () => {
-            await needsassessment.numberOfRooms().isDisplayed().then(async () => {
-              await needsassessment.numberOfRooms().isDisplayed().then(async () => {
-                return expect(needsassessment.numberOfRooms().isDisplayed()).to.eventually.be.true;
-              });
-            })
-          })
+    await needsassessment.apartment().isDisplayed().then(async () => {
+        await browser.sleep(3000);
+        await needsassessment.apartment().click().then(async () => {
+            await needsassessment.nextButton().isDisplayed().then(async () => {
+                await browser.sleep(3000);
+                await needsassessment.nextButton().click().then(async () => {
+                    await needsassessment.numberOfRooms().isDisplayed().then(async () => {
+                        return expect(needsassessment.numberOfRooms().isDisplayed()).to.eventually.be.true;
+                    });
+                });
+            });
         });
-      });
     });
-  });
 });
 
 
 //2) Scenario: To verify destination state and city is prepopulated in mobile view
-
-
 When('The candidate clicks on the Destination State and City in mobile view', async function () {
-  await browser.driver.manage().window().setSize(500, 900).then(async () => {
-    await needsassessment.relocatingYes().isDisplayed().then(async () => {
-      await browser.sleep(3000);
-      await needsassessment.relocatingYes().click().then(async () => {
-        await needsassessment.nextButton().isDisplayed().then(async () => {
-          await needsassessment.nextButton().click().then(async () => {
+    await browser.driver.manage().window().setSize(500, 900).then(async () => {
+        await needsassessment.relocatingYes().isDisplayed().then(async () => {
             await browser.sleep(3000);
-            await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-              await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-                await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-                  await browser.sleep(3000);
-                  await needsassessment.oneRelocatingMembers().click().then(async () => {
-                    await needsassessment.nextButton().isDisplayed().then(async () => {
-                      await needsassessment.nextButton().isDisplayed().then(async () => {
+            await needsassessment.relocatingYes().click().then(async () => {
+                await needsassessment.nextButton().isDisplayed().then(async () => {
+                    await needsassessment.nextButton().click().then(async () => {
                         await browser.sleep(3000);
-                        await needsassessment.nextButton().click().then(async () => {
-                          //await browser.wait(EC.elementToBeClickable(needsassessment.departureAddress()),10000).then(async () => {
-                          await browser.sleep(3000);
-                          await needsassessment.departureAddress().isDisplayed().then(async () => {
+                        await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
                             await browser.sleep(3000);
-                            await needsassessment.departureAddress().sendKeys("test").then(async () => {
-                              await needsassessment.departureAddressCity().sendKeys("test").then(async () => {
-                                await needsassessment.departureAddressState().sendKeys("test").then(async () => {
-                                  await needsassessment.departureAddressPincode().sendKeys("test").then(async () => {
-                                    await needsassessment.nextButton().isDisplayed().then(async () => {
-                                      await browser.sleep(3000);
-                                      return await needsassessment.nextButton().click();
-                                      //});
+                            await needsassessment.oneRelocatingMembers().click().then(async () => {
+                                await needsassessment.nextButton().isDisplayed().then(async () => {
+                                    await browser.sleep(3000);
+                                    await needsassessment.nextButton().click().then(async () => {
+                                        await browser.sleep(3000);
+                                        await needsassessment.departureAddress().isDisplayed().then(async () => {
+                                            await browser.sleep(3000);
+                                            await needsassessment.departureAddress().sendKeys("test").then(async () => {
+                                                await needsassessment.departureAddressCity().sendKeys("test").then(async () => {
+                                                    await needsassessment.departureAddressState().sendKeys("test").then(async () => {
+                                                        await needsassessment.departureAddressPincode().sendKeys("test").then(async () => {
+                                                            await needsassessment.nextButton().isDisplayed().then(async () => {
+                                                                await browser.sleep(3000);
+                                                                return await needsassessment.nextButton().click();
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
                                     });
-                                  });
                                 });
-                              })
                             });
-                          });
                         });
-                      });
                     });
-                  })
-                })
-              })
-            })
-          })
-        })
-      })
-    })
-  })
+                });
+            });
+        });
+    });
 });
 
-
 Then('The candidate sees prepopulated list of State and City in mobile view', async function () {
-  await needsassessment.destinationAddressPrepopulate().isDisplayed().then(async () => {
     return expect(needsassessment.destinationAddressPrepopulate().isDisplayed()).to.eventually.be.true;
-  });
 });
 
 
 //3) Scenario: To verify back arrow displays previous page and displays previously selected values in mobile view
-
-
 When('The candidate answers if anyone else is relocating in mobile view', async function () {
-  await browser.driver.manage().window().setSize(500, 900).then(async () => {
-    await needsassessment.relocatingYes().isDisplayed().then(async () => {
-      await browser.sleep(3000);
-      return needsassessment.relocatingYes().click();
+    await browser.driver.manage().window().setSize(500, 900).then(async () => {
+        await needsassessment.relocatingYes().isDisplayed().then(async () => {
+            await browser.sleep(3000);
+            return needsassessment.relocatingYes().click();
+        });
     });
-  });
 });
 
 When('The candidate moves to next and clicks back button in mobile view', async function () {
-  await browser.driver.manage().window().setSize(500, 900).then(async () => {
-    await needsassessment.nextButton().isDisplayed().then(async () => {
-      await needsassessment.nextButton().click().then(async () => {
-        await browser.sleep(3000);
-        await needsassessment.backbutton().isDisplayed().then(async () => {
-          await needsassessment.backbutton().isDisplayed().then(async () => {
-            return needsassessment.backbutton().click();
-          });
+    await browser.driver.manage().window().setSize(500, 900).then(async () => {
+        await needsassessment.nextButton().isDisplayed().then(async () => {
+            await needsassessment.nextButton().click().then(async () => {
+                await browser.sleep(3000);
+                await needsassessment.backbutton().isDisplayed().then(async () => {
+                    return needsassessment.backbutton().click();
+                });
+            });
         });
-      });
     });
-  });
 });
 
-
 Then('The candidate sees the previously selected values in if anyone else is relocating in mobile view', async function () {
-  await browser.sleep(3000);
-  await needsassessment.relocatingYesEnabled().isDisplayed().then(async () => {
-    return expect(needsassessment.relocatingYesEnabled().isDisplayed()).to.eventually.be.true;
-  })
+    await browser.sleep(3000);
+    await needsassessment.relocatingYesEnabled().isDisplayed().then(async () => {
+        return expect(needsassessment.relocatingYesEnabled().isDisplayed()).to.eventually.be.true;
+    })
 });
 
 Then('The candidate answers number of relocating members in mobile view', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(3000);
-      await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
-        return needsassessment.oneRelocatingMembers().click();
-      });
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            await needsassessment.oneRelocatingMembers().isDisplayed().then(async () => {
+                return needsassessment.oneRelocatingMembers().click();
+            });
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in number of relocating members in mobile view', async function () {
-  await browser.sleep(3000);
-  await needsassessment.oneRelocatingEnabled().isDisplayed().then(async () => {
-    return expect(needsassessment.oneRelocatingEnabled().isDisplayed()).to.eventually.be.true;
-  });
+    await browser.sleep(3000);
+    await needsassessment.oneRelocatingEnabled().isDisplayed().then(async () => {
+        return expect(needsassessment.oneRelocatingEnabled().isDisplayed()).to.eventually.be.true;
+    });
 });
 
-
 Then('The candidate answers departure address in mobile view', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      //await browser.actions().mouseMove(needsassessment.departureAddressField()).doubleClick().perform().then(async () => {
-      await needsassessment.departureAddress().sendKeys("123, First cross street");
-      await needsassessment.departureAddressCity().sendKeys("Danbury");
-      await needsassessment.departureAddressState().sendKeys("CT");
-      return needsassessment.departureAddressPincode().sendKeys("01234");
-      //});
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            await needsassessment.departureAddress().sendKeys("123, First cross street");
+            await needsassessment.departureAddressCity().sendKeys("Danbury");
+            await needsassessment.departureAddressState().sendKeys("CT");
+            return needsassessment.departureAddressPincode().sendKeys("01234");
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in departure address in mobile view', async function () {
-  await needsassessment.departureAddress().getAttribute("value").then(async (text1) => {
-    await browser.sleep(3000);
-    await expect(text1).equals('123, First cross street');
-    await needsassessment.departureAddressCity().getAttribute("value").then(async (text2) => {
-      await browser.sleep(3000);
-      await expect(text2).equals('Danbury');
-      await needsassessment.departureAddressState().getAttribute("value").then(async (text3) => {
+    await needsassessment.departureAddress().getAttribute("value").then(async (text1) => {
         await browser.sleep(3000);
-        await expect(text3).equals('CT');
-        await needsassessment.departureAddressPincode().getAttribute("value").then(async (text4) => {
-          await browser.sleep(3000);
-          return expect(text4).equals('01234');
-        })
-      })
-    })
-  })
+        await expect(text1).equals('123, First cross street');
+            await needsassessment.departureAddressCity().getAttribute("value").then(async (text2) => {
+                await browser.sleep(3000);
+                await expect(text2).equals('Danbury');
+                    await needsassessment.departureAddressState().getAttribute("value").then(async (text3) => {
+                        await browser.sleep(3000);
+                        await expect(text3).equals('CT');
+                            await needsassessment.departureAddressPincode().getAttribute("value").then(async (text4) => {
+                                await browser.sleep(3000);
+                                return expect(text4).equals('01234');
+                            });
+                    });
+            });
+     });
 });
 
-
 Then('The candidate answers Destination State and City in mobile view', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      await needsassessment.destinationAddressdropdown().click().then(async () => {
-        await browser.sleep(3000);
-        return needsassessment.selectDestinationAddressField().click();
-      });
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            await needsassessment.destinationAddressdropdown().click().then(async () => {
+                await browser.sleep(3000);
+                return needsassessment.selectDestinationAddressField().click();
+            });
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in Destination State and City in mobile view', async function () {
-  await browser.sleep(5000);
-  await needsassessment.selectedDestinationAddressField().isDisplayed().then(async (text) => {
     await browser.sleep(3000);
-    return expect(text).equals(true);
-  })
+    await needsassessment.selectedDestinationAddressField().isDisplayed().then(async (text) => {
+        await browser.sleep(3000);
+        return expect(text).equals(true);
+    });
 });
 
-
 Then('The candidate answers Homeowner or Renter information in mobile view', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      return needsassessment.homeowner().click();
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(5000);
+            return needsassessment.homeowner().click();
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in Homeowner or Renter information in mobile view', async function () {
-  await browser.sleep(3000);
-  await needsassessment.homeownerselected().isDisplayed().then(async () => {
+    await browser.sleep(3000);
     return expect(needsassessment.homeownerselected().isDisplayed()).to.eventually.be.true;
-  });
 });
 
-
 Then('The candidate answers type of home in mobile view', async function () {
-  await needsassessment.nextButton().isDisplayed().then(async () => {
-    await needsassessment.nextButton().click().then(async () => {
-      await browser.sleep(5000);
-      await needsassessment.apartment().click();
+    await needsassessment.nextButton().isDisplayed().then(async () => {
+        await needsassessment.nextButton().click().then(async () => {
+            await browser.sleep(3000);
+            await needsassessment.apartment().click();
+        });
     });
-  });
 });
 
 Then('The candidate sees the previously selected values in type of home in mobile view', async function () {
-  await browser.sleep(3000);
-  await needsassessment.apartmentselected().isDisplayed().then(async () => {
+    await browser.sleep(3000);
     return expect(needsassessment.apartmentselected().isDisplayed()).to.eventually.be.true;
-  });
 });

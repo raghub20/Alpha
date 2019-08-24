@@ -47,7 +47,7 @@
     "e2e": "ng e2e",
     "e2e:mocked": "cross-env ng e2e  --port 4200 --protractor-config e2e/protractor.mocked.conf.js",
     "e2e:mocked-multi": "cross-env ng e2e  --port 4200 --protractor-config e2e/protractor.mocked-multi.conf.js",
-    "e2e:mocked-wip": "cross-env CUCUMBER_TAGS='@wip' ng e2e  --port 4200 --protractor-config e2e/protractor.mock-wip.conf.js",
+    "e2e:mocked-wip": "cross-env CUCUMBER_TAGS='@wip' ng e2e  --port 4200 --protractor-config e2e/protractor.mocked-wip.conf.js",
     "e2e:integration": "ng e2e -c integration --port 4200",
     "pree2e:ie": "cross-env cd node_modules/protractor/node_modules/webdriver-manager/bin && webdriver-manager --ie32 --chrome false --gecko false --verbose update",
     "e2e:ie": "cross-env ng e2e  --port 4200 -c ie",

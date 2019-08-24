@@ -9,29 +9,33 @@ const businessUnitInput = by.css('input[formcontrolname="BusinessUnit"]');
 const cancelButton = by.xpath('//*[text()="CANCEL"]');
 const saveDraftButton = by.xpath('//*[text()="Save Draft"]');
 const sendInviteButton = by.xpath('//*[text()="Send Invite"]');
-const firstNameErrorMessage = by.xpath('//*[text()=" You must enter first name "]');
-const lastNameErrorMessage = by.xpath('//*[text()=" You must enter last name "]');
 const emailAddressErrorMessage = by.xpath('//*[text()=" You must enter email address "]');
 const levelErrorMessage = by.xpath('//*[text()=" You must select level "]');
 const destinationErrorMessage = by.xpath('//*[text()=" You must select destination "]');
-
-const specialCharecterErrorMessage = by.xpath('//*[text()=" Special characters are not allowed "]');
 const emailWithInvalidMessage = by.xpath('//*[text()=" You must enter a valid email address "]');
 const departureInput = by.css('input[formcontrolname="Departure"]');
 const destinationInput = by.css('input[formcontrolname="Destination"]');
 
 export class UpdateCandidate {
-    get(){
+
+    get(): promise.Promise<any> {
       return browser.get('/#/project-alpha/candidate-profiles');
     }
+    
+    getCandidateTab(): ElementFinder {
+        return element(by.cssContainingText('a.mat-tab-link.ng-star-inserted','Candidates'));
+    }
 
-    async clickOnCandidate(candidateName) {
-        await this.getSearchInput().sendKeys(candidateName);
-        return element(by.cssContainingText('strong', candidateName)).click();
+    async clickOnCandidate(candidateFullName) {
+        await this.getSearchInput().click().then(async () => {
+            await this.getSearchInput().sendKeys(candidateFullName).then(async () => {
+                return element(by.cssContainingText('strong.highlight-search', candidateFullName)).click();
+            });
+        });
     }
 
     getSearchInput() : ElementFinder {
-        return element(by.css('input[placeholder="Search within table for..."]'));
+        return element(by.id('search_text'));
     }
 
     getFirstnameInput() : ElementFinder {
@@ -48,38 +52,33 @@ export class UpdateCandidate {
 
     getDestinationDropdown() : ElementFinder {
         return element(by.css('[formcontrolname="Destination"]'));
-   }
+    }
 
-   getFirstNameErrorMessageEle() {
-       return element(by.xpath('//input[@formcontrolname="FirstName"]//ancestor::mat-form-field//mat-error'));
-   }
+    getFirstNameErrorMessageEle(): ElementFinder {
+        return element(by.cssContainingText('mat-error',' You must enter first name '));
+    }
 
-   getLastNameErrorMessageEle() {
-    return element(by.xpath('//input[@formcontrolname="LastName"]//ancestor::mat-form-field//mat-error'));
-   }
+    getLastNameErrorMessageEle(): ElementFinder {
+        return element(by.cssContainingText('mat-error', ' You must enter last name '));
+    }
 
-   getSaveButton() : ElementFinder {
-       return element(by.buttonText('Save'));
-   }
+    getSaveButton() : ElementFinder {
+        return element(by.buttonText('Save'));
+    }
 
-   async getTotalRowsFromCandidateTable() {
-       await browser.sleep(3000);
-       let rows = await element.all(by.css('app-candidate-details table tbody tr'));
-       return rows.length;
-   }
-   
-
-   
+    async getTotalRowsFromCandidateTable() {
+        await browser.sleep(3000);
+        let rows = await element.all(by.css('app-candidate-details table tbody tr'));
+        return rows.length;
+    }
     
     waitForElement(objElement) {
         const condition = ExpectedConditions.elementToBeClickable(element(objElement));
           browser.wait(condition, 60000);
-      }
+    }
 
     async openCandidateProfile() {
-        // element(by.xpath("(//td[@class='")).click();
         return element.all(by.css('app-candidate-details table tbody tr')).get(0).click();
-         //return element(by.className("mat-cell cdk-column-fullname mat-column-fullname mat-table-sticky cLinks ng-star-inserted'])")[0]).click();
     }
 
     async clearInputField (elementBY) {
@@ -99,27 +98,26 @@ export class UpdateCandidate {
        await this.clearInputField(departureInput);
     }
 
-   async enterValue(elementBY, value) {
-    this.waitForElement(elementBY);
-    await element(elementBY).clear();
-    await element(elementBY).sendKeys(value);
+    async enterValue(elementBY, value) {
+        this.waitForElement(elementBY);
+        await element(elementBY).clear();
+        await element(elementBY).sendKeys(value);
     }
 
-   async enterFirstNameValue (value){
-
-    await this.enterValue(firstNameInput, value);
+    async enterFirstNameValue (candidateFirstName){
+        await this.enterValue(firstNameInput, candidateFirstName);
     }
 
-   async  enterLastNameValue (value) {
-    await  this.enterValue(lastNameInput, value);
+    async  enterLastNameValue (candidateLastName) {
+        await this.enterValue(lastNameInput, candidateLastName);
     }
 
-   async  enterEmailAddress(value) {
-    await this.enterValue(emailInput, value);
+    async  enterEmailAddress(value) {
+        await this.enterValue(emailInput, value);
     }
 
-   async enterBusinessUnit(value){
-    await this.enterValue(businessUnitInput, value);
+    async enterBusinessUnit(value){
+        await this.enterValue(businessUnitInput, value);
     }
 
     async clearFirstNameInput() {
@@ -127,7 +125,7 @@ export class UpdateCandidate {
     }
 
     async clearLastNameInput() {
-      await  this.clearInputField(lastNameInput);
+        await  this.clearInputField(lastNameInput);
     }
 
     async clearEmailInput() {
@@ -138,8 +136,12 @@ export class UpdateCandidate {
         await  this.clearInputField(businessUnitInput);
     }
 
-    getSpecialCharecterErrorMessage () {
-       return element(specialCharecterErrorMessage);
+    getSpecialCharecterErrorMessageFN(): ElementFinder {
+        return element(by.cssContainingText('mat-error#mat-error-0.mat-error',' Special characters are not allowed '));
+    }
+
+    getSpecialCharecterErrorMessageLN(): ElementFinder {
+        return element(by.cssContainingText('mat-error#mat-error-1.mat-error',' Special characters are not allowed '));
     }
 
     getEmailInvalidErrorMessage () {
@@ -148,14 +150,6 @@ export class UpdateCandidate {
 
     clickAddProfile () {
         element(addButton).click();
-    }
-
-    getFirstNameErrorMessage (): ElementFinder {
-        return element(firstNameErrorMessage);
-    }
-
-    getLastNameErrorMessage (): ElementFinder {
-        return element(lastNameErrorMessage);
     }
 
     getEmailAddressErrorMessage (): ElementFinder {
@@ -171,22 +165,19 @@ export class UpdateCandidate {
         return element(destinationErrorMessage);
     }
 
-   async selectLevelvalue(){
-    this.waitForElement(by.css('mat-select[ng-reflect-name="Level"]'));
-      await element(by.css('mat-select[ng-reflect-name="Level"]')).click();
-      this.waitForElement(by.css('mat-select[ng-reflect-name="Level"]'));
-      await element(by.xpath('//*[contains(text()," Level 3 ")]')).click();
-   // await element(by.cssContainingText('mat-select[ng-reflect-name="Level"]', value)).click();
+    async selectLevelvalue(){
+        this.waitForElement(by.css('mat-select[ng-reflect-name="Level"]'));
+        await element(by.css('mat-select[ng-reflect-name="Level"]')).click();
+        this.waitForElement(by.css('mat-select[ng-reflect-name="Level"]'));
+        await element(by.xpath('//*[contains(text()," Level 3 ")]')).click();
     }
 
     async selectDepartureCity(){
         await element(departureInput).sendKeys('NJ, Jersey City');
-      //  await element(by.cssContainingText('input[formcontrolname="Departure"]', value)).click();
     }
 
-   async selectDestinationCity(){
-       this.waitForElement(destinationInput);
-       await element(destinationInput).sendKeys('GA, Atlanta');
-   // await  element(by.cssContainingText('input[formcontrolname="Destination"]', value)).click();
+    async selectDestinationCity(){
+        this.waitForElement(destinationInput);
+        await element(destinationInput).sendKeys('GA, Atlanta');
     }
 }

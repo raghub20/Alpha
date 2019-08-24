@@ -1,9 +1,9 @@
 import { browser, ExpectedConditions, element, ElementFinder,ElementArrayFinder, by, promise } from 'protractor';
 
 export class CostModelPage {
+
     get() {
-            return browser.get('/#/project-alpha/cost-models');
-           // return browser.get('http://localhost:4200/#/project-alpha/cost-models');
+        return browser.get('/#/project-alpha/cost-models');
     }
 
     getUser() {
@@ -16,9 +16,8 @@ export class CostModelPage {
 
 
     //  #### Locators : Cost Model Page ###
-
     getCreateCostModelButtonEl(): ElementFinder {
-        return element(by.xpath('//span[contains(text(),\'Create Cost Model\')]/..'));
+        return element(by.cssContainingText('button','Add Cost Model'));
     }
 
 
@@ -39,44 +38,43 @@ export class CostModelPage {
 
     // >>> Add/Edit Cost Model Form
     getCostModelFormModelNameField(): ElementFinder {
-        return element(by.xpath('//label[contains(text(),\'Model Name\')]/../..//input'));
+        return element(by.id("mat-input-1"));
     }
 
     getCostModelFormLevelDropDown(): ElementFinder {
-        return element(by.xpath('//label/mat-label[contains(text(),\'Level\')]/../../../mat-select'));
+        return element(by.id('level'));
     }
 
     getCostModelFormDepartureField(): ElementFinder {
-        return element(by.xpath('//label[contains(text(),\'Departure\')]/../..//input'));
+        return element(by.id('departure'));
     }
     getCostModelFormDestinationField(): ElementFinder {
-        return element(by.xpath('//label[contains(text(),\'Destination\')]/../..//input'));
+        return element(by.id('destination'));
     }
     getCostModelOptionText(value: string): ElementFinder {
-        return element(by.xpath(`//span[contains(text(),'${value}')]`));
+        return element(by.cssContainingText('span',value))
     }
 
     getCostModelFormSaveButtonEl(): ElementFinder {
-        return element(by.xpath('//button[contains(text(),\'Save\')]'));
+        return element(by.cssContainingText('button','Save'))
     }
 
     getCostModelFormCancelButtonEl(): ElementFinder {
-        return element(by.xpath('//button//span[contains(text(),\'CANCEL\')]'));
+        return element(by.cssContainingText('button','CANCEL'))
     }
 
     getCostModelFormGenerateButtonEl(): ElementFinder {
-        return element(by.xpath('//button//span[contains(text(),\'GENERATE COST MODEL\')]'));
+        return element(by.cssContainingText('button','Save'))
     }
 
-    getSearchTableFiledEl(): ElementFinder {
-        return element(by.xpath('//input[contains(@placeholder, \'Search within table\')]'));
+    getSearchTableFieldEl(): ElementFinder {
+        return element(by.id('searchInput'));
     }
 
 
     // >>> MISC elements
     getCostModelSnackBarNotification(): ElementFinder {
-        return element(by.xpath('//simple-snack-bar/span[contains(text(),\'Due to seasonal changes, this cost model\')]'));
+        return element(by.className('cdk-overlay-container'));
     }
-
 
 }
