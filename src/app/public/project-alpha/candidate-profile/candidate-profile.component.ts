@@ -13,6 +13,7 @@ import { NotificationsService } from '../../../../../src/app/core/services/notif
 })
 /**Class for  CandidateProfileComponent*/
 export class CandidateProfileComponent implements OnInit {
+  value: string;
 
   @ViewChild(CandidateDetailsComponent) childObj :CandidateDetailsComponent;
 
@@ -36,6 +37,11 @@ export class CandidateProfileComponent implements OnInit {
 
   filterResults(filterVal){
     this.childObj.applyFilter(filterVal);
+  }
+
+  clearSearch() {
+    this.value = '';
+    this.childObj.applyFilter(this.value);
   }
 
   openModal(): void {

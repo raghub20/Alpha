@@ -1,8 +1,13 @@
 import { browser, element, by, promise, ElementFinder, protractor, ExpectedConditions as EC} from 'protractor';
-import _ from 'lodash';
 export class ApprovedMoves {
-    get() {
+    get() :promise.Promise<any> {
         return browser.get('/#/project-alpha/approved-moves');
+    }
+
+    openApprovedMovesInMobileMode() {
+        return browser.manage().window().setSize(500, 900).then(() => {
+            return this.get();
+        });
     }
 
     async getHeader(headerName: string): Promise<ElementFinder> {
@@ -10,7 +15,7 @@ export class ApprovedMoves {
     }
 
     getNextPage(): ElementFinder {
-        return element(by.xpath("//button[@class='mat-paginator-navigation-next mat-icon-button']"));
+        return element(by.css('[ng-reflect-message="Next page"]'));
      }
 
     async performSort(headerName: string, sortType: string) {
@@ -152,7 +157,7 @@ export class ApprovedMoves {
         return element(by.css("h2"));
     }
 
-    async getViewColumnEle() {
+    async getViewColumnEle(): Promise<ElementFinder> {
         return await element(by.xpath('//mat-icon[text()="view_column"]'));
     }
 
@@ -187,5 +192,21 @@ export class ApprovedMoves {
     
     async getResetButton() {
         return await element(by.cssContainingText('span','RESET'));
+    }
+
+    async getStatusDateData() : Promise<Array<string>> {
+        let statusData = [];
+        let isNextButtonEnabled = true;
+        while(isNextButtonEnabled) {
+            let statusDateTds : ElementFinder[] = await element.all(by.xpath('//td[contains(@class, "mat-column-lastUpdateDate")]'));
+            for(let i=0; i<statusDateTds.length; i++) {
+                statusData.push(await statusDateTds[i].getText());
+            }
+            isNextButtonEnabled = await this.getNextPage().isEnabled();
+            if(isNextButtonEnabled) {
+                await this.getNextPage().click();
+            }
+        }
+        return statusData;
     }
 }

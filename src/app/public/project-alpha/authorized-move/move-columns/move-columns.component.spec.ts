@@ -52,9 +52,9 @@ describe('MoveColumnsComponent', () => {
       disabled: false
     },
     {
-      displayName: 'Last Updated Date',
+      displayName: 'Status Date',
       value: 'lastUpdateDate',
-      flag: false,
+      flag: true,
       disabled: false
     },
     {

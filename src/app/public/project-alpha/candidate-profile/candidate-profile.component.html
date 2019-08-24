@@ -6,7 +6,10 @@
       <span fxFlex="60%" fxLayoutAlign="start">
           <mat-form-field appearance="outline" class="search-within-table search-box">
               <mat-icon matPrefix id="search_icon">search</mat-icon>
-              <input matInput (keyup)="filterResults($event.target.value)" placeholder="Search within table for..." width="80%" fxFlex.sm="65" id="search_text">
+              <input matInput (keyup)="filterResults($event.target.value)" placeholder="Search within table for..." [(ngModel)]="this.value" width="80%" fxFlex.sm="65" id="search_text">
+              <span class="clear-search" *ngIf="value" matSuffix aria-label="Clear" (click)="clearSearch()">
+                <mat-icon id="clear_Search">close</mat-icon>
+              </span>
             </mat-form-field>
             <span fxLayoutAlign="start center" >
                 <a (click)="openModal()">

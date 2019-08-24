@@ -569,4 +569,13 @@ export class CostModelsService {
   formatDate(date) {
     return date.getFullYear() + '-' + ("0"+(date.getMonth()+1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2);
   }
+
+  verifyDate(date){
+    var date_regex =  /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/  ;
+    if(!(date_regex.test(date)))
+    {
+      return false;
+    }
+    return true;
+  }
 }

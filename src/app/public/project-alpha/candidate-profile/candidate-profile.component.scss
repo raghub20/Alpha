@@ -1,4 +1,10 @@
 @import '../../../../sass/cartus-palette.scss';
 
-
-
+.search-box {
+    input {
+        vertical-align: text-top;
+    }
+    .clear-search {
+        cursor: pointer;
+    }
+}

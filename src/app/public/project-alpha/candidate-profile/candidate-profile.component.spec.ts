@@ -6,9 +6,13 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
+import  { CandidateProfilesService } from '../../../core/services/candidate-profiles.service';
+
 describe('CandidateProfileComponent', () => {
   let component: CandidateProfileComponent;
   let fixture: ComponentFixture<CandidateProfileComponent>;
+
+  let service: CandidateProfilesService;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,6 +26,7 @@ describe('CandidateProfileComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CandidateProfileComponent);
     component = fixture.componentInstance;
+    service = new CandidateProfilesService();
     fixture.detectChanges();
   });
 
@@ -80,5 +85,18 @@ describe('CandidateProfileComponent', () => {
     add_button.click();
     fixture.detectChanges();
     expect(component.openDialog).toHaveBeenCalledTimes(1);
+  });
+
+  it('should check if the date format is YYYY-MM-DD', async () => {
+    const tableBody  = <HTMLElement[]>fixture.nativeElement.querySelectorAll('tbody');
+    const dataRows = tableBody[0].querySelectorAll('tr');
+    const date = dataRows[4].querySelectorAll('td');
+    fixture.detectChanges();
+    expect(service.verifyDate(date)).toBe(true);
+  });
+
+  it('should be hidden clearSearch icon', () => {
+    const clear_search = fixture.debugElement.query(By.css('#clear_search'));
+    expect(clear_search).toBeFalsy();
   });
 });

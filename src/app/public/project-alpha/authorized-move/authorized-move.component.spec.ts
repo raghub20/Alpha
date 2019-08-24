@@ -112,4 +112,12 @@ describe('AuthorizedMoveComponent', () => {
     });
   });
 
+  it('should check if the date format is YYYY-MM-DD', async () => {
+    const tableBody  = <HTMLElement[]>fixture.nativeElement.querySelectorAll('tbody');
+    const dataRows = tableBody[0].querySelectorAll('tr');
+    const date = dataRows[4].querySelectorAll('td');
+    fixture.detectChanges();
+    expect(service.verifyDate(date)).toBe(true);
+  });
+
 });

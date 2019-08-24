@@ -25,10 +25,10 @@ export class ApprovedMovesService {
         'isAssessmentReceived': false,
         'emailAddress': 'mathew.maturity@gmail.com',
         'businessUnit': 'Human Resources',
-        'invitationSentDate': '21-JUN-19',
-        'createdDate': '21-JUN-19',
+        'invitationSentDate': '2019-06-21',
+        'createdDate': '2019-06-21',
         'createdBy': 'Matthew, Maturity',
-        'lastUpdatedDate': '21-JUN-19',
+        'lastUpdatedDate': '2019-06-21',
         'streetAddress': '41 Apple Ridge Rd',
         'city': 'Danbury',
         'state': 'CT',
@@ -43,13 +43,13 @@ export class ApprovedMovesService {
       'departure': 'NY, New York',
       'destination': 'NJ, Jersey City',
       'status': 'Authorized',
-      'lastUpdateDate': '05/20/2019',
+      'lastUpdateDate': '2019-05-15',
       'paymentReceived': 'YES',
       'authorizedBy': 'Tom Jefferson',
-      'authorizedDate': '05/15/2019',
+      'authorizedDate': '2019-05-15',
       'authorizedClientName': 'Starbucks',
       'createdBy': 'alpha_admin',
-      'createdDate': '05/06/2019'
+      'createdDate': '2019-05-06'
     },
     {
       'moveId': '21312',
@@ -67,10 +67,10 @@ export class ApprovedMovesService {
         'isAssessmentReceived': true,
         'emailAddress': 'chris.beal@gmail.com',
         'businessUnit': 'Finance',
-        'invitationSentDate': '9-APR-19',
-        'createdDate': '9-APR-19',
+        'invitationSentDate': '2019-04-09',
+        'createdDate': '2019-04-09',
         'createdBy': 'Matthew, Maturity',
-        'lastUpdatedDate': '2-MAY-19',
+        'lastUpdatedDate': '2019-02-05',
         'streetAddress': '41 Apple Ridge Rd',
         'city': 'Danbury',
         'state': 'CT',
@@ -85,13 +85,13 @@ export class ApprovedMovesService {
       'departure': 'NJ, Jersey City',
       'destination': 'CA, San Francisco',
       'status': 'Move in Progress',
-      'lastUpdateDate': '05/20/2019',
+      'lastUpdateDate': '2019-05-20',
       'paymentReceived': 'YES',
       'authorizedBy': 'Tom Jefferson',
-      'authorizedDate': '05/15/2019',
+      'authorizedDate': '2019-05-15',
       'authorizedClientName': 'Starbucks',
       'createdBy': 'alpha_admin',
-      'createdDate': '05/06/2019'
+      'createdDate': '2019-05-06'
     },
     {
       'moveId': '21312',
@@ -109,10 +109,10 @@ export class ApprovedMovesService {
         'isAssessmentReceived': false,
         'emailAddress': 'dan.goulet@gmail.com',
         'businessUnit': 'Engineering',
-        'invitationSentDate': '12-JAN-19',
+        'invitationSentDate': '2019-01-12',
         'createdDate': '8-JAN-19',
         'createdBy': 'Matthew, Maturity',
-        'lastUpdatedDate': '25-JAN-19',
+        'lastUpdatedDate': '2019-01-25',
         'streetAddress': '41 Apple Ridge Rd',
         'city': 'Danbury',
         'state': 'CT',
@@ -127,13 +127,13 @@ export class ApprovedMovesService {
       'departure': 'NY, New York',
       'destination': 'NJ, Jersey City',
       'status': 'Authorized',
-      'lastUpdateDate': '05/20/2019',
+      'lastUpdateDate': '2019-03-24',
       'paymentReceived': 'YES',
       'authorizedBy': 'Tom Jefferson',
-      'authorizedDate': '05/15/2019',
+      'authorizedDate': '2019-03-15',
       'authorizedClientName': 'Starbucks',
       'createdBy': 'alpha_admin',
-      'createdDate': '05/06/2019'
+      'createdDate': '2019-03-06'
     },
     {
       'moveId': '21312',
@@ -151,10 +151,10 @@ export class ApprovedMovesService {
         'isAssessmentReceived': false,
         'emailAddress': 'j.cordon@gmail.com',
         'businessUnit': 'Engineering',
-        'invitationSentDate': '28-JAN-19',
-        'createdDate': '23-JAN-19',
+        'invitationSentDate': '2019-01-19',
+        'createdDate': '2019-01-23',
         'createdBy': 'Matthew, Maturity',
-        'lastUpdatedDate': '30-JAN-19',
+        'lastUpdatedDate': '2019-01-30',
         'streetAddress': '41 Apple Ridge Rd',
         'city': 'Danbury',
         'state': 'CT',
@@ -169,13 +169,13 @@ export class ApprovedMovesService {
       'departure': 'NJ, Nutley',
       'destination': 'TX, Austin',
       'status': 'HHG Booked',
-      'lastUpdateDate': '05/20/2019',
+      'lastUpdateDate': '2019-01-20',
       'paymentReceived': 'YES',
       'authorizedBy': 'Tom Jefferson',
-      'authorizedDate': '05/15/2019',
+      'authorizedDate': '2018-11-23',
       'authorizedClientName': 'Starbucks',
       'createdBy': 'alpha_admin',
-      'createdDate': '05/06/2019'
+      'createdDate': '2018-11-06'
     },
     {
       'moveId': '21312',
@@ -193,10 +193,10 @@ export class ApprovedMovesService {
         'isAssessmentReceived': false,
         'emailAddress': 'francesca.hayes@gmail.com',
         'businessUnit': 'Accounting',
-        'invitationSentDate': '22-FEB-19',
-        'createdDate': '2-FEB-19',
+        'invitationSentDate': '2019-02-19',
+        'createdDate': '2019-02-19',
         'createdBy': 'Matthew, Maturity',
-        'lastUpdatedDate': '23-MAR-19',
+        'lastUpdatedDate': '2019-03-23',
         'streetAddress': '8 pacific Ave',
         'city': 'Boston',
         'state': 'MA',
@@ -211,13 +211,13 @@ export class ApprovedMovesService {
       'departure': 'NY, New York',
       'destination': 'NJ, Jersey City',
       'status': 'Authorized',
-      'lastUpdateDate': '05/20/2019',
+      'lastUpdateDate': '2019-07-11',
       'paymentReceived': 'YES',
       'authorizedBy': 'Tom Jefferson',
-      'authorizedDate': '05/15/2019',
+      'authorizedDate': '2019-05-15',
       'authorizedClientName': 'Starbucks',
       'createdBy': 'alpha_admin',
-      'createdDate': '05/06/2019',
+      'createdDate': '2019-05-06',
     },
     {
       'moveId': '21312',
@@ -235,10 +235,10 @@ export class ApprovedMovesService {
         'isAssessmentReceived': false,
         'emailAddress': 'adam.hu@gmail.com',
         'businessUnit': 'Marketing',
-        'invitationSentDate': '21-JUN-19',
-        'createdDate': '21-JUN-19',
+        'invitationSentDate': '2019-06-21',
+        'createdDate': '2019-06-21',
         'createdBy': 'Matthew, Maturity',
-        'lastUpdatedDate': '21-JUN-19',
+        'lastUpdatedDate': '2019-06-11',
         'streetAddress': '41 Apple Ridge Rd',
         'city': 'Danbury',
         'state': 'CT',
@@ -253,13 +253,13 @@ export class ApprovedMovesService {
       'departure': 'NY, New York',
       'destination': 'NJ, Jersey City',
       'status': 'Move in Progress',
-      'lastUpdateDate': '05/20/2019',
+      'lastUpdateDate': '2019-02-27',
       'paymentReceived': 'YES',
       'authorizedBy': 'Tom Jefferson',
-      'authorizedDate': '05/15/2019',
+      'authorizedDate': '2019-02-15',
       'authorizedClientName': 'Starbucks',
       'createdBy': 'alpha_admin',
-      'createdDate': '05/06/2019'
+      'createdDate': '2019-02-06'
     },
     {
       'moveId': '21312',
@@ -277,10 +277,10 @@ export class ApprovedMovesService {
         'isAssessmentReceived': false,
         'emailAddress': 'suehong.jones@gmail.com',
         'businessUnit': 'Human Resources',
-        'invitationSentDate': '2-JUN-19',
-        'createdDate': '2-JUN-19',
+        'invitationSentDate': '2019-06-02',
+        'createdDate': '2019-06-02',
         'createdBy': 'Matthew, Maturity',
-        'lastUpdatedDate': '20-JUN-19',
+        'lastUpdatedDate': '2019-06-20',
         'streetAddress': '41 Apple Ridge Rd',
         'city': 'Danbury',
         'state': 'CT',
@@ -295,13 +295,13 @@ export class ApprovedMovesService {
       'departure': 'NJ, Nutley',
       'destination': 'TX, Austin',
       'status': 'HHG Booked',
-      'lastUpdateDate': '05/20/2019',
+      'lastUpdateDate': '2019-05-21',
       'paymentReceived': 'YES',
       'authorizedBy': 'Tom Jefferson',
-      'authorizedDate': '05/15/2019',
+      'authorizedDate': '2019-05-15',
       'authorizedClientName': 'Starbucks',
       'createdBy': 'alpha_admin',
-      'createdDate': '05/06/2019'
+      'createdDate': '2019-05-06'
     }
 
   ];
@@ -312,5 +312,14 @@ export class ApprovedMovesService {
   getApprovedMoves(): ApprovedMove[] {
     // console.log(this.approveMovesList);
     return this.approveMovesList;
+  }
+
+  verifyDate(date){
+    var date_regex =  /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/  ;
+    if(!(date_regex.test(date)))
+    {
+      return false;
+    }
+    return true;
   }
 }

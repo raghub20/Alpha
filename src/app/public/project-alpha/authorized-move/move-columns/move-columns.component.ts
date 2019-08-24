@@ -46,9 +46,9 @@ export class MoveColumnsComponent implements OnInit, OnDestroy {
       disabled: false
     },
     {
-      displayName: 'Last Updated Date',
+      displayName: 'Status Date',
       value: 'lastUpdateDate',
-      flag: false,
+      flag: true,
       disabled: false
     },
     {
@@ -161,6 +161,12 @@ export class MoveColumnsComponent implements OnInit, OnDestroy {
         disabled: false
       },
       {
+        displayName: 'Status Date',
+        value: 'lastUpdateDate',
+        flag: true,
+        disabled: false
+      },
+      {
         displayName: 'Status',
         value: 'status',
         flag: true,
@@ -208,7 +214,7 @@ export class MoveColumnsComponent implements OnInit, OnDestroy {
   resetValues(): void {
     this.populateArray();
     this.columnsList.forEach((col, ind) => {
-      if ((col.value !== 'candidate.fullname') && (col.value != 'authorizedAmount') && (col.value != 'departure') && (col.value != 'destination') && (col.value !== 'status')) {
+      if ((col.value !== 'candidate.fullname') && (col.value != 'authorizedAmount') && (col.value != 'departure') && (col.value != 'destination') && (col.value != 'lastUpdateDate') && (col.value !== 'status')) {
         col.flag = false;
       } else{
         col.flag = true;

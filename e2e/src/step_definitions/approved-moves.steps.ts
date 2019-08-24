@@ -3,6 +3,7 @@ import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { ApprovedMoves } from './approved-moves.page';
 import { browser, ExpectedConditions as EC } from 'protractor';
+import moment = require('moment');
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
@@ -11,14 +12,13 @@ let approvedmoves: ApprovedMoves = new ApprovedMoves();
 let actual: string;
 
 setDefaultTimeout(300 * 1000);
+Given('User will navigate to approved moves tab in mobile mode', () => {
+  return approvedmoves.openApprovedMovesInMobileMode();
+});
 
 Given('User will navigate to approved moves tab', async () => {
   await approvedmoves.get(); 
   await approvedmoves.getApprovedMovesView().isDisplayed();   // verifying candidates screen displayed
-});
-
-Then('User will wait for {string} seconds', (waitForSeconds) => {
-  return browser.sleep(parseInt(waitForSeconds)*1000);
 });
 
 Then('User will verify {string} header is displayed', async (headerName) => {
@@ -65,7 +65,6 @@ Then('User will verify {string} items are displayed per page', async (expectedIt
 });
 
 When('User will open table column section of approved moves page', async () => {
-  await browser.sleep(4000);
   let viewColumnEle = await approvedmoves.getViewColumnEle();
   return viewColumnEle.click();
 });
@@ -132,4 +131,16 @@ Then('User will check columns are {string}', async (checkedOrUnchecked : string,
     let actualVal = await el.input.getAttribute('aria-checked');
     expect(actualVal).to.be.equal(isChecked);
   }
+});
+
+Then('User will verify status date is in {string} format', async (dateFormat) => {
+  let statusData = await approvedmoves.getStatusDateData();
+  for(let i=0; i<statusData.length; i++) {
+    let result = moment(statusData[i], 'YYYY-MM-DD').format('YYYY-MM-DD');
+    console.log("date = " + result);
+    if(result == 'Invalid date') {
+      return fail('Status Date : ' + statusData[i] + ' is not in expected date format. That is ' + dateFormat);
+    }
+  }
+  return Promise.resolve();
 });

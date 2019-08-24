@@ -1,92 +1,149 @@
 import { browser, promise, element, by, ElementFinder, ElementArrayFinder, WebElementPromise } from 'protractor';
+import { ApprovedMoves } from './approved-moves.page';
 
 export class Defaultcolumn {
+    approvedMovesObj = new ApprovedMoves();
 
-get(): promise.Promise<any> {
-    return browser.get('/#/project-alpha/candidate-profiles');
-}
-
-getUser(): promise.Promise<any> {
-    return new promise.Promise((resolve) => resolve('user')); // TODO: Find and return real user
-}
-getcandidates():ElementFinder{
-    return element(by.css("section.content_table"));
-}
-getfirstlastname():ElementArrayFinder{
-     return element.all(by.css("span.text-as-link"));
-}
-getdeparturevalue():ElementArrayFinder{
-    return element.all(by.css("td.cdk-column-departure"));
-}
-getdestinationvalue():ElementArrayFinder{
-    return element.all(by.css("td.cdk-column-destination"));
-}
-getlevelvalue():ElementArrayFinder{
-    return element.all(by.css("td.cdk-column-level"));
-}
-getstatusvalue():ElementArrayFinder{
-    return element.all(by.css("td.cdk-column-status"));
-}
-getstatusHyperlink(parent:ElementFinder):ElementFinder{
-    return parent.element(by.tagName("a"));
-    //return element.all(by.css("td.cdk-column-status"));
-}
-getsortfullname():ElementFinder{
-    return element.all(by.css("div.mat-sort-header-indicator")).get(0);
-}
-getsortlevel():ElementFinder{
-    return element.all(by.css("div.mat-sort-header-indicator")).get(1);
-}
-getsortdeparture():ElementFinder{
-    return element.all(by.css("div.mat-sort-header-indicator")).get(2);
-}
-getsortdestination():ElementFinder{
-    return element.all(by.css("div.mat-sort-header-indicator")).get(3);
-}
-getsortstatus():ElementFinder{
-    return element.all(by.css("div.mat-sort-header-indicator")).get(4);
-}
-getselectfirstrecord():ElementFinder{
-    return element.all(by.css("div.mat-checkbox-inner-container")).get(1);
-}
-getselectedfirstrecord():ElementFinder{
-    return element(by.xpath("(//input[@class='mat-checkbox-input cdk-visually-hidden'])[2]"));
-}
-getclickfirstrecord():ElementFinder{
-    return element.all(by.css("td.cdk-column-fullname")).get(1);
-}
-getaddcandidateform():ElementFinder{
-    return element(by.css("div.addcandidateformcontainer"));
-}
-
-getsortascending(arr: Array<String>): Boolean{
-var sorted: boolean = true;
-var sortedArr = arr.slice();
-sortedArr.sort();
-for(var i = 0; i < arr.length; i++)
-{
-    if(arr[i] != sortedArr[i])
-    {
-        sorted = false;
-        break;
+    get(): promise.Promise<any> {
+        return browser.get('/#/project-alpha/candidate-profiles');
     }
-}
-    return sorted;
-}
 
-getsortdescending(arr): Boolean{
+    getUser(): promise.Promise<any> {
+        return new promise.Promise((resolve) => resolve('user')); // TODO: Find and return real user
+    }
+
+    getcandidates():ElementFinder{
+        return element(by.css("section.content_table"));
+    }
+
+    getfirstlastname():ElementArrayFinder{
+        return element.all(by.css("span.text-as-link"));
+    }
+
+    getdeparturevalue():ElementArrayFinder{
+        return element.all(by.css("td.cdk-column-departure"));
+    }
+
+    getdestinationvalue():ElementArrayFinder{
+        return element.all(by.css("td.cdk-column-destination"));
+    }
+
+    getlevelvalue():ElementArrayFinder{
+        return element.all(by.css("td.cdk-column-level"));
+    }
+
+    getstatusvalue():ElementArrayFinder{
+        return element.all(by.css("td.cdk-column-status"));
+    }
+
+    getstatusHyperlink(parent:ElementFinder):ElementFinder{
+        return parent.element(by.tagName("a"));
+    }
+
+    getsortfullname():ElementFinder{
+        return element.all(by.css("div.mat-sort-header-indicator")).get(0);
+    }
+
+    getsortlevel():ElementFinder{
+        return element.all(by.css("div.mat-sort-header-indicator")).get(1);
+    }
+
+    getsortdeparture():ElementFinder{
+        return element.all(by.css("div.mat-sort-header-indicator")).get(2);
+    }
+
+    getsortdestination():ElementFinder{
+        return element.all(by.css("div.mat-sort-header-indicator")).get(3);
+    }
+
+    getsortstatus():ElementFinder{
+        return element.all(by.css("div.mat-sort-header-indicator")).get(4);
+    }
+
+    getselectfirstrecord():ElementFinder{
+        return element.all(by.css("div.mat-checkbox-inner-container")).get(1);
+    }
+
+    getselectedfirstrecord():ElementFinder{
+        return element(by.xpath("(//input[@class='mat-checkbox-input cdk-visually-hidden'])[2]"));
+    }
+
+    getclickfirstrecord():ElementFinder{
+        return element.all(by.css("td.cdk-column-fullname")).get(1);
+    }
+
+    getaddcandidateform():ElementFinder{
+        return element(by.css("div.addcandidateformcontainer"));
+    }
+
+    getsortascending(arr: Array<String>): Boolean{
     var sorted: boolean = true;
-var sortedArr = arr.slice();
-sortedArr.sort();
-sortedArr.reverse();
-for(var i = 0; i < arr.length; i++)
-{
-    if(arr[i] != sortedArr[i])
-    {
-        sorted = false;
-        break;
+    var sortedArr = arr.slice();
+    sortedArr.sort();
+    for(var i = 0; i < arr.length; i++)
+        {
+        if(arr[i] != sortedArr[i])
+            {
+                sorted = false;
+                break;
+            }
+        }
+        return sorted;
     }
-}
-    return sorted;
-}
+
+    getsortdescending(arr): Boolean{
+        var sorted: boolean = true;
+        var sortedArr = arr.slice();
+        sortedArr.sort();
+        sortedArr.reverse();
+        for(var i = 0; i < arr.length; i++)
+            {
+            if(arr[i] != sortedArr[i])
+                {
+                sorted = false;
+                break;
+            }
+        }
+        return sorted;
+    }
+
+    getSelectColumnButton() : ElementFinder {
+        return element(by.css('app-candidate-profile [ng-reflect-message="Select columns"]'));
+    }
+
+    async getStatusDateData() : Promise<Array<string>> {
+        let statusData = [];
+        let isNextButtonEnabled = true;
+        while(isNextButtonEnabled) {
+            let statusDateTds : ElementFinder[] = await element.all(by.xpath('//td[contains(@class, "mat-column-lastUpdatedDate")]'));
+            for(let i=0; i<statusDateTds.length; i++) {
+                statusData.push(await statusDateTds[i].getText());
+            }
+            isNextButtonEnabled = await this.approvedMovesObj.getNextPage().isEnabled();
+            if(isNextButtonEnabled) {
+                await this.approvedMovesObj.getNextPage().click();
+            }
+        }
+    return statusData;
+    }
+
+    async getInivitationSentDateData() : Promise<Array<string>> {
+        let invitationSentDateData = [];
+        let isNextButtonEnabled = true;
+        while(isNextButtonEnabled) {
+            let statusDateTds : ElementFinder[] = await element.all(by.xpath('//td[contains(@class, "mat-column-invitationSentDate")]'));
+            for(let i=0; i<statusDateTds.length; i++) {
+                invitationSentDateData.push(await statusDateTds[i].getText());
+            }
+            isNextButtonEnabled = await this.approvedMovesObj.getNextPage().isEnabled();
+            if(isNextButtonEnabled) {
+                await this.approvedMovesObj.getNextPage().click();
+            }
+        }
+    return invitationSentDateData;
+    }
+    async openCandidatePageInMobileMode(): Promise<any> {
+        await browser.manage().window().setSize(500, 900);
+        return await browser.get('/#/project-alpha/candidate-profiles');
+    }
 }

@@ -19,7 +19,7 @@ import {TransfereeDetailsComponent} from './transferee-details/transferee-detail
 })
 export class AuthorizedMoveComponent {
 
-  displayedColumns: string[] = ['select', 'candidate.fullname', 'authorizedAmount', 'departure', 'destination', 'status'];
+  displayedColumns: string[] = ['select', 'candidate.fullname', 'authorizedAmount', 'departure', 'destination', 'lastUpdateDate' , 'status'];
 
   ELEMENT_DATA: any;
   dataSource: any;

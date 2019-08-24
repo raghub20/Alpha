@@ -132,9 +132,12 @@ describe('AddCostModelComponent', () => {
       'createdBy': 'Cartus Admin',
       'createdDate': '2019-08-07'
     }],
-    'updateDate': '2019/05/27',
+    'updateDate': '2019-05-27',
     'createdBy': 'Admin',
-    'createdDate': '2019/05/20'
+    'createdDate': '2019-05-20',
+    'expirationDate': '2019-06-26',
+    'isDeleted': false,
+    'status': 'Active'
   };
 
   const dialogMock = {
